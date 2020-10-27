@@ -1,0 +1,155 @@
+
+@font-face {
+    font-family: 'Sofiapro';
+    src: local('Sofiapro'), url('Fonts/Sofiapro/sofiapro-light1-webfont.woff') format('woff'),
+                            url('Fonts/Sofiapro/sofiapro-light.otf') format('truetype');}
+
+*{
+    font-family: 'Sofiapro';}
+
+body{
+    background-color: rgb(27,27,27);
+}
+
+li{
+    list-style: none;
+}
+h1{
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(177,210,43);
+}
+
+@media (min-width: 720px){
+    .contenido{
+        margin: auto;
+        width: 60%;
+
+}}
+
+@media (max-width: 719px){
+    .contenido{
+        margin: auto;
+        width: 95%;
+        overflow: hidden;
+    }
+    .carrito, h5{
+        font-size: 3vw;
+    }
+}
+
+h5{
+    margin-bottom: 0;
+}
+
+
+span{
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    overflow-wrap: break-word;
+}
+
+
+
+/*Carrito-------------------------------------------------*/
+.carrito{
+    width: 100%;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 50px;
+    color: white;
+}
+/*Cabecera-------------------*/
+.carrito-cabecera{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 4px solid rgb(80,80,80);
+    margin: 0 auto;
+}
+/*Cuerpo--------------------*/
+
+.carrito-cuerpo{
+    width: 100%;
+    border-bottom: 4px solid rgb(80,80,80);
+    margin: 0 auto;
+}
+/*---------------------------*/
+.product-title{
+    width: 45%;
+    border-bottom: 1px solid rgb(80,80,80);
+
+}
+
+.imgProducto{
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(80,80,80);
+    
+}
+
+.imgProducto img{
+    width: 70%;
+    border: 2px solid rgb(80,80,80);
+}
+
+.nombreProducto{
+    color: rgb(177,210,43);
+    width: 25%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(80,80,80);
+    padding: 10px 0;
+}
+
+
+.precio{
+    font-weight: bold;  
+    width: 15%;
+    display: flex;
+    border-bottom: 1px solid rgb(80,80,80);
+    align-items: center;
+    justify-content: center;
+}
+
+.cantidad{
+    width: 30%;
+    border-bottom: 1px solid rgb(80,80,80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.subtotal{
+    font-weight: bold;  
+    width: 10%;
+    border-bottom: 1px solid rgb(80,80,80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+.producto{
+    display: flex;
+}
+
+.basketTotalContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.basketTotalTitle{
+    width: 30%;
+}
+
+.basketTotal{
+    width: 10%;
+}

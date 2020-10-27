@@ -1,0 +1,19 @@
+.formulario{
+	color: white;
+	margin: auto;
+	text-align: left;
+}
+
+.formulario button{
+
+	width: 100%;
+	padding: auto;
+}
+
+.formulario tr{
+	border: rgb(0,0,0,0) solid 10px;
+}
+h6{
+	font-size: 12px;
+	color: gray;
+}

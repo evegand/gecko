@@ -1,0 +1,115 @@
+/* --------- Fuentes --------- */
+@font-face {
+	font-family: 'Sofiapro';
+	src: local('Sofiapro'), url('Fonts/Sofiapro/sofiapro-light1-webfont.woff') format('woff'),
+							url('Fonts/Sofiapro/sofiapro-light.otf') format('truetype');
+}
+
+.navbar-custom {
+    background-color: black;
+    padding: 0px 20px 1px 15px;
+    width:100%;
+    z-index:3;
+    position:fixed;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand {
+	font-family: 'Sofiapro';
+    font-weight: bold;
+	font-size: 2rem;
+	color: rgba(177, 210, 43, 0.9);
+}
+.navbar-custom .navbar-text {
+    font-style: italic;
+    color: rgba(177, 210, 43, 0.9);
+}
+
+.navbar-custom button {
+	color: rgba(177, 210, 43, 0.9);
+	filter: invert(1)
+}
+
+/* change the link color */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(177, 210, 43, 0.9);
+}
+
+/* change the color of hovered links */
+.navbar-custom .nav-item:hover .nav-link {
+    color: green;
+}
+
+/* for dropdown only - change the color of droodown */
+.navbar-custom .dropdown-menu{
+    background-color: rgba(177, 210, 43, 0.9);
+}
+
+.navbar-custom .navbar-collapse, .collapse{
+    /*
+    background-color: #000;
+     > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  */
+}
+
+/* XD */
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover 
+{
+    color: white !important;
+}
+.navbar-light .navbar-brand {
+   color: rgba(177, 210, 43, 0.9) !important;
+}
+.navbar-light .navbar-brand:hover{
+   color: rgba(177, 210, 43, 0.9); 
+}
+.mr-auto, .mx-auto {
+    margin: auto!important;
+}
+
+/*-*/
+.navbar-custom .dropdown-item {
+    color: #000;
+}
+/*pa que sirva esto*/
+@media (max-width: 500px){
+.navbar-custom .navbar-brand {
+    font-family: 'Sofiapro';
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: rgba(177, 210, 43, 0.9);
+    padding-right: 0 !important;
+    margin-right: 0 !important;}
+
+.navbar-custom {
+    background-color: black;
+    padding: 0px 5px 1px 5px;
+    width:100%;
+    z-index:3;
+    position:fixed;
+}
+}
+
+.navbar-custom img{
+        filter:invert(1);
+        align-self:center;
+
+
+
+/* Carrusel */
+#carouselExampleControls, #carouselImage{
+    size: cover;
+    height: 70vh;
+    width: 100vw;
+}
+
+/* texto */
+.carousel-caption h5, p {
+    position: relative;
+    padding-top: 0px;
+}
+

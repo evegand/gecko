@@ -1,0 +1,261 @@
+/* --------- Imports --------- */
+@import url(footer.css);
+/* --------- Fuentes --------- */
+@font-face {
+	font-family: 'Sofiapro';
+	src: local('Sofiapro'), url('Fonts/Sofiapro/sofiapro-light1-webfont.woff') format('woff'),
+							url('Fonts/Sofiapro/sofiapro-light.otf') format('truetype');
+}
+
+* {
+	font-family: 'Sofiapro';
+}
+
+/* ------------------------------- BANNER ------------------------------- */
+.bannercontainer {
+	text-decoration: none;
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bannercontainer a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#banner::after{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0,0,0.75);
+	opacity: 0.7;
+	z-index: -1;
+}
+
+
+/* ---------------------------- Nosotros ----------------------------*/
+#productos .containerbtn,
+#servicios .containerbtn{
+	padding: 10px 30px;
+	color: black;
+	text-shadow: 0px 0px 0px black;
+	background-color: #B1D22B;
+	border-color: #B1D22B;
+	transition: 0.3s ease;
+	text-decoration: none;
+	transition-property: background-color, color;
+}
+
+#productos .aboutuscontainer .containerbtn:hover,
+#servicios .productscontainer .containerbtn:hover{
+	border-color: #B1D22B;
+	color: #B1D22B;
+	text-shadow: 0px 0px 0px black;
+	background-color: #000;
+}
+
+
+
+@media (min-width: 240px){
+	.aboutuscontainer {
+		padding: 40px 40px 0px 40px;
+		background-color: #EEEEEE;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+
+	.aboutuscontainer h1 {
+		color: rgba(177, 210, 43, 0.9);
+		font-size: 2rem;
+	}
+
+	.aboutustext {
+		padding-left: 10px;
+		padding-right: 10px;
+		text-align: left;
+	}
+
+	/* -------------------------------------------------- */
+	.productscontainer {
+		padding: 40px 40px 0px 40px;
+		background-color: transparent;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+
+	.productscontainer h1 {
+		color: rgba(177, 210, 43, 0.9);
+		font-size: 2rem;
+	}
+
+	.conttext {
+		padding-left: 10px;
+		padding-right: 10px;
+		text-align: left;
+	}
+
+}
+
+@media (min-width: 1024px){
+	.aboutuscontainer {
+		width: 100%;
+		background-color: #EEEEEE;
+		padding: 40px 240px 0px 240px;
+		margin-left: 0px;
+		margin-right: 100px;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+
+	.productscontainer {
+		padding: 40px 240px 0px 240px;
+		background-color: transparent;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+}
+
+
+/* ---------------- Movil ---------------- */
+@media (min-width: 240px){
+
+	#banner {
+		background-image: url(../Images/creativekidswallpaper2.jpg);
+		height: 90vh;
+		background-size: cover;
+		background-position: right center;
+		position: relative;
+		z-index: 1;
+
+	}
+
+	#banner h1{
+		display: block;
+		width: fit-content;
+		position: relative;
+		color: white;
+		text-shadow: 1px 1px 2px black;
+		padding-left: 30px;
+	}
+
+	#banner p{
+		color: white;
+		display: flex;
+		text-shadow: 1px 1px 2px black;
+		margin-left: 30px;
+
+	}
+
+	#banner .banner_btn{
+		display: inline-block;
+		padding: 10px 30px;
+		color: #B1D22B;
+		background: rgba(0, 0, 0, 0.05);
+		border: 2px solid #B1D22B;
+		/*
+		text-transform: uppercase;
+		*/
+		text-shadow: 0.5px 0.5px 0.5px #000;
+		letter-spacing: 0.1rem;
+		margin-top: -40px;
+		margin-left: 30px;
+		transition: 0.3s ease;
+		transition-property: background-color, color;
+	}
+
+	#banner .banner_btn:hover{
+		color: black;
+		text-shadow: 0px 0px 0px black;
+		background-color: #B1D22B;
+		border-color: #B1D22B;
+
+	}
+}
+
+
+/* ---------------- Desktop ---------------- */
+@media (min-width: 1024px){
+	#banner {
+		/*
+		background-color: #000;
+		background-image: url(./../Images/creativekidswallpaper.jpg);
+		*/
+		background-image: url(../Images/creativekidswallpaper2.jpg);
+		height: 75vh;
+		background-size: cover;
+		background-position: right center;
+		position: relative;
+		z-index: 0;
+
+	}
+
+	#banner h1{
+		display: block;
+		width: fit-content;
+		position: relative;
+		color: white;
+		text-shadow: 1px 1px 2px black;
+		padding-left: 30px;
+	}
+
+	#banner p{
+		color: white;
+		display: flex;
+		text-shadow: 1px 1px 2px black;
+		margin-left: 30px;
+
+	}
+
+	#banner .banner_btn{
+		display: inline-block;
+		padding: 10px 30px;
+		color: #B1D22B;
+		background: rgba(0, 0, 0, 0.05) !important;
+		border: 2px solid #B1D22B;
+		/*
+		text-transform: uppercase;
+		*/
+		text-shadow: 0.5px 0.5px 0.5px #000;
+		letter-spacing: 0.1rem;
+		margin-top: -40px;
+		margin-left: 30px;
+		transition: 0.3s ease;
+		transition-property: background-color, color;
+	}
+
+	#banner .banner_btn:hover{
+		color: black;
+		text-shadow: 0px 0px 0px black;
+		background-color: #B1D22B;
+		border-color: #B1D22B;
+
+	}
+}
+
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: none;
+}
+
+

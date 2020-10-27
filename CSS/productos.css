@@ -1,0 +1,153 @@
+
+@font-face {
+	font-family: 'Sofiapro';
+	src: local('Sofiapro'), url('Fonts/Sofiapro/sofiapro-light1-webfont.woff') format('woff'),
+							url('Fonts/Sofiapro/sofiapro-light.otf') format('truetype');}
+
+*{
+	font-family: 'Sofiapro';}
+
+body{
+	background-color: rgb(27,27,27);
+}
+
+li{
+	list-style: none;
+}
+h1{
+	text-align: center;
+	padding: 10px;
+	background-color: rgb(177,210,43);
+}
+
+button{
+	font-size: 0.5vw;
+
+}
+
+a:hover{
+	text-decoration: none;
+	color: red;
+}
+
+
+
+.producto{
+	/*text-align: center;*/
+}
+
+.productName{
+	font-size: 1.2vw;
+	color: rgb(177,210,43);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	/*column-width: 100px;*/
+	margin: 0;
+
+}
+.productPrice{
+	width: 100%;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgb(30,150,30);
+	margin: 0;
+}
+
+.add-cart{
+	display: initial;
+	position: absolute; 
+    width: 75%;
+    background-color: darkgrey;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    text-align: center;
+    font-size: 1.5vw;	
+    font-weight: bold;
+    padding: 3% 0;
+    /*bottom: 10px;*/
+    top: 1vw;
+    margin: 0;
+    border-radius: 4px 4px 0 0;
+}
+.producto:hover .add-cart{
+	opacity: 0.9;
+    text-decoration:none;
+   	top: 0;
+   /*top: 14vw;*/
+}
+
+.pie-producto{
+	width: 75%;
+	text-align: center;
+	display: inherit;
+}
+
+@media (min-width: 720px){
+	.contenido{
+		/*margin: auto;*/
+		margin: 0 18% 0 23%;
+		width: 60%;
+
+	}
+	.imgPr{
+		width: 75%;	
+		height: 75%;
+		border: 3px solid rgb(80,80,80);
+	}
+	.producto{
+		/*display: grid;*/
+		width: 33.3%;
+		float: left;
+		/*background-color: rgb(50,50,50);*/
+		position: relative;
+		border: 6px solid rgb(27,27,27);
+		height: 23vw;
+	}
+}
+
+@media (max-width: 719px){
+	.contenido{
+		/*margin: auto;*/
+		margin: 0 0 0 8%;
+		width: 92%;
+	    overflow: hidden;
+	}
+	.imgPr{
+		width: 35.6vw;
+		height: 37.5vw;
+		margin-top: 10px;
+		border: 3px solid rgb(80,80,80);
+	}
+	.producto{
+		display: grid;
+		width: 44.8vw;
+		float: left;
+		/*background-color: rgb(50,50,50);*/
+		margin: 0.5vw;
+		position: relative;
+		height: 50vw;
+	}
+
+	.productName, .productPrice{
+	font-size: 4vw;
+
+	}
+
+	button{
+	font-size: 0.5vw;
+	}
+
+	.add-cart{
+		width: 35.6vw;
+		font-size: 3vw;
+		top: 0;
+		margin: 2vw 0;
+	}
+
+	.pie-producto{
+		width: 75%;
+	}
+}
+
+
