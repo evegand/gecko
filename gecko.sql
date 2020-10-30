@@ -26,7 +26,7 @@ CREATE TABLE `categorias` (
   `id_categoria` smallint(2) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(20) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'\"Vestimenta\"');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,11 +48,13 @@ DROP TABLE IF EXISTS `productos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_categoriaf` smallint(2) NOT NULL,
   `nombre_producto` varchar(45) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `precio` float DEFAULT NULL,
-  `id_categoria` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`id_producto`)
+  PRIMARY KEY (`id_producto`),
+  KEY `id_categoriaf` (`id_categoriaf`),
+  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoriaf`) REFERENCES `categorias` (`id_categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -61,7 +64,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Playera Blanca','Playera manga corta varias tallas',300,1),(2,'Playera Roja','Playera con estampado',279,1),(3,'Playera Negra','Manga corta color negro',349,1),(4,'Playera con estampado','Tela de excelente calidad',199,1),(5,'Playera de flores','Color Azul',199,1),(6,'Playera gris','Es una playera gris',499,1),(7,'Playera genérica con nombre largo jejeje aaaa','Esta es una playera generica',999,1);
+INSERT INTO `productos` VALUES (1,1,'Playera Blanca','Playera manga corta varias tallas',300),(2,1,'Playera Roja','Playera con estampado',279),(3,1,'Playera negra','Manga corta color negro',350),(4,1,'Playera con estampado','Tela de excelente calidad',200),(5,1,'Playera azul con estampado de flores','Color azul diferentes tallas',499),(6,1,'Playera color gris','De manga corta en diferentes tallas',200),(7,1,'Playera generica con un nombre demasiado larg','Esta es una playera con nombre y descripción ',1299);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-26 19:11:57
+-- Dump completed on 2020-10-30 14:39:52
