@@ -102,13 +102,13 @@
 				    echo "No se pudo conectar : " . mysqli_connect_error();
 				    exit;
 				}
-				$consulta= "SELECT * FROM productos WHERE id_categoria = 1"; 
+				$consulta= "SELECT * FROM productos WHERE id_categoriaf = 1"; 
 				$resultado= mysqli_query($link,$consulta) ;
 
 				while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
 					$prodJSON = json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['id_producto'] . ".jpg", 'cantidad' => 1));
 			   		echo "<div class='producto'>
-							<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a></p>
+							<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a><br><button class='btn btn-secondary btn-sm'>CH</button> <button class='btn btn-secondary btn-sm'>M</button> <button class='btn btn-secondary btn-sm'>G</button></p>
 							<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['id_producto'] . ".jpg'>
 							<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
 							<label class='productPrice'>$" . $fila['precio'] . ".00</label></div>
@@ -128,7 +128,7 @@
 					<label class="productPrice">$300.00</label></div>
 				</div>
 				<div class="producto">
-					<p class="add-cart cart2" ><a href="#">Añadir al Carrito</a><br><button class="btn btn-secondary btn-sm">CH</button> <button class="btn btn-secondary btn-sm">M</button> <button class="btn btn-secondary btn-sm">G</button></p>
+					<p class="add-cart cart2" ><a href="#">Añadir al Carrito</a><br><button class='btn btn-secondary btn-sm'>CH</button> <button class='btn btn-secondary btn-sm'>M</button> <button class='btn btn-secondary btn-sm'>G</button></p>
 					<img class="imgPr" src="Images/Productos/1.jpg">
 					<h2 class="productName"><a href="#">ProductName</a></h2>
 					<label class="productPrice">$300.00</label>

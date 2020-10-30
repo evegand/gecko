@@ -9,8 +9,9 @@
 
 body{
 	background-color: rgb(27,27,27);
+	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../Images/creativekidswallpaper.jpg');
 }
-
+¿
 li{
 	list-style: none;
 }
@@ -68,7 +69,18 @@ a:hover{
     /*bottom: 10px;*/
     top: 1vw;
     margin: 0;
-    border-radius: 4px 4px 0 0;
+    border-radius: 8px 8px 0 0;
+}
+
+
+.producto:hover .imgPr{
+	box-shadow: 4px 4px 20px rgb(90,130,90);
+
+}
+
+.producto:hover{
+	transition-duration: 0.3s;
+	transform: scale(1.03);
 }
 .producto:hover .add-cart{
 	opacity: 0.9;
@@ -83,17 +95,23 @@ a:hover{
 	display: inherit;
 }
 
+.imgPr{
+	/*border: 3px solid rgb(50,50,50);*/
+	border-radius: 8px;
+}
+
 @media (min-width: 720px){
 	.contenido{
 		/*margin: auto;*/
 		margin: 0 18% 0 23%;
 		width: 60%;
+		/*background-image: url("../Images/creativekidswallpaper.jpg");*/
+		
 
 	}
 	.imgPr{
 		width: 75%;	
 		height: 75%;
-		border: 3px solid rgb(80,80,80);
 	}
 	.producto{
 		/*display: grid;*/
@@ -101,7 +119,7 @@ a:hover{
 		float: left;
 		/*background-color: rgb(50,50,50);*/
 		position: relative;
-		border: 6px solid rgb(27,27,27);
+		border: 6px solid rgb(27,27,27,0);
 		height: 23vw;
 	}
 }
@@ -117,11 +135,11 @@ a:hover{
 		width: 35.6vw;
 		height: 37.5vw;
 		margin-top: 10px;
-		border: 3px solid rgb(80,80,80);
+
 	}
 	.producto{
 		display: grid;
-		width: 44.8vw;
+		width: 43vw;
 		float: left;
 		/*background-color: rgb(50,50,50);*/
 		margin: 0.5vw;
@@ -146,7 +164,7 @@ a:hover{
 	}
 
 	.pie-producto{
-		width: 75%;
+		width: 83%;
 	}
 }
 

@@ -6,10 +6,7 @@ B1D22B
 footer{
 	position: fixed;
 	bottom: 0;
-}
-
-@media (max-height:800px){
-	footer { position: static; }
+	position: static;
 }
 
 
