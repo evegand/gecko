@@ -9,10 +9,10 @@
 	    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	    <link href="CSS/geckonavbar_style.css" rel="stylesheet">
 	    <link href="CSS/estilos.css" rel="stylesheet">
-	    <link href="CSS/footer.css" rel="stylesheet">
-	    <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
-	    <script type="text/javascript" src="JS/nav.js"></script>
-	    
+		<link href="CSS/footer.css" rel="stylesheet">
+		<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
+		<script type="text/javascript" src="JS/nav.js"></script>
+
 	    <!-- Javascript (funciones) -->
 	    <link href="">
 	</head>
@@ -43,7 +43,7 @@
 		            </li>
 		            <li class="nav-item dropdown">
 		                <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-		                    href="#" 
+		                    href="#productos" 
 		                    id="titleProducts" 
 		                    role="button" 
 		                    data-toggle="dropdown" 
@@ -56,7 +56,7 @@
 		                    <a class="dropdown-item" href="playeras.php">Playeras</a>
 		                    <a class="dropdown-item" href="#">Sudaderas</a>
 		                    <a class="dropdown-item" href="#">Llaveros</a>
-		                    <a class="dropdown-item" href="#productos">Más productos...</a>
+		                    <a class="dropdown-item" href="">Más productos...</a>
 		                </div>
 		            </li>
 		            <li class="nav-item dropdown">
@@ -73,7 +73,7 @@
 		                    <a class="dropdown-item" href="#servicios">Realiza tu pedido</a>
 		                </div>
 		            <li class="nav-item active">
-		                <a class="nav-link pl-4 pr-4" href="#">Contacto</a>
+		                <a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a>
 		            </li>
 		            </li>
 		            <li class="nav-item">
@@ -103,47 +103,78 @@
 			<!-- -------------------------- TBA -------------------------- -->
 			<section id="nosotros">
 				<div class="productscontainer">
-					<img id="aboutus" src="Images/aboutus.png" width="150" height="150" alt="">
-					<h1>Acerca de nosotros</h1>
+					
+					<div class="row featurette">
+						<div class="col-md-6 ">
+							<img id="aboutus" src="Images/Gecko_logo.png" alt="">
+						</div>
+						<div class="col-md-6 pl-5 conttext pl-5">
+						<h1 class="featurette-heading text-bold">
+							<span class="text-muted">Acerca de</span> Nosotros<span class="text-muted">.</span>
+						</h1>
+							<p class="">Somos una empresa dedicada a traer tu diseño a la vida, en productos tales como tazas, playeras, sudaderas, llaveros, rompecabezas, entre muchos otros productos. Si tienes un diseño en mente, o quieras uno completamente original... ¡Nosotros te ayudamos!</p>
+						</div>
+					</div>
+
+
 					<div class="conttext">
-						<p>Somos una empresa dedicada a traer tu diseño a la vida, en productos tales como tazas, playeras, sudaderas, llaveros, rompecabezas, entre muchos otros productos. Si tienes un diseño en mente, o quieras uno completamente original... ¡Nosotros te ayudamos!
+						<p>
 						</p>
 					</div>
 				</div>
 			</section>
 			<section id="productos">
 				<div class="aboutuscontainer">
-					<img id="products" src="Images/products.png" width="150" height="150" alt="">
 					<h1>Productos</h1>
 					<div class="conttext">
 						<p class="text-center">Desde tazas y playeras, hasta rompecabezas y llaveros.<br>¡Tenemos de todo! ¡Revisa nuestro catalogo de productos!
-						</p><br>
+						</p>
+						<div class="row text-center pb-5">
+							<div class="col-lg-3">
+								<img src="Images/Productos/playeras.png" class="bd-placeholder-img" width="140" height="140"focusable="false">
+								<h5 class="pt-3">Playeras</h5>
+							</div>
+							<div class="col-lg-3">
+								<img src="Images/Productos/tazas.png" class="bd-placeholder-img" width="140" height="140" focusable="false">
+								<h5 class="pt-3">Tazas</h5>
+							</div><!-- /.col-lg-4 -->
+							<div class="col-lg-3">
+								<img src="Images/Productos/llaveros.png" class="bd-placeholder-img" width="200" height="140" focusable="false">
+								<h5 class="pt-3">Llaveros</h5>
+							</div><!-- /.col-lg-4 -->
+							<div class="col-lg-3">
+								<img src="Images/Productos/rompecabezas.png" class="bd-placeholder-img" width="200" height="140" focusable="false">
+								<h5 class="pt-3">Rompecabezas</h5>
+							</div><!-- /.col-lg-4 -->
+						</div><!-- /.row -->
+
 					</div>
-					<a href="#" type="button" class="containerbtn">Observa los productos</a>
+
+					<a href="#" type="button" class="containerbtn">¡Revisa nuestro catálogo!</a>
 				</div>
 			</section>
 			<section id="servicios">
 				<div class="productscontainer">
 					<h1 class="text-bold">Servicios</h1>
 					<div class="conttext">
-						<p class="text-center">Revisa las opciones que tenemos para ti, podemos personalizar tus productos.
+						<p class="text-center">¡Revisa las opciones que tenemos para ti! Podemos personalizar tus productos.
 						</p><br>
 
 						<div class="row text-center">
-							<div class="col-lg">
-								<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+							<div class="col-lg-4">
+								<img src="Images/personalizar.png" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
 								<h5 class="pt-3">Personaliza</h5>
 								<p>¿Ya tienes tu diseño? Envíanos las características y tu propio diseño personalizado.</p>
 								</div><!-- /.col-lg-4 -->
 							<div class="col-lg-4">
-								<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+								<img src="Images/crear.png" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
 								<h5 class="pt-3">Creamos tu diseño</h5>
 								<p>¿Aún no tienes diseño? Explícanos como quieres que sea tu diseño, y nosotros te ayudamos a darle la vida.</p>
 							</div><!-- /.col-lg-4 -->
 							<div class="col-lg-4">
-								<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-								<h5 class="pt-3">Eventos fotográficos</h5>
-								<p class="pb-5">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+								<img src="Images/foto.png" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<h5 class="pt-3">Sesiones fotográficas</h5>
+								<p class="pb-5">Te ayudamos a capturar los momentos más importantes para ti, ¡Incluso con productos para ti!</p>
 							</div><!-- /.col-lg-4 -->
 						</div><!-- /.row -->
 

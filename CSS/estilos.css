@@ -61,81 +61,12 @@
 }
 
 
-
-@media (min-width: 240px){
-	.aboutuscontainer {
-		padding: 40px 40px 0px 40px;
-		background-color: #EEEEEE;
-		padding-bottom: 50px;
-		text-align: center;
-		justify-content: center;
-		align-content: center;
-
-	}
-
-	.aboutuscontainer h1 {
-		color: rgba(177, 210, 43, 0.9);
-		font-size: 2rem;
-	}
-
-	.aboutustext {
-		padding-left: 10px;
-		padding-right: 10px;
-		text-align: left;
-	}
-
-	/* -------------------------------------------------- */
-	.productscontainer {
-		padding: 40px 40px 0px 40px;
-		background-color: transparent;
-		padding-bottom: 50px;
-		text-align: center;
-		justify-content: center;
-		align-content: center;
-
-	}
-
-	.productscontainer h1 {
-		color: rgba(177, 210, 43, 0.9);
-		font-size: 2rem;
-	}
-
-	.conttext {
-		padding-left: 10px;
-		padding-right: 10px;
-		text-align: left;
-	}
-
-}
-
-@media (min-width: 1024px){
-	.aboutuscontainer {
-		width: 100%;
-		background-color: #EEEEEE;
-		padding: 40px 240px 0px 240px;
-		margin-left: 0px;
-		margin-right: 100px;
-		padding-bottom: 50px;
-		text-align: center;
-		justify-content: center;
-		align-content: center;
-
-	}
-
-	.productscontainer {
-		padding: 40px 240px 0px 240px;
-		background-color: transparent;
-		padding-bottom: 50px;
-		text-align: center;
-		justify-content: center;
-		align-content: center;
-
-	}
-}
-
-
 /* ---------------- Movil ---------------- */
 @media (min-width: 240px){
+	#aboutus {
+		height: 90%;
+		width: 90%;
+	}
 
 	#banner {
 		background-image: url(../Images/creativekidswallpaper2.jpg);
@@ -188,6 +119,50 @@
 		border-color: #B1D22B;
 
 	}
+
+	.aboutuscontainer {
+		padding: 40px 40px 0px 40px;
+		background-color: #EEEEEE;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+
+	.aboutuscontainer h1 {
+		color: rgba(177, 210, 43, 0.9);
+		font-size: 2rem;
+	}
+
+	.aboutustext {
+		padding-left: 10px;
+		padding-right: 10px;
+		text-align: left;
+	}
+
+	/* -------------------------------------------------- */
+	.productscontainer {
+		padding: 40px 40px 0px 40px;
+		background-color: transparent;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+
+	.productscontainer h1 {
+		color: rgba(177, 210, 43, 0.9);
+		font-size: 2rem;
+	}
+
+	.conttext {
+		padding-left: 10px;
+		padding-right: 10px;
+		text-align: left;
+	}
+
 }
 
 
@@ -246,6 +221,34 @@
 		text-shadow: 0px 0px 0px black;
 		background-color: #B1D22B;
 		border-color: #B1D22B;
+
+	}
+
+	.aboutuscontainer {
+		width: 100%;
+		background-color: #EEEEEE;
+		padding: 40px 240px 0px 240px;
+		margin-left: 0px;
+		margin-right: 100px;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+
+	}
+
+	#aboutus {
+		height: 85%;
+		width: 100%;
+	}
+
+	.productscontainer {
+		padding: 40px 240px 0px 240px;
+		background-color: transparent;
+		padding-bottom: 50px;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
 
 	}
 }
