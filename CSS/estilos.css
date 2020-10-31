@@ -112,14 +112,6 @@
 		transition-property: background-color, color;
 	}
 
-	#banner .banner_btn:hover{
-		color: black;
-		text-shadow: 0px 0px 0px black;
-		background-color: #B1D22B;
-		border-color: #B1D22B;
-
-	}
-
 	.aboutuscontainer {
 		padding: 40px 40px 0px 40px;
 		background-color: #EEEEEE;
@@ -217,10 +209,10 @@
 	}
 
 	#banner .banner_btn:hover{
-		color: black;
+		color: white;
 		text-shadow: 0px 0px 0px black;
-		background-color: #B1D22B;
-		border-color: #B1D22B;
+		background-color: #FFFFFF;
+		border-color: #FFFFFF;
 
 	}
 
