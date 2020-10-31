@@ -30,14 +30,19 @@
 		    document.getElementById("contrasena2").style.backgroundColor = 'rgb(255,180,180)';
 		    //document.getElementById("contenido").innerHTML += "<label style='color:red'>Las contraseñas no coindicen</label>";
 		    return false;}
-		  if (x['nombres_registro'].value.trim() == "" || x['nombres_registro'].value == null ||  x['nombres_registro'].value.length < 8){
-		  	alert("El nombre es demasiado corto (mínimo 8 caractéres)");
+		  if (x['nombres_registro'].value.trim() == "" || x['nombres_registro'].value == null ||  x['nombres_registro'].value.length < 3){
+		  	alert("El nombre es demasiado corto (mínimo 3 caractéres)");
 		    document.getElementById("nombre").style.backgroundColor = 'rgb(255,180,180)';
 		    return false;
 		  }
-		  if (x['nombres_registro'].value.trim() == "" || x['nombres_registro'].value == null ||  x['nombres_registro'].value.length < 8){
-		  	alert("El nombre es demasiado corto (mínimo 8 caractéres)");
-		    document.getElementById("nombre").style.backgroundColor = 'rgb(255,180,180)';
+		  if (x['usuario_registro'].value.trim() == "" || x['usuario_registro'].value == null ||  x['usuario_registro'].value.length < 4){
+		  	alert("El usuario es demasiado corto (mínimo 4 caractéres)");
+		    document.getElementById("usuario").style.backgroundColor = 'rgb(255,180,180)';
+		    return false;
+		  }
+		  if (x['contrasena_registro'].value.trim() == "" || x['contrasena_registro'].value == null ||  x['contrasena_registro'].value.length < 4){
+		  	alert("La contraseña es demasiado corta (mínimo 4 caractéres)");
+		    document.getElementById("contrasena").style.backgroundColor = 'rgb(255,180,180)';
 		    return false;
 		  }
 		}
@@ -198,11 +203,15 @@
 				$insertar = "INSERT INTO usuarios VALUES (NULL,'$usuario','$contrasena', '2' ,'$telefono','$correo', '$apellidos', '$nombre')";
 				$resultado= mysqli_query($link,$insertar) ;
 				if (!$resultado)
-					echo '<label styl>Error al registrar usuario</label>';}
+					echo '<label styl>Error al registrar usuario</label>';
+				else{
+				echo "<script>document.getElementsByName('registerForm')[0].innerHTML+= `<p style='color:rgb(20,255,20)'>Usuario '" . $usuario  . "' registrado exitosamente.</p>`" . ';setValues("' . $nombre . '","' . $apellidos . '","' . $correo . '","' . $telefono . '","' . $usuario .'","' . $contrasena . '","' . $contrasena2 .'")</script>"';
+			}}
 			else{
 				//echo "<label style='color:red'>El nombre de usuario no está disponible</label>";
-				echo "<script>alert('El nombre de usuario no está disponible')</script>";
+				echo "<script>document.getElementsByName('registerForm')[0].innerHTML+= `<p style='color:red'>El nombre de usuario no está disponible</p>`</script>";
 				echo '<script>document.getElementById("username").style.backgroundColor ="rgb(255,180,180)"; setValues("' . $nombre . '","' . $apellidos . '","' . $correo . '","' . $telefono . '","' . $usuario .'","' . $contrasena . '","' . $contrasena2 .'")</script>';}
+
 		}
 	}
 ?>
