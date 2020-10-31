@@ -1,16 +1,22 @@
 <?php
-include('login.php'); // Includes Login Script
 include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
-			include("config/conexion.php");//Contiene de conexion a la base de datos
- 
-if(isset($_SESSION['login_user_sys'])){
-	header("location: micuenta.php");
-}
+include("config/conexion.php");//Contiene de conexion a la base de datos
+if (isset($_POST['logout'])) {
+	session_start();
+	session_destroy();
+	$_SESSION = array();
+	header("location: index.html");}
+
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+
+    }
 ?>
 
-<!DOCTYPE HTML>
-<html>
-	<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
 		<title>Ideas Gecko</title>
@@ -20,7 +26,6 @@ if(isset($_SESSION['login_user_sys'])){
 	    <link href="CSS/geckonavbar_style.css" rel="stylesheet">
 	    <link href="CSS/estilos.css" rel="stylesheet">
 	    <link href="CSS/productos.css" rel="stylesheet">
-	    <link href="CSS/formularios.css" rel="stylesheet">
 	    <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
 	   	<script type="text/javascript" src="JS/nav.js"></script>
 	    
@@ -88,7 +93,7 @@ if(isset($_SESSION['login_user_sys'])){
 		                </div>
 		            </li>
 		            <li class="nav-item">
-		                <a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" style="color: white" id="sesion">Inicia sesión</a>
+		                <a class="nav-link pl-3 pr-3" href="micuenta.php" id="sesion" style="color:white">Mi cuenta</a>
 		            </li>
 		            <li class="nav-item active">
 		                <a class="nav-link pl-3 pr-3" href="carrito.html">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a>
@@ -102,18 +107,73 @@ if(isset($_SESSION['login_user_sys'])){
 		</nav>
 		<!-- -------------------------- Contenido -------------------------- -->
 			<div style="height: 64px"></div>
-			<h1>Iniciar Sesión</h1>
-			<div class="contenido" style="text-align: center; margin:auto;">
-					<form method="POST" action="#">
-						<table class="formulario">
-						<tr><td>Usuario: </td><td><input type="" name="usuario" class="form-control" placeholder="Usuario"></td></tr>
-						<tr><td>Contraseña: &nbsp</td><td><input type="" name="contrasena" class="form-control" placeholder="Contraseña"></td></tr>				
-						<tr><td></td><td><input type="submit" name="submit" value="Iniciar sesión" class="btn btn-dark"></td></tr>
-						</table>
-						<?php echo "<p style='color:red'>".$error."</p>"; ?>
-						<a href="registrar_usuario.php">Registrar nuevo usuario</a><br><br>
-						<a href="#">Olvidé mi contraseña</a>
-					</form>
+			<h1>Mi cuenta</h1>
+			<div style="text-align: center;color: white;width: 45vw;margin:auto;">
+				<?php
+					$username = $_SESSION['login_user_sys'];
+					$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";
+					$result= mysqli_query($conexion,$consulta); 
+					if  (!$result){
+					      echo "Error en la consulta : " . mysqli_error($conexion);
+					}
+
+					$fila = mysqli_fetch_array($result);
+					$nombre = $fila['nombre'];
+					$apellido = $fila['apellido'];
+					$usuario = $fila['username'];
+					mysqli_free_result($result);
+				?>
+				<br>
+				<h2>Nombre de usuario: <?php echo $usuario; ?></h2>
+     			 <p>Titular de la cuenta: <?php echo $nombre ." ". $apellido; ?></p>
+     			 <button class="btn btn-dark" style="width: 100%">Historial de pedidos</button><br><br>
+     			 <button class="btn btn-dark" style="width: 100%">Administrar métodos de pago</button><br><br>
+     			 <button class="btn btn-dark" style="width: 100%">Administrar domicilios</button><br><br>
+     			 <button class="btn btn-dark" style="width: 100%">Modificar datos de la cuenta</button><br><br>
+     			 <button class="btn btn-dark" style="width: 100%">Cambiar contraseña</button><br><br>
+     			 <form action="" method="POST">
+					<input style="width: 70%" type="submit" value="Cerrar sesión" name="logout" class="btn btn-danger">
+				</form>
 			</div>
-	</body>
+					<!-- -------------------------- Footer -------------------------- -->
+		<footer id="footer" class="footer-distributed">
+			<!------------- Columna 1 (izquierdo) ------------->
+			<div class="footer-left">
+				<p class="footer-links">
+					<a href="#">Inicio</a>
+					<a href="#">Nosotros</a>
+					<a href="#">Contáctanos</a>
+				</p>
+
+				<p class="footer-company-name">© 2020 Ideas Gecko — Guadalajara, Jalisco.</p>
+			</div>
+			<!------------- Columna 2 (centro) ------------->
+			<div class="footer-center">
+				<div>
+					  <p>Jardines de las Clavelinas No. 1298<br>
+						Colonia Jardines del Vergel.<span>Guadalajara, Jalisco. México.</span></p>
+				</div><br>
+				<div>
+					<p>Escribenos a: <span>(+52) 33 1527 1078</span></p>
+				</div>
+				<div>
+					<p>Personaliza: <a href="mailto:ideasgecko@gmail.com">ideasgecko@gmail.com</a></p><br>
+					<p>Servicios Fotográficos: <a href="mailto:vaneandrade@gmail.com">vaneandrade@gmail.com</a></p>
+				</div>
+			</div>
+			<!------------- Columna 3 (derecha) ------------->
+			<div class="footer-right">
+				<p class="footer-company-about">
+					<span><b>Ideas Gecko</b></span>
+					Somos una empresa que se dedica a entregar productos personalizados. Desde tazas, termos, playeras, suéteres y mucho más. Nos encargamos de llevar a la vida tu visión.</p>
+				<div class="footer-icons">
+					<a href="#"><i class="icon-facebook"></i></a>
+					<a href="#"><i class="icon-instagram"></i></a>
+					<a href="https://api.whatsapp.com/send?phone=523315271078"><i class="icon-whatsapp"></i></a>
+					<a href="mailto:ideasgecko@gmail.com"><i class="icon-gmail"></i></a>
+				</div>
+			</div>
+		</footer>
+</body>
 </html>
+

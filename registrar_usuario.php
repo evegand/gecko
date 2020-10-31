@@ -79,7 +79,8 @@
 <?php 		//Inicio de variables de sesión
 	if (!isset($_SESSION)) {
 	  session_start();
-} ?>
+	}
+ ?>
 
 	<!-- -------------------------- Menu -------------------------- -->
 	<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
@@ -175,7 +176,7 @@
 
 <?php
 	//Proceso de conexion con la base de datos----------------------------------------
-	$link = mysqli_connect("localhost", "root", "", "geckodatabase");
+	$conexion = mysqli_connect("localhost", "root", "", "geckodatabase");
 
 	if (mysqli_connect_errno()){
 	    echo "No se pudo conectar : " . mysqli_connect_error();
@@ -195,13 +196,13 @@
 		$correo = $_POST['correo_registro'];
 
 		$consulta= "SELECT * FROM usuarios WHERE username='$usuario'"; 
-		$resultado= mysqli_query($link,$consulta) ;
+		$resultado= mysqli_query($conexion,$consulta) ;
 		$fila=mysqli_fetch_array($resultado);
 
 		if (is_numeric($telefono)){
 			if (!$fila){
 				$insertar = "INSERT INTO usuarios VALUES (NULL,'$usuario','$contrasena', '2' ,'$telefono','$correo', '$apellidos', '$nombre')";
-				$resultado= mysqli_query($link,$insertar) ;
+				$resultado= mysqli_query($conexion,$insertar) ;
 				if (!$resultado)
 					echo '<label styl>Error al registrar usuario</label>';
 				else{
