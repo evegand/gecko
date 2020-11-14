@@ -1,39 +1,20 @@
 <?php
 include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
 include("config/conexion.php");//Contiene de conexion a la base de datos
-
-//----------Al cerrar sesión redirige a la página principal------------------------
-if (isset($_POST['logout'])) {
-	session_start();
-	session_destroy();
-	$_SESSION = array();
-	header("location: index.html");}
-
-//------------------------------------------------------------------------------------
 if(!isset($_SESSION)) 
     { 
         session_start(); 
     }
+			   if (isset($_POST['id_user_delete'])){
+			       $id_user_delete = $_POST['id_user_delete'];  
+			       $consulta_eliminar = "DELETE from usuarios WHERE id_usuario=" .$id_user_delete;
+			       $result_eliminar = mysqli_query($conexion,$consulta_eliminar);
+			       if(!$result_eliminar)
+			          echo 'Error';
+			       else
+			          header("location:admin.php");
 
-//----------Si no hay ninguna sesión iniciada, redirige a iniciar sesión-------------
-if(!isset($_SESSION['login_user_sys'])){
-	header("location: iniciar_sesion.php");
-}
-//----------Modificar datos de usuario-----------------------------------------------
-if (isset($_POST['modificado'])){
-  $user_modify= $_POST['modificado'];
-  $new_nombres = $_POST['new_nombres'];
-  $new_apellidos = $_POST['new_apellidos'];
-  $new_telefono = $_POST['new_telefono'];
-
-  $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "' WHERE id_usuario='" . $user_modify . "'";
-  $result_modificar = mysqli_query($conexion,$consulta_modificar);
-  if (!$result_modificar)
-    echo 'Error';
-  else
-  	header("location:micuenta.php");
-}
-//------------------------------------------------------------------------------------
+			   }
 ?>
 
 <!DOCTYPE html>
@@ -131,84 +112,37 @@ if (isset($_POST['modificado'])){
 		</nav>
 		<!-- -------------------------- Contenido -------------------------- -->
 			<div style="height: 64px"></div>
-			<h1>Mi cuenta</h1>
+			<h1>Administrar sitio</h1>
 			<div style="text-align: center;color: white;width: 80vw;margin:auto;">
 
-				<?php
-				
-					$username = $_SESSION['login_user_sys'];
-					$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";
-					$result= mysqli_query($conexion,$consulta); 
-					if  (!$result){
-					      echo "Error en la consulta : " . mysqli_error($conexion);
-					}
-
-					$fila_user = mysqli_fetch_array($result);
-					$nombre = $fila_user['nombre'];
-					$apellido = $fila_user['apellido'];
-					$usuario = $fila_user['username'];
-					$id_usuario = $fila_user['id_usuario'];
-					$rol = $fila_user['id_rol'];
-
-					mysqli_free_result($result);
-				?>
-
-				<br>
-				<h2>Nombre de usuario: <?php echo $usuario; ?></h2>
-     			<p>Titular de la cuenta: <?php echo $nombre ." ". $apellido; ?></p>
-
-     			
-				<?php
-				//--------------------------------------------Datos métodos de pago------------------------------------------------
-					$consulta= "SELECT * FROM metodospago WHERE id_usuario='" . $id_usuario . "'";
-					$result= mysqli_query($conexion,$consulta); 
-					echo '<button class="btn btn-dark"  onclick="dropMenu(`metodosP`)">Administrar métodos de pago</button><div id="metodosP" class="dropMenu" style="display:none;">
-							<table class="tabla_drop"><tr class><th>Titular</th><th>Número de tarjeta</th><th>Expira</th><th></th></tr>';
-
-					while($fila = mysqli_fetch_assoc($result)){
-						echo '<tr><td> ' . $fila['titular'] . '</td><td> **** **** **** ' . substr($fila['numero_tarjeta'], -4) . '</td><td>' . $fila['fecha_vencimiento'] . '</td><td style="color:rgb(200,100,100);">Eliminar</td></tr> ';
-
-					}
-					echo '</table></div><br><br>';
-				//--------------------------------------------Datos de la cuenta------------------------------------------------
-					echo "<button class='btn btn-dark' onclick='dropMenu(`datosCuenta`)'>Modificar datos de la cuenta</button>
-							<div id='datosCuenta' class='dropMenu' style='display:none;'>
-							  <table class='tabla_drop'>
-							  	<form method='post' action=''>
-						          <tr><td>Nombres           </td> <td><input type='text' name='new_nombres'   value='" . $fila_user['nombre']   . "'></td></tr>
-						          <tr><td>Apellidos         </td> <td><input type='text' name='new_apellidos' value='" . $fila_user['apellido'] . "'></td></tr>
-						          <tr><td>Telefono          </td> <td><input type='text' name='new_telefono'  value='" . $fila_user['telefono'] . "'></td></tr>
-						          <tr><td>Correo electrónico</td> <td>" . $fila_user['correo']                                                  . "  </td></tr>
-						          <tr><td>Nombre de usuario </td> <td>" . $fila_user['username']                                                . "  </td></tr>
-						          <tr><td>                  </td> <td><button class='btn btn-success' type='submit' name='modificado' value='". $id_usuario ."'>Modificar</button></td></tr>
-						        </form>
-					          </table>
-					        </div><br><br>";
-			    //--------------------------------------------Botones sin funcionalidad------------------------------------------------
-				echo ' <button class="btn btn-dark" style="width: 100%" onclick="dropHistorial()">Historial de pedidos</button><div id="historial" ></div><br>
-     			 
-     			 <button class="btn btn-dark" style="width: 100%">Administrar domicilios</button><div></div><br>
-     			 
-     			 <button class="btn btn-dark" style="width: 100%">Cambiar contraseña</button><div></div><br>';
-
-     			
-					
-				//--------------------------------------------Administrar sitio------------------------------------------------	
-				if ($rol == 2){
-					echo '<a href="admin.php"><button class="btn btn-warning" style="width:70%;">Administrar sitio</button></a><br><br>';
-				}	   
-				//--------------------------------------------Cerrar sesión------------------------------------------------	
-				echo ' <form action="" method="POST">
-					<input style="width: 70%" type="submit" value="Cerrar sesión" name="logout" class="btn btn-danger">
-				</form>	' ;
-
-				?>
+		<?php
+			$username = $_SESSION['login_user_sys'];
+			$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";
+			$result= mysqli_query($conexion,$consulta); 
+			$fila_user = mysqli_fetch_array($result);
+			$rol = $fila_user['id_rol'];
+			if ($rol == 2){
+			  echo "<h3 align='center'>Herramientas de administrador</h3>
+			        <h4 align='center'>Usuarios Registrados</h4><div id='metodosP' class='dropMenu'>
+			        <table class='tabla_drop'><tr>
+			            <th>id_usuario</th>
+			            <th>Nombres</th>
+			            <th>Apellidos</th>
+			            <th>Telefono</th>
+			            <th>Correo</th>
+			            <th>Usuario</th></tr>";
+			$consulta= "SELECT * FROM usuarios"; 
+			$result= mysqli_query($conexion,$consulta); 
+			  while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+			      echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td></td><td>
+			      	<form method='post' action=''><button class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button><button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] ."'>Eliminar</button></form></td></tr>";}
+			  echo "</table></div>";
+}
+		?>
 
 
 
 
-				
-     			
 
 			</div>
 		<!-- -------------------------- Footer -------------------------- -->
@@ -252,4 +186,3 @@ if (isset($_POST['modificado'])){
 		</footer>
 </body>
 </html>
-
