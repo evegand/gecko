@@ -194,7 +194,7 @@ if (isset($_POST['modificado'])){
      			
 					
 				//--------------------------------------------Administrar sitio------------------------------------------------	
-				if ($rol == 2){
+				if ($rol == 1){
 					echo '<a href="admin.php"><button class="btn btn-warning" style="width:70%;">Administrar sitio</button></a><br><br>';
 				}	   
 				//--------------------------------------------Cerrar sesión------------------------------------------------	

@@ -16,11 +16,13 @@
 			// Para proteger de Inyecciones SQL 
 			$usuario    = mysqli_real_escape_string($conexion,(strip_tags($usuario,ENT_QUOTES)));
 			//$contrasena =  sha1($contrasena);//Algoritmo de encriptacion de la contraseña http://php.net/manual/es/function.sha1.php
-			$consulta = "SELECT username, password FROM usuarios WHERE username = '" . $usuario . "' and password='". $contrasena."';";
+			$consulta = "SELECT username, id_rol FROM usuarios WHERE username = '" . $usuario . "' and password='". $contrasena."';";
 			$resultado=mysqli_query($conexion,$consulta);
 			$numeroDeFilas=mysqli_num_rows($resultado);
+			$fila = mysqli_fetch_array($resultado);
 			if ($numeroDeFilas==1){
 					$_SESSION['login_user_sys']=$usuario; // Iniciando la sesion
+					$_SESSION['id']=$fila['id_rol'];
 					header("location: micuenta.php"); // Redireccionando a la pagina profile.php	
 			} 
 			else {

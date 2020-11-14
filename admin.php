@@ -1,20 +1,43 @@
 <?php
 include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
 include("config/conexion.php");//Contiene de conexion a la base de datos
-if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    }
-			   if (isset($_POST['id_user_delete'])){
-			       $id_user_delete = $_POST['id_user_delete'];  
-			       $consulta_eliminar = "DELETE from usuarios WHERE id_usuario=" .$id_user_delete;
-			       $result_eliminar = mysqli_query($conexion,$consulta_eliminar);
-			       if(!$result_eliminar)
-			          echo 'Error';
-			       else
-			          header("location:admin.php");
 
-			   }
+if(!isset($_SESSION)) 
+    session_start(); 
+
+//-----------Si no es admin redirige a la página principal---------------
+if(!isset($_SESSION['id']))
+	header("location:index.html");
+
+if($_SESSION['id'] != 1)
+	header("location:index.html");
+//-----------Modificar usuario y recargar página---------------
+if (isset($_POST['modificado'])){
+  $user_modify= $_POST['modificado'];
+  $new_nombres = $_POST['new_nombres'];
+  $new_apellidos = $_POST['new_apellidos'];
+  $new_telefono = $_POST['new_telefono'];
+  $new_correo = $_POST['new_correo'];
+  $new_rol = $_POST['new_rol'];
+  $new_contrasena = $_POST['new_contrasena'];
+
+  $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "', correo='" .$new_correo. "', id_rol='" . $new_rol. "' WHERE username='" . $user_modify . "'";
+  $result_modificar = mysqli_query($conexion,$consulta_modificar);
+  if (!$result_modificar)
+    echo 'Error';
+  else
+    header("location:admin.php");  
+}
+//-------------Elimina usuario y recarga la página------------------------
+if (isset($_POST['id_user_delete'])){
+   $id_user_delete = $_POST['id_user_delete'];  
+   $consulta_eliminar = "DELETE from usuarios WHERE id_usuario=" .$id_user_delete;
+   $result_eliminar = mysqli_query($conexion,$consulta_eliminar);
+   if(!$result_eliminar)
+      echo 'Error';
+   else
+      header("location:admin.php");}
+//-----------------------------------------------------------------------
 ?>
 
 <!DOCTYPE html>
@@ -121,28 +144,49 @@ if(!isset($_SESSION))
 			$result= mysqli_query($conexion,$consulta); 
 			$fila_user = mysqli_fetch_array($result);
 			$rol = $fila_user['id_rol'];
-			if ($rol == 2){
-			  echo "<h3 align='center'>Herramientas de administrador</h3>
-			        <h4 align='center'>Usuarios Registrados</h4><div id='metodosP' class='dropMenu'>
-			        <table class='tabla_drop'><tr>
+			if ($rol == 1){
+			  	echo "<h3 align='center'>Herramientas de administrador</h3>
+			       	 <h4 align='center'>Usuarios Registrados</h4><div id='metodosP' class='dropMenu'>
+			       	 <table class='tabla_drop'><tr>
 			            <th>id_usuario</th>
 			            <th>Nombres</th>
 			            <th>Apellidos</th>
 			            <th>Telefono</th>
 			            <th>Correo</th>
-			            <th>Usuario</th></tr>";
-			$consulta= "SELECT * FROM usuarios"; 
-			$result= mysqli_query($conexion,$consulta); 
-			  while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-			      echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td></td><td>
-			      	<form method='post' action=''><button class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button><button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] ."'>Eliminar</button></form></td></tr>";}
-			  echo "</table></div>";
-}
+			            <th>Usuario</th>
+			            <th>Rol</th></tr>";
+
+				$consulta= "SELECT * FROM usuarios"; 
+				$result= mysqli_query($conexion,$consulta); 
+			  	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td></td><td><form method='post' action=''><button class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button><button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] ."'>Eliminar</button></form></td></tr>";
+			      }
+			  	echo "</table></div>";
+			}
+
+			//-------------Modificar usuario----------------------------
+			$id_user_modify = null;
+		  	if (isset($_POST['id_user_modify'])){
+			    $id_user_modify = $_POST['id_user_modify'];
+			    $consulta= "SELECT * FROM usuarios WHERE id_usuario=" . $id_user_modify . ""; 
+			    $result= mysqli_query($conexion,$consulta); 
+			    if ($result){
+				    $fila = mysqli_fetch_array($result);
+				    echo "<br><h4 align='center'>Modificar datos de usuario " . $fila['username'] . "</h4>
+				    	<div id='metodosP' class='dropMenu'>
+				          <table class='tabla_drop'><form method='post' action=''>
+				          <tr><td>Nombres</td><td><input type='text' name='new_nombres' value='" . $fila['nombre'] . "'></td></tr>
+				          <tr><td>Apellidos</td><td><input type='text' name='new_apellidos' value='" . $fila['apellido'] . "'></td></tr>
+				          <tr><td>Teléfono</td><td><input type='text' name='new_telefono' value='" . $fila['telefono'] . "'></td></tr>
+				          <tr><td>Correo electrónico</td><td><input type='text' name='new_correo' value='" . $fila['correo'] . "'></td></tr>
+				          <tr><td>Rol</td><td><input type='number' min='0' max='2' name='new_rol' value='" . $fila['id_rol'] . "'></td></tr>
+				          <tr><td>Contraseña</td><td><input type='password' name='new_contrasena' value='" . $fila['password'] . "'></td></tr>
+				          <tr><td>    </td><td><button class='btn btn-success' type='submit' name= 'modificado' value='". $fila['username'] ."'>Enviar</button></form></td></tr>
+				          </table></div>"  ;
+				}
+			}
+
 		?>
-
-
-
-
 
 			</div>
 		<!-- -------------------------- Footer -------------------------- -->
