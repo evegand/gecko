@@ -53,6 +53,7 @@ if (isset($_POST['id_user_delete'])){
 	    <link href="CSS/estilos.css" rel="stylesheet">
 	    <link href="CSS/productos.css" rel="stylesheet">
 	    <link href="CSS/dropdowns.css" rel="stylesheet">
+	    <link href="CSS/admin.css" rel="stylesheet">
 	    <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
 	   	<script type="text/javascript" src="JS/nav.js"></script>
 	   	<script type="text/javascript" src="micuenta.js"></script>
@@ -145,21 +146,24 @@ if (isset($_POST['id_user_delete'])){
 			$fila_user = mysqli_fetch_array($result);
 			$rol = $fila_user['id_rol'];
 			if ($rol == 1){
-			  	echo "<h3 align='center'>Herramientas de administrador</h3>
-			       	 <h4 align='center'>Usuarios Registrados</h4><div id='metodosP' class='dropMenu'>
-			       	 <table class='tabla_drop'><tr>
-			            <th>id_usuario</th>
+			  	echo "<h4 align='center'>Usuarios Registrados</h4><div id='metodosP' class='dropMenu'>
+			       	 <table class='tabla_admin' width='80vw'><tr>
+			            <th>id</th>
 			            <th>Nombres</th>
 			            <th>Apellidos</th>
 			            <th>Telefono</th>
 			            <th>Correo</th>
 			            <th>Usuario</th>
-			            <th>Rol</th></tr>";
+			            <th>Rol</th>
+			            <th></th>
+			            </tr>";
 
 				$consulta= "SELECT * FROM usuarios"; 
 				$result= mysqli_query($conexion,$consulta); 
 			  	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td></td><td><form method='post' action=''><button class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button><button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] ."'>Eliminar</button></form></td></tr>";
+			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td><form method='post' action=''><button class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button>";
+			      	if($row['id_rol'] != 1)
+			      		echo "<button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] . "'>Eliminar</button></form></td></tr>";
 			      }
 			  	echo "</table></div>";
 			}
@@ -174,7 +178,7 @@ if (isset($_POST['id_user_delete'])){
 				    $fila = mysqli_fetch_array($result);
 				    echo "<br><h4 align='center'>Modificar datos de usuario " . $fila['username'] . "</h4>
 				    	<div id='metodosP' class='dropMenu'>
-				          <table class='tabla_drop'><form method='post' action=''>
+				          <table class='tabla_admin'><form method='post' action=''>
 				          <tr><td>Nombres</td><td><input type='text' name='new_nombres' value='" . $fila['nombre'] . "'></td></tr>
 				          <tr><td>Apellidos</td><td><input type='text' name='new_apellidos' value='" . $fila['apellido'] . "'></td></tr>
 				          <tr><td>Teléfono</td><td><input type='text' name='new_telefono' value='" . $fila['telefono'] . "'></td></tr>

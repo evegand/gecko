@@ -1,0 +1,12 @@
+.tabla_admin{
+	color: black;
+	width: 100%;
+	text-align: left;
+}
+
+@media (max-width: 750px){
+	.tabla_admin, .btn-secondary, .btn-danger, .btn-success{
+		font-size: 1.5vw;
+		padding: 1px;
+	}
+}
