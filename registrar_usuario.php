@@ -29,21 +29,25 @@
 		    alert("Las constraseñas no coinciden");
 		    document.getElementById("contrasena2").style.backgroundColor = 'rgb(255,180,180)';
 		    //document.getElementById("contenido").innerHTML += "<label style='color:red'>Las contraseñas no coindicen</label>";
-		    return false;}
-		  if (x['nombres_registro'].value.trim() == "" || x['nombres_registro'].value == null ||  x['nombres_registro'].value.length < 3){
+		    return false;
+		  }
+		  else if (x['nombres_registro'].value.trim() == "" || x['nombres_registro'].value == null ||  x['nombres_registro'].value.length < 3){
 		  	alert("El nombre es demasiado corto (mínimo 3 caractéres)");
 		    document.getElementById("nombre").style.backgroundColor = 'rgb(255,180,180)';
 		    return false;
 		  }
-		  if (x['usuario_registro'].value.trim() == "" || x['usuario_registro'].value == null ||  x['usuario_registro'].value.length < 4){
+		  else if (x['usuario_registro'].value.trim() == "" || x['usuario_registro'].value == null ||  x['usuario_registro'].value.length < 4){
 		  	alert("El usuario es demasiado corto (mínimo 4 caractéres)");
-		    document.getElementById("usuario").style.backgroundColor = 'rgb(255,180,180)';
+		    document.getElementById("username").style.backgroundColor = 'rgb(255,180,180)';
 		    return false;
 		  }
-		  if (x['contrasena_registro'].value.trim() == "" || x['contrasena_registro'].value == null ||  x['contrasena_registro'].value.length < 4){
+		  else if (x['contrasena_registro'].value.trim() == "" || x['contrasena_registro'].value == null ||  x['contrasena_registro'].value.length < 4){
 		  	alert("La contraseña es demasiado corta (mínimo 4 caractéres)");
 		    document.getElementById("contrasena").style.backgroundColor = 'rgb(255,180,180)';
 		    return false;
+		  }
+		  else{
+		  	return true;
 		  }
 		}
 	  	function color(element){
@@ -159,7 +163,7 @@
 		<div style="height: 64px"></div>
 		<h1>Registro</h1>
 		<div class="contenido" id="contenido" style="text-align: center; margin:auto;">
-				<form name="registerForm" method="post" action="registrar_usuario.php" onsubmit="return validateForm()">
+				<form name="registerForm" method="post" onsubmit="return validateForm()">
 					<table class="formulario">
 					<tr><td>Nombres: </td><td><input type="text" name="nombres_registro" class="form-control" placeholder="Nombres*" required maxlength="20" id="nombre" onclick="color(this)"></td><td></td></tr>
 					<tr><td>Apellidos: </td><td><input type="text" name="apellidos_registro" class="form-control" placeholder="Apellidos" maxlength="45"></td></tr>
@@ -168,10 +172,10 @@
 					<tr><td>Usuario: </td><td><input type="text" name="usuario_registro" class="form-control" placeholder="Usuario*" required="" id="username" onclick="color(this)" maxlength="20"></td></tr>
 					<tr><td>Contraseña: </td><td><input type="password" name="contrasena_registro" class="form-control" placeholder="Contraseña*" required="" maxlength="45" id="contrasena"></td></tr>
 					<tr><td>Repetir<br> constraseña: &nbsp</td><td><input type="password" name="contrasena_conf" class="form-control" placeholder="Repetir Contraseña*" required=""  onclick="color(this)" id="contrasena2" maxlength="45"></td></tr>
-					<tr><td><h6><input type="checkbox" onclick="showPass()">&nbsp Mostrar<br>contraseña</h6></td><td><button type="submit" class="btn btn-dark">Registrar</button></td></tr>
+					<tr><td><h6><input type="checkbox" onclick="showPass()">&nbsp Mostrar<br>contraseña</h6></td><td><button type="submit" class="btn btn-dark" name="submit">Crear cuenta</button></td></tr>
 					</table>
 				</form>
-				<a href="iniciar_sesion.php">Iniciar Sesión</a><br>
+				<p style='color:rgb(177,210,43)'>¿Ya estás registrado?<br> <a href="iniciar_sesion.php">Iniciar Sesión</a></p><br>
 
 
 <?php
@@ -186,7 +190,7 @@
 
 
 	//Registro------------------------------------------------------------------------
-	if (isset($_POST['nombres_registro'])){
+	if (isset($_POST['nombres_registro']) && isset($_POST['submit'])){
 		$nombre = $_POST['nombres_registro'];
 		$apellidos = $_POST['apellidos_registro'];
 		$usuario = $_POST['usuario_registro'];

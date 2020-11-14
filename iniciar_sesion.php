@@ -1,7 +1,7 @@
 <?php
 include('login.php'); // Includes Login Script
 include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
-			include("config/conexion.php");//Contiene de conexion a la base de datos
+include("config/conexion.php");//Contiene de conexion a la base de datos
  
 if(isset($_SESSION['login_user_sys'])){
 	header("location: micuenta.php");
@@ -106,8 +106,8 @@ if(isset($_SESSION['login_user_sys'])){
 			<div class="contenido" style="text-align: center; margin:auto;">
 					<form method="POST" action="#">
 						<table class="formulario">
-						<tr><td>Usuario: </td><td><input type="" name="usuario" class="form-control" placeholder="Usuario"></td></tr>
-						<tr><td>Contraseña: &nbsp</td><td><input type="" name="contrasena" class="form-control" placeholder="Contraseña"></td></tr>				
+						<tr><td>Usuario: </td><td><input type="" name="usuario" class="form-control" placeholder="Usuario" required=""></td></tr>
+						<tr><td>Contraseña: &nbsp</td><td><input type="password" name="contrasena" class="form-control" placeholder="Contraseña" required=""></td></tr>				
 						<tr><td></td><td><input type="submit" name="submit" value="Iniciar sesión" class="btn btn-dark"></td></tr>
 						</table>
 						<?php echo "<p style='color:red'>".$error."</p>"; ?>

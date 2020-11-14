@@ -94,6 +94,9 @@
               </li>
               
           </ul>
+          <span class="navbar-text pl-1" style="margin-left:12em">
+                ¡Personaliza tu mundo!
+            </span>
       </div>
   </nav>
   <!-- -------------------------- Contenido -------------------------- -->

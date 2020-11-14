@@ -24,7 +24,7 @@
 					header("location: micuenta.php"); // Redireccionando a la pagina profile.php	
 			} 
 			else {
-			$error = "El correo electrónico o la contraseña es inválida.";	
+			$error = "El usuario o la contraseña es inválida.";	
 			}
 		}
 	}

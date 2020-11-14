@@ -1,17 +1,38 @@
 <?php
 include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
 include("config/conexion.php");//Contiene de conexion a la base de datos
+
+//----------Al cerrar sesión redirige a la página principal------------------------
 if (isset($_POST['logout'])) {
 	session_start();
 	session_destroy();
 	$_SESSION = array();
 	header("location: index.html");}
 
+//------------------------------------------------------------------------------------
 if(!isset($_SESSION)) 
     { 
         session_start(); 
-
     }
+
+//----------Si no hay ninguna sesión iniciada, redirige a iniciar sesión-------------
+if(!isset($_SESSION['login_user_sys'])){
+	header("location: iniciar_sesion.php");
+}
+//----------Modificar datos de usuario-----------------------------------------------
+if (isset($_POST['modificado'])){
+  $user_modify= $_POST['modificado'];
+  $new_nombres = $_POST['new_nombres'];
+  $new_apellidos = $_POST['new_apellidos'];
+  $new_telefono = $_POST['new_telefono'];
+
+  $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "' WHERE id_usuario='" . $user_modify . "'";
+  $result_modificar = mysqli_query($conexion,$consulta_modificar);
+  if (!$result_modificar)
+    echo 'Error';
+else
+	header("micuenta.php");
+//------------------------------------------------------------------------------------
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +47,10 @@ if(!isset($_SESSION))
 	    <link href="CSS/geckonavbar_style.css" rel="stylesheet">
 	    <link href="CSS/estilos.css" rel="stylesheet">
 	    <link href="CSS/productos.css" rel="stylesheet">
+	    <link href="CSS/dropdowns.css" rel="stylesheet">
 	    <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
 	   	<script type="text/javascript" src="JS/nav.js"></script>
+	   	<script type="text/javascript" src="micuenta.js"></script>
 	    
 	    <!-- Javascript (funciones) -->
 	    <link href="">
@@ -108,8 +131,10 @@ if(!isset($_SESSION))
 		<!-- -------------------------- Contenido -------------------------- -->
 			<div style="height: 64px"></div>
 			<h1>Mi cuenta</h1>
-			<div style="text-align: center;color: white;width: 45vw;margin:auto;">
+			<div style="text-align: center;color: white;width: 80vw;margin:auto;">
+
 				<?php
+				
 					$username = $_SESSION['login_user_sys'];
 					$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";
 					$result= mysqli_query($conexion,$consulta); 
@@ -117,25 +142,66 @@ if(!isset($_SESSION))
 					      echo "Error en la consulta : " . mysqli_error($conexion);
 					}
 
-					$fila = mysqli_fetch_array($result);
-					$nombre = $fila['nombre'];
-					$apellido = $fila['apellido'];
-					$usuario = $fila['username'];
+					$fila_user = mysqli_fetch_array($result);
+					$nombre = $fila_user['nombre'];
+					$apellido = $fila_user['apellido'];
+					$usuario = $fila_user['username'];
+					$id_usuario = $fila_user['id_usuario'];
+
 					mysqli_free_result($result);
 				?>
+
 				<br>
 				<h2>Nombre de usuario: <?php echo $usuario; ?></h2>
-     			 <p>Titular de la cuenta: <?php echo $nombre ." ". $apellido; ?></p>
-     			 <button class="btn btn-dark" style="width: 100%">Historial de pedidos</button><br><br>
-     			 <button class="btn btn-dark" style="width: 100%">Administrar métodos de pago</button><br><br>
-     			 <button class="btn btn-dark" style="width: 100%">Administrar domicilios</button><br><br>
-     			 <button class="btn btn-dark" style="width: 100%">Modificar datos de la cuenta</button><br><br>
-     			 <button class="btn btn-dark" style="width: 100%">Cambiar contraseña</button><br><br>
+     			<p>Titular de la cuenta: <?php echo $nombre ." ". $apellido; ?></p>
+
+     			
+				<?php
+				//--------------------------------------------Datos métodos de pago------------------------------------------------
+					$consulta= "SELECT * FROM metodospago WHERE id_usuario='" . $id_usuario . "'";
+					$result= mysqli_query($conexion,$consulta); 
+					echo '<button class="btn btn-dark"  onclick="dropMenu(`metodosP`)">Administrar métodos de pago</button><div id="metodosP" class="dropMenu" style="display:none;">
+							<table class="tabla_drop"><tr class><th>Titular</th><th>Número de tarjeta</th><th>Expira</th><th></th></tr>';
+
+					while($fila = mysqli_fetch_assoc($result)){
+						echo '<tr><td> ' . $fila['titular'] . '</td><td> **** **** **** ' . substr($fila['numero_tarjeta'], -4) . '</td><td>' . $fila['fecha_vencimiento'] . '</td><td style="color:rgb(200,100,100);">Eliminar</td></tr> ';
+
+					}
+					echo '</table></div><br><br>';
+				//--------------------------------------------Datos de la cuenta------------------------------------------------
+					echo "<button class='btn btn-dark' onclick='dropMenu(`datosCuenta`)'>Modificar datos de la cuenta</button>
+							<div id='datosCuenta' class='dropMenu' style='display:none;'>
+							  <table class='tabla_drop'>
+							  	<form method='post' action=''>
+						          <tr><td>Nombres           </td> <td><input type='text' name='new_nombres'   value='" . $fila_user['nombre']   . "'></td></tr>
+						          <tr><td>Apellidos         </td> <td><input type='text' name='new_apellidos' value='" . $fila_user['apellido'] . "'></td></tr>
+						          <tr><td>Telefono          </td> <td><input type='text' name='new_telefono'  value='" . $fila_user['telefono'] . "'></td></tr>
+						          <tr><td>Correo electrónico</td> <td>" . $fila_user['correo']                                                  . "  </td></tr>
+						          <tr><td>Nombre de usuario </td> <td>" . $fila_user['username']                                                . "  </td></tr>
+						          <tr><td>                  </td> <td><button class='btn btn-success' type='submit' name='modificado' value='". $id_usuario ."'>Modificar</button></td></tr>
+						        </form>
+					          </table>
+					        </div><br><br>";
+
+				    
+					}
+				?>
+
+
+
+				
+     			 <button class="btn btn-dark" style="width: 100%" onclick="dropHistorial()">Historial de pedidos</button><div id="historial" ></div><br>
+     			 
+     			 <button class="btn btn-dark" style="width: 100%">Administrar domicilios</button><div></div><br>
+     			 
+     			 <button class="btn btn-dark" style="width: 100%">Cambiar contraseña</button><div></div><br>
+
      			 <form action="" method="POST">
 					<input style="width: 70%" type="submit" value="Cerrar sesión" name="logout" class="btn btn-danger">
-				</form>
+				</form>	
+
 			</div>
-					<!-- -------------------------- Footer -------------------------- -->
+		<!-- -------------------------- Footer -------------------------- -->
 		<footer id="footer" class="footer-distributed">
 			<!------------- Columna 1 (izquierdo) ------------->
 			<div class="footer-left">
