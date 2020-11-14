@@ -30,8 +30,7 @@ if (isset($_POST['modificado'])){
   $result_modificar = mysqli_query($conexion,$consulta_modificar);
   if (!$result_modificar)
     echo 'Error';
-else
-	header("micuenta.php");
+}
 //------------------------------------------------------------------------------------
 ?>
 
@@ -147,6 +146,7 @@ else
 					$apellido = $fila_user['apellido'];
 					$usuario = $fila_user['username'];
 					$id_usuario = $fila_user['id_usuario'];
+					$rol = $fila_user['id_rol'];
 
 					mysqli_free_result($result);
 				?>
@@ -184,7 +184,8 @@ else
 					        </div><br><br>";
 
 				    
-					}
+					
+				//--------------------------------------------Administrar sitio------------------------------------------------	
 				?>
 
 
