@@ -1,42 +1,10 @@
 <?php
-include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
-include("config/conexion.php");//Contiene de conexion a la base de datos
-
 if(!isset($_SESSION)) 
     session_start(); 
-
-//Estos bloques de código definen el header después de ejecutarse, por eso se colocan al principio-----------
-
-//----Si no hay sesión iniciada, redirige a iniciar sesión-------
-if(!isset($_SESSION['login_user_sys']))
-	header("location: iniciar_sesion.php");
-
-//------Al cerrar sesión redirige a la página principal----------
-if (isset($_POST['logout'])) {
-	session_start();
-	session_destroy();
-	$_SESSION = array();
-	header("location: index.php");}
-
-//-----------Modifica usuario y recarga la página----------------
-if (isset($_POST['modificado'])){
-  $user_modify= $_POST['modificado'];
-  $new_nombres = $_POST['new_nombres'];
-  $new_apellidos = $_POST['new_apellidos'];
-  $new_telefono = $_POST['new_telefono'];
-
-  $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "' WHERE id_usuario='" . $user_modify . "'";
-  $result_modificar = mysqli_query($conexion,$consulta_modificar);
-  if (!$result_modificar)
-    echo 'Error';
-  else
-  	header("location:micuenta.php");
-}
-//-------------------------------------------------------------------------------------------------------------
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
@@ -45,13 +13,12 @@ if (isset($_POST['modificado'])){
     <!-----------------CSS (estilos)----------------------------->
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">              <!--Bootstrap------------>
     <link href="CSS/geckonavbar_style.css" rel="stylesheet">                    <!--Barra de navegación-->
-    <link href="CSS/estilos.css" rel="stylesheet">                              <!--Estilos del footer--->
-    <link href="CSS/productos.css" rel="stylesheet">
-    <link href="CSS/dropdowns.css" rel="stylesheet">                            <!--Menús desplegables--->
-    <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
-    <!--------------Javascript (scripts)------------------------->
-   	<script type="text/javascript" src="JS/nav.js"></script>
-   	<script type="text/javascript" src="JS/micuenta.js"></script>
+    <link href="CSS/estilos.css" rel="stylesheet">                              <!--Cuerpo index/footer-->
+	<!--<link href="CSS/footer.css" rel="stylesheet">-->
+	<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
+	<!--------------Javascript (scripts)------------------------->
+	<script type="text/javascript" src="JS/nav.js"></script>
+
 </head>
 <body>
 	<!------------------------------Barra de navegación------------------------------------------------------------------------------------------------------------------------------>
@@ -114,9 +81,9 @@ if (isset($_POST['modificado'])){
 	            <!---(Opción) Contacto------------------------------>
 	            <li class="nav-item"><a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a></li>
 	            <!---(Opción) Iniciar sesión------------------------>
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="micuenta.php" id="sesion" style="color:green;">Mi cuenta</a></li> <!--Página actual-->
+	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" id="sesion">Iniciar sesión</a></li> <!--Si hay cuenta iniciada, cambia el enlace por "Mi cuenta"--><?php include('zmenu.php') ?>
 	            <!---(Opción) Carrito------------------------------->
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>    	
+	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>  	
 	        </ul>
 	        <!---Frase------------------------------------------------>
 	        <span class="navbar-text pl-1" style="width: 289px;text-align: right;">
@@ -127,75 +94,101 @@ if (isset($_POST['modificado'])){
 	<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
-		<div style="height: 64px"></div>
-		<h1>Mi cuenta</h1>
-		<div style="text-align: center;color: white;width: 80vw;margin:auto;">
-			<?php				
-				$username = $_SESSION['login_user_sys'];
-				$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";
-				$result= mysqli_query($conexion,$consulta); 
-				if  (!$result){
-				      echo "Error en la consulta : " . mysqli_error($conexion);
-				}
+	<content>
+		<!-- -------------------------- Banner -------------------------- -->
+		<section id="banner">
+			<div class="bannercontainer">
+				<div>
+					<h1>Personaliza tu mundo</h1>
+					<p>Personaliza tazas, playeras, y mucho más. ¿Tienes tu propio diseño, o necesitas uno?<br>¡Nosotros te ayudamos!<br>
+					</p><br>
+					<a href="#" class="banner_btn">¡Empieza a comprar!</a>
+				</div>
+			</div>
+		</section>
+		<!-- -------------------------- TBA -------------------------- -->
+		<section id="nosotros">
+			<div class="productscontainer">
+				
+				<div class="row featurette">
+					<div class="col-md-6 ">
+						<img id="aboutus" src="Images/Gecko_logo.png" alt="">
+					</div>
+					<div class="col-md-6 pl-5 conttext pl-5">
+					<h1 class="featurette-heading text-bold">
+						<span class="text-muted">Acerca de</span> Nosotros<span class="text-muted">.</span>
+					</h1>
+						<p class="">Somos una empresa dedicada a traer tu diseño a la vida, en productos tales como tazas, playeras, sudaderas, llaveros, rompecabezas, entre muchos otros productos. Si tienes un diseño en mente, o quieras uno completamente original... ¡Nosotros te ayudamos!</p>
+					</div>
+				</div>
 
-				$fila_user = mysqli_fetch_array($result);
-				$nombre = $fila_user['nombre'];
-				$apellido = $fila_user['apellido'];
-				$usuario = $fila_user['username'];
-				$id_usuario = $fila_user['id_usuario'];
-				$rol = $fila_user['id_rol'];
 
-				mysqli_free_result($result);
-			?>
-			<br>
-			<h2>Nombre de usuario: <?php echo $usuario; ?></h2>
- 			<p>Titular de la cuenta: <?php echo $nombre ." ". $apellido; ?></p>
+				<div class="conttext">
+					<p>
+					</p>
+				</div>
+			</div>
+		</section>
+		<section id="productos">
+			<div class="aboutuscontainer">
+				<h1>Productos</h1>
+				<div class="conttext">
+					<p class="text-center">Desde tazas y playeras, hasta rompecabezas y llaveros.<br>¡Tenemos de todo! ¡Revisa nuestro catalogo de productos!
+					</p>
+					<div class="row text-center pb-5">
+						<div class="col-lg-3">
+							<img src="Images/Productos/playeras.png" class="bd-placeholder-img" width="140" height="140"focusable="false">
+							<h5 class="pt-3">Playeras</h5>
+						</div>
+						<div class="col-lg-3">
+							<img src="Images/Productos/tazas.png" class="bd-placeholder-img" width="140" height="140" focusable="false">
+							<h5 class="pt-3">Tazas</h5>
+						</div><!-- /.col-lg-4 -->
+						<div class="col-lg-3">
+							<img src="Images/Productos/llaveros.png" class="bd-placeholder-img" width="200" height="140" focusable="false">
+							<h5 class="pt-3">Llaveros</h5>
+						</div><!-- /.col-lg-4 -->
+						<div class="col-lg-3">
+							<img src="Images/Productos/rompecabezas.png" class="bd-placeholder-img" width="200" height="140" focusable="false">
+							<h5 class="pt-3">Rompecabezas</h5>
+						</div><!-- /.col-lg-4 -->
+					</div><!-- /.row -->
 
- 			
-			<?php
-			//--------------------------------------------Datos de la cuenta------------------------------------------------
-				echo "<button class='btn btn-dark' onclick='dropMenu(`datosCuenta`)'>Modificar datos de la cuenta</button>
-						<div id='datosCuenta' class='dropMenu' style='display:none;'>
-						  <table class='tabla_drop'>
-						  	<form method='post' action=''>
-					          <tr><td>Nombres           </td> <td><input type='text' name='new_nombres'   value='" . $fila_user['nombre']   . "'></td></tr>
-					          <tr><td>Apellidos         </td> <td><input type='text' name='new_apellidos' value='" . $fila_user['apellido'] . "'></td></tr>
-					          <tr><td>Telefono          </td> <td><input type='text' name='new_telefono'  value='" . $fila_user['telefono'] . "'></td></tr>
-					          <tr><td>Correo electrónico</td> <td>" . $fila_user['correo']                                                  . "  </td></tr>
-					          <tr><td>Nombre de usuario </td> <td>" . $fila_user['username']                                                . "  </td></tr>
-					          <tr><td>                  </td> <td><button class='btn btn-success' type='submit' name='modificado' value='". $id_usuario ."'>Modificar</button></td></tr>
-					        </form>
-				          </table>
-				        </div><br><br>";			 
-			//--------------------------------------------Datos métodos de pago------------------------------------------------
-				$consulta= "SELECT * FROM metodospago WHERE id_usuario='" . $id_usuario . "'";
-				$result= mysqli_query($conexion,$consulta); 
-				echo '<button class="btn btn-dark"  onclick="dropMenu(`metodosP`)">Administrar métodos de pago</button><div id="metodosP" class="dropMenu" style="display:none;">
-						<table class="tabla_drop"><tr class><th>Titular</th><th>Número de tarjeta</th><th>Expira</th><th></th></tr>';
+				</div>
 
-				while($fila = mysqli_fetch_assoc($result)){
-					echo '<tr><td> ' . $fila['titular'] . '</td><td> **** **** **** ' . substr($fila['numero_tarjeta'], -4) . '</td><td>' . $fila['fecha_vencimiento'] . '</td><td style="color:rgb(200,100,100);">Eliminar</td></tr> ';
+				<a href="#" type="button" class="containerbtn">¡Revisa nuestro catálogo!</a>
+			</div>
+		</section>
+		<section id="servicios">
+			<div class="productscontainer">
+				<h1 class="text-bold">Servicios</h1>
+				<div class="conttext">
+					<p class="text-center">¡Revisa las opciones que tenemos para ti! Podemos personalizar tus productos.
+					</p><br>
 
-				}
-				echo '</table></div><br><br>';
-			//--------------------------------------------Botones sin funcionalidad------------------------------------------------
-				echo '<button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Historial de pedidos</button><div id="historial"></div><br>	 
-	     			  <button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Administrar domicilios</button><div></div><br>
-	     			  <button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Cambiar contraseña</button><div></div><br>';
+					<div class="row text-center">
+						<div class="col-lg-4">
+							<img src="Images/personalizar.png" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<h5 class="pt-3">Personaliza</h5>
+							<p>¿Ya tienes tu diseño? Envíanos las características y tu propio diseño personalizado.</p>
+							</div><!-- /.col-lg-4 -->
+						<div class="col-lg-4">
+							<img src="Images/crear.png" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<h5 class="pt-3">Creamos tu diseño</h5>
+							<p>¿Aún no tienes diseño? Explícanos como quieres que sea tu diseño, y nosotros te ayudamos a darle la vida.</p>
+						</div><!-- /.col-lg-4 -->
+						<div class="col-lg-4">
+							<img src="Images/foto.png" class="bd-placeholder-img rounded-circle" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<h5 class="pt-3">Sesiones fotográficas</h5>
+							<p class="pb-5">Te ayudamos a capturar los momentos más importantes para ti, ¡Incluso con productos para ti!</p>
+						</div><!-- /.col-lg-4 -->
+					</div><!-- /.row -->
 
-			//--------------------------------------------Administrar sitio------------------------------------------------	
-				if ($rol == 1){
-					echo '<a href="admin.php"><button class="btn btn-warning" style="width:70%;">Administrar sitio</button></a><br><br>';
-			}	   
-			//--------------------------------------------Cerrar sesión------------------------------------------------	
-				echo ' <form action="" method="POST">
-					<input style="width: 70%" type="submit" value="Cerrar sesión" name="logout" class="btn btn-danger">
-				</form>	' ;
-
-			?>
-
-		</div>
-
+				</div>
+				<a href="#" type="button" class="containerbtn">¡Realiza tu pedido!</a>
+			</div>
+		</section>
+	</content>
 	<!-- -------------------------- Footer -------------------------- -->
 	<footer id="footer" class="footer-distributed">
 		<!------------- Columna 1 (izquierdo) ------------->
@@ -236,5 +229,14 @@ if (isset($_POST['modificado'])){
 		</div>
 	</footer>
 </body>
+<!--
+	<center><img src="Imagenes/Gecko logo.png" width="200" height="100"></center>
+
+	<hr/>
+	<footer class="foot">
+		<p>Contacto</p>
+		<p>Ideas Gecko - <?php echo date('Y'); ?></p>
+	</footer>
+-->
 </html>
 

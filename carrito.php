@@ -1,14 +1,6 @@
 <?php
-include('login.php'); //Se incluye el script de login
-
-
-//Creo que no se necesitan v v v v
-//include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
-//include("config/conexion.php");//Contiene de conexion a la base de datos
- 
-if(isset($_SESSION['login_user_sys'])){
-	header("location: micuenta.php");
-}
+if(!isset($_SESSION)) 
+    session_start(); 
 ?>
 
 <!DOCTYPE HTML>
@@ -22,11 +14,12 @@ if(isset($_SESSION['login_user_sys'])){
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">              <!--Bootstrap------------>
     <link href="CSS/geckonavbar_style.css" rel="stylesheet">                    <!--Barra de navegación-->
     <link href="CSS/estilos.css" rel="stylesheet">                              <!--Estilos del footer--->
+	<!--<link href="CSS/footer.css" rel="stylesheet">-->
 	<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
-	<link href="CSS/productos.css" rel="stylesheet">
-    <link href="CSS/formularios.css" rel="stylesheet">                          <!--Estilos formularios-->  
-	<!---------------Javascript (scripts)------------------------>
+	<link href="CSS/carrito.css" rel="stylesheet">                              <!--Carrito de compras--->
+	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
+
 </head>
 <body>
 	<!------------------------------Barra de navegación------------------------------------------------------------------------------------------------------------------------------>
@@ -61,7 +54,7 @@ if(isset($_SESSION['login_user_sys'])){
 	                    onclick="validarmenu(this, this.id, 'dropdownProducts')"> Productos
 	                </a>
 	                <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownProducts">
-	                    <a class="dropdown-item" href="playeras.php">Playeras</a>
+	                	<a class="dropdown-item" href="playeras.php">Playeras</a>
 	                    <a class="dropdown-item" href="#">Tazas</a>
 	                    <a class="dropdown-item" href="#">Sudaderas</a>
 	                    <a class="dropdown-item" href="#">Llaveros</a>
@@ -89,9 +82,9 @@ if(isset($_SESSION['login_user_sys'])){
 	            <!---(Opción) Contacto------------------------------>
 	            <li class="nav-item"><a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a></li>
 	            <!---(Opción) Iniciar sesión------------------------>
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" id="sesion" style="color:green;">Inicia sesión</a></li> <!--Página actual-->
+	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" id="sesion">Iniciar sesión</a></li> <!--Si hay cuenta iniciada, cambia el enlace por "Mi cuenta"--><?php include('zmenu.php') ?>
 	            <!---(Opción) Carrito------------------------------->
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>    	
+	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php" style="color:green;">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>  <!--Página actual-->  	
 	        </ul>
 	        <!---Frase------------------------------------------------>
 	        <span class="navbar-text pl-1" style="width: 289px;text-align: right;">
@@ -103,18 +96,24 @@ if(isset($_SESSION['login_user_sys'])){
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
-		<h1>Iniciar Sesión</h1>
-		<div class="contenido" style="text-align: center; margin:auto;">
-				<form method="POST" action="#">
-					<table class="formulario">
-					<tr><td>Usuario: </td><td><input type="" name="usuario" class="form-control" placeholder="Usuario" required=""></td></tr>
-					<tr><td>Contraseña: &nbsp</td><td><input type="password" name="contrasena" class="form-control" placeholder="Contraseña" required=""></td></tr>				
-					<tr><td></td><td><input type="submit" name="submit" value="Iniciar sesión" class="btn btn-dark"></td></tr>
-					</table>
-					<?php echo "<p style='color:red'>".$error."</p>"; ?>
-					<a href="registrar_usuario.php">Registrar nuevo usuario</a><br><br>
-					<a href="#">Olvidé mi contraseña</a>
-				</form>
+		<h1>Carrito</h1>
+		<div class="contenido">
+			<div class="carrito">
+		        <div class="carrito-cabecera">
+		            <h5 class="product-title">Producto</h5>
+		            <h5 class="precio titulo">Precio</h5>
+		            <h5 class="cantidad titulo">Cantidad</h5>
+		            <h5 class="total">Subtotal</h5>
+		        </div>
+		        <div class="carrito-cuerpo"> 
+		        	<p>Aún no has agregado ningún producto.</p>
+                <!--------------------------------Aqui empiezan los productos-------------->
+
+		        </div>
+			</div>
+			<div style="text-align: right"><br><button class="btn btn-primary">Proceder al Pago</button></div>
 		</div>
+		<script src="JS/carrito.js"></script>
+		<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 </body>
 </html>

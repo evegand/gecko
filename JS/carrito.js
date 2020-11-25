@@ -83,7 +83,7 @@ function agregarProducto(producto){
 		if (productosEnCarrito[producto.nombre] == undefined){
             productosEnCarrito = {...productosEnCarrito,
 					             [producto.nombre]:producto}
-        }else {productosEnCarrito[producto.nombre].cantidad += 1;}
+        }else {productosEnCarrito[producto.nombre].cantidad =  parseInt(productosEnCarrito[producto.nombre].cantidad) + 1;}
     }
     else{
         productosEnCarrito = {

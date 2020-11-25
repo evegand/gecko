@@ -1,3 +1,14 @@
+<?php 		//Inicio de variables de sesión
+	if (!isset($_SESSION)) {
+	  session_start();
+	}
+
+if(isset($_SESSION['login_user_sys'])){
+	header("location: micuenta.php");
+}
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 
@@ -18,10 +29,8 @@
     <!-- Javascript (funciones) -->
     <link href="">
 </head>
-
 <body>
-
-
+	<!--Script de validación de formulario-->
 	<script type="text/javascript">
 		function validateForm() {
 		  var x = document.forms["registerForm"];
@@ -78,20 +87,11 @@
 		}
 	</script>
 
-
-
-<?php 		//Inicio de variables de sesión
-	if (!isset($_SESSION)) {
-	  session_start();
-	}
- ?>
-
-	<!-- -------------------------- Menu -------------------------- -->
+	<!------------------------------Barra de navegación------------------------------------------------------------------------------------------------------------------------------>
 	<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-	    <a class="navbar-brand pl-2 pr-2" href="index.html">
-	        <img id="logo" src="Images/BlackGecko.png" width="55" height="50" alt="">
-	    </a>
-	    <a href="index.html" class="navbar-brand pr-5">Ideas Gecko</a>
+		<!---Logotipo----------------------------------------------------------------------------->
+	    <a href="index.php" class="navbar-brand pr-5"><img id="logo" src="Images/BlackGecko.png" width="55" height="50" alt=""> Ideas Gecko</a>
+	    <!---Botón para barra de navegación responsive-------------------------------------------->
 	    <button class="navbar-toggler" 
 	            id="toggleButton"
 	            type="button" 
@@ -103,63 +103,63 @@
 	            onclick="validarmenu(this, this.id, 'toggleMenu')">
 	        <span class="navbar-toggler-icon"></span>
 	    </button>
-
-	    <!-- Dropdown menu -->
+	    <!---Barra de navegación (Contenido)------------------------------------------------------>
 	    <div class="collapse navbar-collapse" id="toggleMenu">
+	    	<!---Opciones------------------------------------------------------>
 	        <ul class="navbar-nav mr-auto">
-	            <li class="nav-item active">
-	                <a class="nav-link pl-4 pr-4" href="#nosotros">Nosotros</a>
-	            </li>
+	        	<!---(Opción) Productos----------------------------->
 	            <li class="nav-item dropdown">
 	                <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-	                    href="#" 
+	                    href="#productos" 
 	                    id="titleProducts" 
 	                    role="button" 
 	                    data-toggle="dropdown" 
 	                    aria-haspopup="true" 
 	                    aria-expanded="false"
-	                    onclick="validarmenu(this, this.id, 'dropdownProducts')"
-	                    style="color: green"> Productos
+	                    onclick="validarmenu(this, this.id, 'dropdownProducts')"> Productos
 	                </a>
 	                <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownProducts">
-	                    <a class="dropdown-item" href="#">Tazas</a>
 	                    <a class="dropdown-item" href="playeras.php">Playeras</a>
+	                    <a class="dropdown-item" href="#">Tazas</a>
 	                    <a class="dropdown-item" href="#">Sudaderas</a>
 	                    <a class="dropdown-item" href="#">Llaveros</a>
-	                    <a class="dropdown-item" href="#productos">Más productos...</a>
+	                    <a class="dropdown-item" href="">Más productos...</a>
 	                </div>
 	            </li>
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-	                    href="#" 
-	                    id="titleServices" 
-	                    role="button" 
-	                    data-toggle="dropdown" 
-	                    aria-haspopup="true" 
-	                    aria-expanded="false"
-	                    onclick="validarmenu(this,this.id, 'dropdownServices')"> Servicios
-	                </a>
-	                <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
-	                    <a class="dropdown-item" href="#">Personalización</a>
-	                    <a class="dropdown-item" href="#">Paquetes fotográficos</a>
-	                    <a class="dropdown-item" href="#">Eventos</a>
-	                    <a class="dropdown-item" href="#servicios">Más...</a>
-	                </div>
-	            </li>
-	            <li class="nav-item">
-	                <a class="nav-link pl-3 pr-3" href="iniciar_sesion.php">Inicia sesión</a>
-	            </li>
-	            <li class="nav-item active">
-	                <a class="nav-link pl-3 pr-3" href="carrito.html">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a>
-	            </li>
-            	
+	            <!---(Opción) Servicios-----------------------------> 	           
+	           <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
+                      href="#" 
+                      id="titleServices" 
+                      role="button" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false"
+                      onclick="validarmenu(this,this.id, 'dropdownServices')"> Servicios
+                  </a>
+                  <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
+                      <a class="dropdown-item" href="#">Personalización</a>
+                      <a class="dropdown-item" href="#">Paquetes fotográficos</a>
+                      <a class="dropdown-item" href="#">Eventos</a>
+                      <a class="dropdown-item" href="#servicios">Más...</a>
+                  </div>
+              </li>
+	            <!---(Opción) Contacto------------------------------>
+	            <li class="nav-item"><a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a></li>
+	            <!---(Opción) Iniciar sesión------------------------>
+	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" id="sesion">Inicia sesión</a></li>
+	            <!---(Opción) Carrito------------------------------->
+	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>    	
 	        </ul>
-	        <span class="navbar-text pl-1" style="margin-left:12em">
+	        <!---Frase------------------------------------------------>
+	        <span class="navbar-text pl-1" style="width: 289px;text-align: right;">
 	            ¡Personaliza tu mundo!
 	        </span>
 	    </div>
 	</nav>
-	<!-- -------------------------- Contenido -------------------------- -->
+	<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
 		<h1>Registro</h1>
 		<div class="contenido" id="contenido" style="text-align: center; margin:auto;">
