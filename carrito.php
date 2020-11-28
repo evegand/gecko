@@ -22,77 +22,9 @@ if(!isset($_SESSION))
 
 </head>
 <body>
-	<!------------------------------Barra de navegación------------------------------------------------------------------------------------------------------------------------------>
-	<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-		<!---Logotipo----------------------------------------------------------------------------->
-	    <a href="index.php" class="navbar-brand pr-5"><img id="logo" src="Images/BlackGecko.png" width="55" height="50" alt=""> Ideas Gecko</a>
-	    <!---Botón para barra de navegación responsive-------------------------------------------->
-	    <button class="navbar-toggler" 
-	            id="toggleButton"
-	            type="button" 
-	            data-toggle="collapse"
-	            data-target="#navbarText" 
-	            aria-controls="navbarText" 
-	            aria-expanded="false" 
-	            aria-label="Toggle navigation"
-	            onclick="validarmenu(this, this.id, 'toggleMenu')">
-	        <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <!---Barra de navegación (Contenido)------------------------------------------------------>
-	    <div class="collapse navbar-collapse" id="toggleMenu">
-	    	<!---Opciones------------------------------------------------------>
-	        <ul class="navbar-nav mr-auto">
-	        	<!---(Opción) Productos----------------------------->
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-	                    href="#productos" 
-	                    id="titleProducts" 
-	                    role="button" 
-	                    data-toggle="dropdown" 
-	                    aria-haspopup="true" 
-	                    aria-expanded="false"
-	                    onclick="validarmenu(this, this.id, 'dropdownProducts')"> Productos
-	                </a>
-	                <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownProducts">
-	                	<a class="dropdown-item" href="playeras.php">Playeras</a>
-	                    <a class="dropdown-item" href="#">Tazas</a>
-	                    <a class="dropdown-item" href="#">Sudaderas</a>
-	                    <a class="dropdown-item" href="#">Llaveros</a>
-	                    <a class="dropdown-item" href="">Más productos...</a>
-	                </div>
-	            </li>
-	            <!---(Opción) Servicios-----------------------------> 	           
-	           <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-                      href="#" 
-                      id="titleServices" 
-                      role="button" 
-                      data-toggle="dropdown" 
-                      aria-haspopup="true" 
-                      aria-expanded="false"
-                      onclick="validarmenu(this,this.id, 'dropdownServices')"> Servicios
-                  </a>
-                  <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
-                      <a class="dropdown-item" href="#">Personalización</a>
-                      <a class="dropdown-item" href="#">Paquetes fotográficos</a>
-                      <a class="dropdown-item" href="#">Eventos</a>
-                      <a class="dropdown-item" href="#servicios">Más...</a>
-                  </div>
-              </li>
-	            <!---(Opción) Contacto------------------------------>
-	            <li class="nav-item"><a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a></li>
-	            <!---(Opción) Iniciar sesión------------------------>
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" id="sesion">Iniciar sesión</a></li> <!--Si hay cuenta iniciada, cambia el enlace por "Mi cuenta"--><?php include('zmenu.php') ?>
-	            <!---(Opción) Carrito------------------------------->
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php" style="color:green;">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>  <!--Página actual-->  	
-	        </ul>
-	        <!---Frase------------------------------------------------>
-	        <span class="navbar-text pl-1" style="width: 289px;text-align: right;">
-	            ¡Personaliza tu mundo!
-	        </span>
-	    </div>
-	</nav>
-	<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+	<!------------------------------------- Barra de navegación ----------------------------------------------------------------->
+	<?php include 'menu.php'; ?>
+	<!--------------------------------------------------------------------------------------------------------------------------->
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>

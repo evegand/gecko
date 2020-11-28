@@ -38,7 +38,7 @@
 
 /* change the color of hovered links */
 .navbar-custom .nav-item:hover .nav-link {
-    color: green;
+    color: #C1D379;
 }
 
 /* for dropdown only - change the color of droodown */

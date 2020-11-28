@@ -1,5 +1,7 @@
 <?php
-	session_start(); // Iniciando sesion
+    if(!isset($_SESSION)){ 
+		session_start(); // Iniciando sesion
+    } 
 	$error=''; // Variable para almacenar el mensaje de error
 	if (isset($_POST['submit'])) {
 		if (empty($_POST['usuario']) || empty($_POST['contrasena'])) {
@@ -23,7 +25,7 @@
 			$fila = mysqli_fetch_array($resultado);
 
 			if (mysqli_num_rows($resultado)==1){
-					$_SESSION['login_user_sys']=$usuario; // Iniciando la sesion
+					$_SESSION['login_user_sys'] = $usuario; // Iniciando la sesion
 					$_SESSION['rol']=$fila['id_rol'];	  // Define el rol de la sesión.
 					header("location: micuenta.php");     // Redireccionando a la pagina mi cuenta	
 			} 

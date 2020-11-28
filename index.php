@@ -1,6 +1,6 @@
 <?php
-if(!isset($_SESSION)) 
-    session_start(); 
+if(!isset($_SESSION))
+	session_start(); 
 ?>
 
 <!DOCTYPE HTML>
@@ -12,7 +12,6 @@ if(!isset($_SESSION))
     
     <!-----------------CSS (estilos)----------------------------->
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">              <!--Bootstrap------------>
-    <link href="CSS/geckonavbar_style.css" rel="stylesheet">                    <!--Barra de navegación-->
     <link href="CSS/estilos.css" rel="stylesheet">                              <!--Cuerpo index/footer-->
 	<!--<link href="CSS/footer.css" rel="stylesheet">-->
 	<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
@@ -21,77 +20,9 @@ if(!isset($_SESSION))
 
 </head>
 <body>
-	<!------------------------------Barra de navegación------------------------------------------------------------------------------------------------------------------------------>
-	<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-		<!---Logotipo----------------------------------------------------------------------------->
-	    <a href="index.php" class="navbar-brand pr-5"><img id="logo" src="Images/BlackGecko.png" width="55" height="50" alt=""> Ideas Gecko</a>
-	    <!---Botón para barra de navegación responsive-------------------------------------------->
-	    <button class="navbar-toggler" 
-	            id="toggleButton"
-	            type="button" 
-	            data-toggle="collapse"
-	            data-target="#navbarText" 
-	            aria-controls="navbarText" 
-	            aria-expanded="false" 
-	            aria-label="Toggle navigation"
-	            onclick="validarmenu(this, this.id, 'toggleMenu')">
-	        <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <!---Barra de navegación (Contenido)------------------------------------------------------>
-	    <div class="collapse navbar-collapse" id="toggleMenu">
-	    	<!---Opciones------------------------------------------------------>
-	        <ul class="navbar-nav mr-auto">
-	        	<!---(Opción) Productos----------------------------->
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-	                    href="#productos" 
-	                    id="titleProducts" 
-	                    role="button" 
-	                    data-toggle="dropdown" 
-	                    aria-haspopup="true" 
-	                    aria-expanded="false"
-	                    onclick="validarmenu(this, this.id, 'dropdownProducts')"> Productos
-	                </a>
-	                <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownProducts">
-	                    <a class="dropdown-item" href="playeras.php">Playeras</a>
-	                    <a class="dropdown-item" href="#">Tazas</a>
-	                    <a class="dropdown-item" href="#">Sudaderas</a>
-	                    <a class="dropdown-item" href="#">Llaveros</a>
-	                    <a class="dropdown-item" href="">Más productos...</a>
-	                </div>
-	            </li>
-	            <!---(Opción) Servicios-----------------------------> 	           
-	           <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-                      href="#" 
-                      id="titleServices" 
-                      role="button" 
-                      data-toggle="dropdown" 
-                      aria-haspopup="true" 
-                      aria-expanded="false"
-                      onclick="validarmenu(this,this.id, 'dropdownServices')"> Servicios
-                  </a>
-                  <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
-                      <a class="dropdown-item" href="#">Personalización</a>
-                      <a class="dropdown-item" href="#">Paquetes fotográficos</a>
-                      <a class="dropdown-item" href="#">Eventos</a>
-                      <a class="dropdown-item" href="#servicios">Más...</a>
-                  </div>
-              </li>
-	            <!---(Opción) Contacto------------------------------>
-	            <li class="nav-item"><a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a></li>
-	            <!---(Opción) Iniciar sesión------------------------>
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="iniciar_sesion.php" id="sesion">Iniciar sesión</a></li> <!--Si hay cuenta iniciada, cambia el enlace por "Mi cuenta"--><?php include('zmenu.php') ?>
-	            <!---(Opción) Carrito------------------------------->
-	            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="carrito.php">Carrito <img class="pl-1 pt-1" id="cart" src="Images/carrito.png" width="30" height="28" alt=""></a></li>  	
-	        </ul>
-	        <!---Frase------------------------------------------------>
-	        <span class="navbar-text pl-1" style="width: 289px;text-align: right;">
-	            ¡Personaliza tu mundo!
-	        </span>
-	    </div>
-	</nav>
-	<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+	<!------------------------------------- Barra de navegación ----------------------------------------------------------------->
+	<?php include 'menu.php'; ?>
+	<!--------------------------------------------------------------------------------------------------------------------------->
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 	<content>
@@ -189,54 +120,8 @@ if(!isset($_SESSION))
 			</div>
 		</section>
 	</content>
-	<!-- -------------------------- Footer -------------------------- -->
-	<footer id="footer" class="footer-distributed">
-		<!------------- Columna 1 (izquierdo) ------------->
-		<div class="footer-left">
-			<p class="footer-links">
-				<a href="#">Inicio</a>
-				<a href="#">Nosotros</a>
-				<a href="#">Contáctanos</a>
-			</p>
+	<!-- ------------------------------------ Footer ------------------------------------ -->
+	<?php include 'footer.html';?>
 
-			<p class="footer-company-name">© 2020 Ideas Gecko — Guadalajara, Jalisco.</p>
-		</div>
-		<!------------- Columna 2 (centro) ------------->
-		<div class="footer-center">
-			<div>
-				  <p>Jardines de las Clavelinas No. 1298<br>
-					Colonia Jardines del Vergel.<span>Guadalajara, Jalisco. México.</span></p>
-			</div><br>
-			<div>
-				<p>Escribenos a: <span>(+52) 33 1527 1078</span></p>
-			</div>
-			<div>
-				<p>Personaliza: <a href="mailto:ideasgecko@gmail.com">ideasgecko@gmail.com</a></p><br>
-				<p>Servicios Fotográficos: <a href="mailto:vaneandrade@gmail.com">vaneandrade@gmail.com</a></p>
-			</div>
-		</div>
-		<!------------- Columna 3 (derecha) ------------->
-		<div class="footer-right">
-			<p class="footer-company-about">
-				<span><b>Ideas Gecko</b></span>
-				Somos una empresa que se dedica a entregar productos personalizados. Desde tazas, termos, playeras, suéteres y mucho más. Nos encargamos de llevar a la vida tu visión.</p>
-			<div class="footer-icons">
-				<a href="#"><i class="icon-facebook"></i></a>
-				<a href="#"><i class="icon-instagram"></i></a>
-				<a href="https://api.whatsapp.com/send?phone=523315271078"><i class="icon-whatsapp"></i></a>
-				<a href="mailto:ideasgecko@gmail.com"><i class="icon-gmail"></i></a>
-			</div>
-		</div>
-	</footer>
-</body>
-<!--
-	<center><img src="Imagenes/Gecko logo.png" width="200" height="100"></center>
-
-	<hr/>
-	<footer class="foot">
-		<p>Contacto</p>
-		<p>Ideas Gecko - <?php echo date('Y'); ?></p>
-	</footer>
--->
 </html>
 

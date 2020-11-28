@@ -16,7 +16,7 @@
              </script>';
 ?>
 <?php
-    }else{
+    } else {
         $cuerpo = "Nombre y apellido: " . $_POST["nombre"] . "\r\n"; 
         $cuerpo .= "Email: " . $_POST["email"] . "\r\n";
     	$cuerpo .= "Consulta: " . $_POST["consulta"] . "\r\n";

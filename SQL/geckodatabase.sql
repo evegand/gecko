@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2020 at 03:20 AM
+-- Generation Time: Nov 28, 2020 at 03:15 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -134,7 +134,8 @@ CREATE TABLE `pedidos` (
   `estado_pedido` tinyint(4) NOT NULL,
   `fecha` date NOT NULL,
   `id_direccion` int(11) NOT NULL,
-  `destinatario` varchar(45) NOT NULL
+  `destinatario` varchar(45) NOT NULL,
+  `telefono` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -149,22 +150,23 @@ CREATE TABLE `productos` (
   `id_dptof` smallint(2) NOT NULL,
   `id_existencia` smallint(2) NOT NULL,
   `nombre_producto` varchar(45) NOT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
-  `precio` float DEFAULT NULL
+  `descripcion` varchar(200) DEFAULT NULL,
+  `precio` float DEFAULT NULL,
+  `imagen` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `id_categoriaf`, `id_dptof`, `id_existencia`, `nombre_producto`, `descripcion`, `precio`) VALUES
-(1, 1, 1, 1, 'Playera Blanca', 'Playera manga corta varias tallas', 300),
-(2, 1, 1, 1, 'Playera Roja', 'Playera con estampado', 279),
-(3, 1, 1, 1, 'Playera negra', 'Manga corta color negro', 350),
-(4, 1, 1, 1, 'Playera con estampado', 'Tela de excelente calidad', 200),
-(5, 1, 1, 1, 'Playera azul con estampado de flores', 'Color azul diferentes tallas', 499),
-(6, 1, 1, 1, 'Playera color gris', 'De manga corta en diferentes tallas', 200),
-(7, 1, 1, 1, 'Playera generica con un nombre demasiado larg', 'Esta es una playera con nombre y descripción ', 1299);
+INSERT INTO `productos` (`id_producto`, `id_categoriaf`, `id_dptof`, `id_existencia`, `nombre_producto`, `descripcion`, `precio`, `imagen`) VALUES
+(1, 1, 1, 1, 'Playera Blanca', 'Playera manga corta varias tallas', 300, '1'),
+(2, 1, 1, 1, 'Playera Roja', 'Playera con estampado', 279, '2'),
+(3, 1, 1, 1, 'Playera negra', 'Manga corta color negro', 350, '3'),
+(4, 1, 1, 1, 'Playera con estampado', 'Tela de excelente calidad', 200, '4'),
+(5, 1, 1, 1, 'Playera azul con estampado de flores', 'Color azul diferentes tallas', 499, '5'),
+(6, 1, 1, 1, 'Playera color gris', 'De manga corta en diferentes tallas', 200, '6'),
+(7, 1, 1, 1, 'Playera generica con un nombre demasiado larg', 'Esta es una playera con nombre y descripción ', 1299, '7');
 
 -- --------------------------------------------------------
 
@@ -180,16 +182,18 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(12) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `apellido` varchar(45) NOT NULL,
-  `nombre` varchar(20) NOT NULL
+  `nombre` varchar(20) NOT NULL,
+  `RFC` varchar(45) DEFAULT NULL,
+  `cambio_usuario` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `id_rol`, `telefono`, `correo`, `apellido`, `nombre`) VALUES
-(1, 'jairmqz', '123', 1, '3318325850', 'a@a', 'Marquez', 'Jair'),
-(2, 'evegand', '123456', 2, '3333333333', 'evegand@gmail.com', 'Guerrero', 'Everardo');
+INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `id_rol`, `telefono`, `correo`, `apellido`, `nombre`, `RFC`, `cambio_usuario`) VALUES
+(1, 'jairmqz', '123', 1, '3318325850', 'a@a', 'Marquez', 'Jair', 'JMR123', 0),
+(2, 'evegand', '123456', 2, '3315271078', 'evegand@gmail.com', 'Guerrero', 'Everardo', 'EGA234', 0);
 
 --
 -- Indexes for dumped tables
