@@ -13,8 +13,6 @@ if(!isset($_SESSION))
     
     <!-----------------CSS (estilos)----------------------------->
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">              <!--Bootstrap------------>
-    <link href="CSS/geckonavbar_style.css" rel="stylesheet">                    <!--Barra de navegación-->
-    <link href="CSS/estilos.css" rel="stylesheet">                              <!--Estilos del footer--->
 	<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
 	<link href="CSS/productos.css" rel="stylesheet">                            <!--Estilos productos---->
 	<!--------------Javascript (scripts)------------------------->
@@ -22,9 +20,9 @@ if(!isset($_SESSION))
 
 </head>
 <body>
-	<!------------------------------------- Barra de navegación ----------------------------------------------------------------->
+	<!------------------------------------- Barra de navegación --------------------------------------------------------->
 	<?php include 'menu.php'; ?>
-	<!--------------------------------------------------------------------------------------------------------------------------->
+	<!------------------------------------------------------------------------------------------------------------------->
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
@@ -107,6 +105,7 @@ if(!isset($_SESSION))
 			</div>
 -->						
 		</div>
+
 <script type="text/javascript" src="JS/carrito.js"></script>
 </body>
 </html>
