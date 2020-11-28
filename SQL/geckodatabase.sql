@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2020 at 03:15 AM
+-- Generation Time: Nov 28, 2020 at 06:49 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -37,7 +37,9 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
-(1, '\"Vestimenta\"');
+(1, 'Playeras'),
+(2, 'Tazas'),
+(3, 'Sudaderas');
 
 -- --------------------------------------------------------
 
@@ -166,7 +168,16 @@ INSERT INTO `productos` (`id_producto`, `id_categoriaf`, `id_dptof`, `id_existen
 (4, 1, 1, 1, 'Playera con estampado', 'Tela de excelente calidad', 200, '4'),
 (5, 1, 1, 1, 'Playera azul con estampado de flores', 'Color azul diferentes tallas', 499, '5'),
 (6, 1, 1, 1, 'Playera color gris', 'De manga corta en diferentes tallas', 200, '6'),
-(7, 1, 1, 1, 'Playera generica con un nombre demasiado larg', 'Esta es una playera con nombre y descripción ', 1299, '7');
+(7, 1, 1, 1, 'Playera generica con un nombre demasiado larg', 'Esta es una playera con nombre y descripción ', 1299, '7'),
+(8, 3, 1, 1, 'Sueter azul', 'Sueter con diseño Monstruo Comegalletas', 349, 'Sudadera1'),
+(9, 3, 1, 2, 'Sueter rojo', 'Sueter con diseño navideño', 299, 'Sudadera2'),
+(10, 3, 1, 1, 'Sueter verde', 'Sueter con diseño de reno navideño', 249, 'Sudadera3'),
+(11, 2, 1, 1, 'Taza Blanca', 'Feliz Navidad Marcos', 130, 'Taza1'),
+(12, 2, 1, 2, 'Taza Blanca', 'Feliz Navidad Patricia', 130, 'Taza2'),
+(13, 2, 1, 1, 'Taza Azul', 'Muñeco de Nieve', 80, 'Taza3'),
+(14, 2, 1, 1, 'Taza Negra Mágica', 'Merodeadores Harry Potter', 180, 'Taza4'),
+(15, 2, 1, 1, 'Taza Negra/Blanca', 'Harry Potter Reliquias de la muerte', 160, 'Taza5'),
+(16, 2, 1, 1, 'Taza Roja Mágica', 'Recuerdos de boda', 180, 'Taza6');
 
 -- --------------------------------------------------------
 
@@ -271,7 +282,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_categoria` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `departamentos`
@@ -313,7 +324,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
