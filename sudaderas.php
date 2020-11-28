@@ -26,9 +26,9 @@ if(!isset($_SESSION))
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
-		<h1>Playeras</h1>
+		<h1>Sudaderas</h1>
 		<div class="contenido">
-			<a href="productos.php" class="btn btn-dark">Busca más productos</a>
+		<a href="productos.php" class="btn btn-dark">Busca más productos</a>
 		<br>
 
 			<?php
@@ -38,7 +38,7 @@ if(!isset($_SESSION))
 			    echo "No se pudo conectar : " . mysqli_connect_error();
 			    exit;
 			}
-			$consulta= "SELECT * FROM productos WHERE id_categoriaf = 1"; 
+			$consulta= "SELECT * FROM productos WHERE id_categoriaf = 3"; 
 			$resultado= mysqli_query($link,$consulta) ;
 
 			while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results

@@ -53,10 +53,9 @@ if(isset($_SESSION['login_user_sys'])){
 	                </a>
 	                <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownProducts">
 	                    <a class="dropdown-item" href="playeras.php">Playeras</a>
-	                    <a class="dropdown-item" href="#">Tazas</a>
-	                    <a class="dropdown-item" href="#">Sudaderas</a>
-	                    <a class="dropdown-item" href="#">Llaveros</a>
-	                    <a class="dropdown-item" href="">Más productos...</a>
+	                    <a class="dropdown-item" href="tazas.php">Tazas</a>
+	                    <a class="dropdown-item" href="sudaderas.php">Sudaderas</a>
+	                    <a class="dropdown-item" href="productos.php">Más productos...</a>
 	                </div>
 	            </li>
 	            <!---(Opción) Servicios-----------------------------> 	           

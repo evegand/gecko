@@ -87,7 +87,7 @@ if(!isset($_SESSION))
 
 				</div>
 
-				<a href="#" type="button" class="containerbtn">¡Revisa nuestro catálogo!</a>
+				<a href="productos.php" type="button" class="containerbtn">¡Revisa nuestro catálogo!</a>
 			</div>
 		</section>
 		<section id="servicios">

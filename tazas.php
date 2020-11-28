@@ -26,7 +26,7 @@ if(!isset($_SESSION))
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
-		<h1>Playeras</h1>
+		<h1>Tazas</h1>
 		<div class="contenido">
 			<a href="productos.php" class="btn btn-dark">Busca más productos</a>
 		<br>
@@ -38,13 +38,13 @@ if(!isset($_SESSION))
 			    echo "No se pudo conectar : " . mysqli_connect_error();
 			    exit;
 			}
-			$consulta= "SELECT * FROM productos WHERE id_categoriaf = 1"; 
+			$consulta= "SELECT * FROM productos WHERE id_categoriaf = 2"; 
 			$resultado= mysqli_query($link,$consulta) ;
 
 			while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
 				$prodJSON = json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['imagen'] . ".jpg", 'cantidad' => 1));
 		   		echo "<div class='producto'>
-						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a><br><button class='btn btn-secondary btn-sm'>CH</button> <button class='btn btn-secondary btn-sm'>M</button> <button class='btn btn-secondary btn-sm'>G</button></p>
+						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a><br></p>
 						<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['imagen'] . ".jpg'>
 						<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
 						<label class='productPrice'>$" . $fila['precio'] . ".00</label></div>
