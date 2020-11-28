@@ -37,21 +37,32 @@ td{
 	padding: 6px 0;
 }
 
-input[type=text], input[type=number], input[type=password]{
+.imageForm{
+	width: 5vw;
+}
+
+input[type=text], input[type=number], input[type=password], textarea, .btn-primary{
 	width: 60%;
+}
+
+input[type=number]{
+	padding: 1px;
+	font-size: 1.2vw;	
 }
 
 
 @media (max-width: 890px){
-	.tabla_admin, .btn-secondary, .btn-danger, .btn-success, .form-control{
+	.tabla_admin, .btn-secondary, .btn-danger, .btn-success, .btn-primary{
 		font-size: 1.5vw;
 		padding: 1px;
 	}
 }
 
 @media (max-width: 300px){
-	input[type=text], input[type=search]{
+	input[type=text], input[type=search],input[type=number], textarea{
 		width: 100%;
 	}
 }
+
+
 

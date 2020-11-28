@@ -47,10 +47,38 @@ if (isset($_POST['productoModificado'])){
   $new_nombreP = $_POST['new_nombreP'];
   $new_descripcion = $_POST['new_descripcion'];
   $new_precio = $_POST['new_precio'];
+  $imagen = $_FILES['fileToUpload']['tmp_name'];
+  //unlink("Images/Productos/" . $prod_modify . ".jpg");
+  move_uploaded_file($imagen, "Images/Productos/" . $prod_modify . ".jpg");
 
   $consulta_modificar = "UPDATE productos SET nombre_producto='" .$new_nombreP. "', descripcion='" .$new_descripcion. "', precio='" .$new_precio. "' WHERE id_producto='" . $prod_modify . "'";
   $result_modificar = mysqli_query($conexion,$consulta_modificar);
   if (!$result_modificar)
+    echo 'Error';
+  else
+    header("location:admin.php");  
+}
+
+
+//-----------Agrega producto y recarga la página---------------
+if (isset($_POST['productoAgregado'])){
+  $add_prod= $_POST['productoAgregado'];
+  $new_nombreP = $_POST['new_nombreP'];
+  $new_descripcion = $_POST['new_descripcion'];
+  $new_precio = $_POST['new_precio'];
+  $imagen = $_FILES['fileToUpload']['tmp_name'];
+
+
+  $consulta_agregar = "INSERT INTO productos (id_producto, nombre_producto, descripcion, precio, imagen, id_dptof, id_categoriaf, id_existencia) VALUES (null,'" .$new_nombreP. "','" .$new_descripcion. "','" .$new_precio. "','" . null . "','1', '1','1')";
+  $result_agregar = mysqli_query($conexion,$consulta_agregar);
+  $idAgregado = mysqli_insert_id($conexion);
+  move_uploaded_file($imagen, "Images/Productos/" . $idAgregado . ".jpg");
+  $consulta_imagen = "UPDATE productos SET imagen='" . $idAgregado . "' WHERE id_producto = '" . $idAgregado ."'";
+  $result_imagen = mysqli_query($conexion,$consulta_imagen);
+  if (!$result_imagen)
+    echo 'Error';
+
+  if (!$result_agregar)
     echo 'Error';
   else
     header("location:admin.php");  
@@ -82,9 +110,9 @@ if (isset($_POST['productoModificado'])){
 <body>
 	<!------------------------------------- Barra de navegación ------------------------------------------------------>
 	<?php include 'menu.php'; ?>
-	<!---------------------------------------------------------------------------------------------------------------->
+	<link href="CSS/dropdowns.css" rel="stylesheet">
 
-	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
+	<!------------------------------------------Contenido------------------------------------------------------------->
 	<div style="height: 64px"></div>
 	<h1>Administrar sitio</h1>
 	<div style="text-align: center;color: white;width: 80vw;margin:auto;"><br><br><br><br>
@@ -124,16 +152,15 @@ if (isset($_POST['productoModificado'])){
 				<div id='adminProd' class='dropMenu' style='display:none;'>
 					<table class='tabla_admin' width='80vw'>
 						<tr>
-							<td>Agregar producto nuevo</td>
-							<td></td>
-							<td></td>
+							<td>Agregar Productos</td>
+							<td><form method='post' action=''><button onclick='dropMenu(`adminProd`)' class='btn btn-primary' type='submit' name= 'id_new_prod' value='1'	>+ Agregar Nuevo Producto</button></form></td>							
 						</tr>
 						<tr>
 							<td>Buscar producto</td>
 							<td>
 								Id del producto: &nbsp 
 								<form method='post' action=''>
-									<input class='form-control' type='number' value='' placeholder='id' min='1' name='searchProduct'>
+									<input type='number' value='' placeholder='id' min='1' name='searchProduct'>
 									<button class='btn btn-success' type='submit' >Buscar</button>
 								</form>
 							</td>
@@ -200,6 +227,22 @@ if (isset($_POST['productoModificado'])){
 				}
 			}
 
+			//-----------Agregar producto---------------------------------
+			$id_new_prod = null;
+			if (isset($_POST['id_new_prod'])){
+				$id_new_prod = $_POST['id_new_prod'];
+				echo "<br><h4 align='center'>Agregar nuevo producto</h4>
+				    	<div id='AddProd' class='dropMenu'>
+				          <table class='tabla_admin'><form method='post' enctype='multipart/form-data' action=''>				          	 
+					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='' placeholder='Nombre del producto'></td></tr>
+					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion' placeholder='Max. 200 caracteres'></textarea>    </td></tr>
+					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='' placeholder='Pesos $'>         </td></tr>
+					          <tr><td>Imagen     </td><td><input type='file' name='fileToUpload' id='fileToUpload' accept='image/x-png,image/gif,image/jpeg'> </td></tr>
+					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name='productoAgregado'>Enviar</button></form></td></tr>
+				          </table></div>";
+			}
+
+
 			//-------------Modificar producto----------------------------
 			$id_prod_modify = null;
 			if (isset($_POST['id_prod_modify'])){
@@ -210,11 +253,12 @@ if (isset($_POST['productoModificado'])){
 			    if ($fila){
 			    	echo "<br><h4 align='center'>Modificar producto: " . $fila['nombre_producto'] . "</h4>
 				    	<div id='modProd' class='dropMenu'>
-				          <table class='tabla_admin'><form method='post' action=''>
+				          <table class='tabla_admin'><form method='post'  enctype='multipart/form-data' action=''>
 				          	  <tr><td>ID Producto</td> <td>" . $fila['id_producto'] . "</td></tr>
 					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='" . $fila['nombre_producto'] . "'></td></tr>
-					          <tr><td>Descripción</td> <td><input type='text' name='new_descripcion' value='" . $fila['descripcion'] . "'>    </td></tr>
+					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion'>" . $fila['descripcion'] ."</textarea>    </td></tr>
 					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='" . $fila['precio'] . "'>         </td></tr>
+					          <tr><td>Imagen     </td><td><input name='fileToUpload' type=file accept='image/x-png,image/gif,image/jpeg'> &nbsp <img src='Images/Productos/". $fila['imagen'].".jpg' class='imagenForm' style='width:6vw;' ></td></tr>
 					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name= 'productoModificado' value='". $fila['id_producto'] ."'>Enviar</button></form></td></tr>
 				          </table></div>";
 
