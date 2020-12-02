@@ -13,7 +13,7 @@ if(!isset($_SESSION['login_user_sys']))
 
 //------Al cerrar sesión redirige a la página principal----------
 if (isset($_POST['logout'])) {
-	session_start();
+	//session_start();
 	session_destroy();
 	$_SESSION = array();
 	header("location: index.php");
@@ -25,8 +25,9 @@ if (isset($_POST['modificado'])){
   $new_nombres = $_POST['new_nombres'];
   $new_apellidos = $_POST['new_apellidos'];
   $new_telefono = $_POST['new_telefono'];
+  $new_RFC = $_POST['new_RFC'];
 
-  $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "' WHERE id_usuario='" . $user_modify . "'";
+  $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "', RFC='". $new_RFC. "' WHERE id_usuario='" . $user_modify . "'";
   $result_modificar = mysqli_query($conexion,$consulta_modificar);
   if (!$result_modificar)
     echo 'Error';
@@ -92,11 +93,12 @@ if (isset($_POST['modificado'])){
 						<div id='datosCuenta' class='dropMenu' style='display:none;'>
 						  <table class='tabla_drop'>
 						  	<form method='post' action=''>
-					          <tr><td>Nombres           </td> <td><input type='text' name='new_nombres'   value='" . $fila_user['nombre']   . "'></td></tr>
-					          <tr><td>Apellidos         </td> <td><input type='text' name='new_apellidos' value='" . $fila_user['apellido'] . "'></td></tr>
-					          <tr><td>Telefono          </td> <td><input type='text' name='new_telefono'  value='" . $fila_user['telefono'] . "'></td></tr>
+					          <tr><td>Nombres           </td> <td><input type='text' name='new_nombres'   value='" . $fila_user['nombre']   . "' required minlength='4'></td></tr>
+					          <tr><td>Apellidos         </td> <td><input type='text' name='new_apellidos' value='" . $fila_user['apellido'] . "' ></td></tr>
+					          <tr><td>Telefono          </td> <td><input type='text' name='new_telefono'  value='" . $fila_user['telefono'] . "' placeholder='10 dígitos*' required pattern='[0-9]{10}' maxlength='10'></td></tr>
 					          <tr><td>Correo electrónico</td> <td>" . $fila_user['correo']                                                  . "  </td></tr>
 					          <tr><td>Nombre de usuario </td> <td>" . $fila_user['username']                                                . "  </td></tr>
+					          <tr><td>RFC               </td> <td><input type='text' name='new_RFC'  value='" . $fila_user['RFC'] . "'></td></tr>
 					          <tr><td>                  </td> <td><button class='btn btn-success' type='submit' name='modificado' value='". $id_usuario ."'>Modificar</button></td></tr>
 					        </form>
 				          </table>
@@ -114,8 +116,7 @@ if (isset($_POST['modificado'])){
 				echo '</table></div><br><br>';
 			//--------------------------------------------Botones sin funcionalidad------------------------------------------------
 				echo '<button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Historial de pedidos</button><div id="historial"></div><br>	 
-	     			  <button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Administrar domicilios</button><div></div><br>
-	     			  <button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Cambiar contraseña</button><div></div><br>';
+	     			  <button class="btn btn-dark" style="width: 100%" onclick="dropMenu(``)">Administrar domicilios</button><div></div><br>';
 
 			//--------------------------------------------Administrar sitio------------------------------------------------	
 				if ($rol == 1){

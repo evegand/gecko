@@ -34,7 +34,7 @@ h1{
         width: 95%;
         overflow: hidden;
     }
-    .carrito, h5{
+    .carrito{
         font-size: 3vw;
     }
 }
@@ -88,6 +88,10 @@ select, input, option{
 .product-title{
     width: 45%;
     border-bottom: 1px solid rgb(80,80,80);
+    display: flex;
+    border-bottom: 1px solid rgb(80,80,80);
+    align-items: center;
+    justify-content: left;
 
 }
 
@@ -135,7 +139,24 @@ select, input, option{
 }
 .subtotal{
     font-weight: bold;  
-    width: 10%;
+    width: 16%;
+    border-bottom: 1px solid rgb(80,80,80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtotal{
+    font-weight: bold;  
+    width: 16%;
+    border-bottom: 1px solid rgb(80,80,80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total{
+    width: 16%;
     border-bottom: 1px solid rgb(80,80,80);
     display: flex;
     align-items: center;
@@ -163,4 +184,26 @@ select, input, option{
 
 .basketTotal{
     width: 10%;
+}
+
+
+/*Responsive*/
+@media (max-width: 450px){
+    .product-title{
+        font-size: 4vw;
+    }
+    .precio{
+        font-size: 4vw;
+    }
+    .cantidad{
+        font-size: 4vw;
+    }
+    .subtotal{
+        font-size: 4vw;
+        width: 20%;
+    }
+    .total{
+        font-size: 4vw;
+    }
+
 }
