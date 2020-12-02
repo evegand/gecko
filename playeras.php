@@ -28,18 +28,15 @@ if(!isset($_SESSION))
 		<div style="height: 64px"></div>
 		<h1>Playeras</h1>
 		<div class="contenido">
-			<a href="productos.php" class="btn btn-dark">Busca más productos</a>
+			<a href="productos.php" class="btn btn-dark" style="width: 92%;">Ver más productos</a>
 		<br>
 
 			<?php
-			$link = mysqli_connect("localhost", "root", "", "geckodatabase");
-
-			if (mysqli_connect_errno()){
-			    echo "No se pudo conectar : " . mysqli_connect_error();
-			    exit;
-			}
+			include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
+			include("config/conexion.php");//Contiene de conexion a la base de datos
+			
 			$consulta= "SELECT * FROM productos WHERE id_categoriaf = 1"; 
-			$resultado= mysqli_query($link,$consulta) ;
+			$resultado= mysqli_query($conexion,$consulta) ;
 
 			while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
 				$prodJSON = json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['imagen'] . ".jpg", 'cantidad' => 1));
@@ -55,56 +52,6 @@ if(!isset($_SESSION))
 				?>
 		<br>
 
-<!--
-			<div class="producto">
-				<p class="add-cart cart1" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/1.jpg">
-				<div class='pie-producto'><h2 class="productName">ProductName</h2>
-				<label class="productPrice">$300.00</label></div>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart2" ><a href="#">Añadir al Carrito</a><br><button class='btn btn-secondary btn-sm'>CH</button> <button class='btn btn-secondary btn-sm'>M</button> <button class='btn btn-secondary btn-sm'>G</button></p>
-				<img class="imgPr" src="Images/Productos/1.jpg">
-				<h2 class="productName"><a href="#">ProductName</a></h2>
-				<label class="productPrice">$300.00</label>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart3" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/2.jpg">
-				<h2 class="productName">ProductName</h2>
-				<label class="productPrice">$300.00</label>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart4" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/1.jpg">
-				<h2 class="productName">ProductName</h2>
-				<label class="productPrice">$300.00</label>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart5" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/3.jpg">
-				<h2 class="productName">ProductName</h2>
-				<label class="productPrice">$300.00</label>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart6" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/1.jpg">
-				<h2 class="productName">ProductName</h2>	
-				<label class="productPrice">$300.00</label>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart7" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/1.jpg">
-				<h2 class="productName">ProductName</h2>
-				<label class="productPrice">$300.00</label>
-			</div>
-			<div class="producto">
-				<p class="add-cart cart8" ><a href="#">Añadir al Carrito</a></p>
-				<img class="imgPr" src="Images/Productos/1.jpg">
-				<h2 class="productName">ProductName</h2>
-				<label class="productPrice">$300.00</label>
-			</div>
--->						
 		</div>
 
 <script type="text/javascript" src="JS/carrito.js"></script>

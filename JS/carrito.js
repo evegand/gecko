@@ -1,29 +1,3 @@
-/*let carts = document.querySelectorAll('.add-cart');
-let productos = [
-{
-	id : 1,
-	nombre: 'Playera Blanca',
-	precio: 250,
-	imagen: '1.jpg'
-},
-{
-	id : 2,
-	nombre: 'Playera aa',
-	precio: 320,
-	imagen: '2.jpg'
-},
-{
-	id : 3,
-	nombre: 'Playera Negra',
-	precio: 550,
-	imagen: '3.jpg'
-
-
-for (let i=0; i<carts.length; i++){
-    carts[i].addEventListener("click", () => {agregarProducto(productos[i])}, false);
-}*/
-
-
 function mostrarCarrito(){
 	let productosEnCarrito = localStorage.getItem('productsInCart');
     productosEnCarrito = JSON.parse(productosEnCarrito);

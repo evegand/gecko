@@ -25,6 +25,7 @@ if(isset($_SESSION['login_user_sys'])){
     <link href="CSS/formularios.css" rel="stylesheet">
     <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
    	<script type="text/javascript" src="JS/nav.js"></script>
+   	<script type="text/javascript" src="JS/forms.js"></script>
     
     <!-- Javascript (funciones) -->
     <link href="">
@@ -32,33 +33,7 @@ if(isset($_SESSION['login_user_sys'])){
 <body>
 	<!--Script de validación de formulario-->
 	<script type="text/javascript">
-		function validateForm() {
-		  var x = document.forms["registerForm"];
-		  if (x['contrasena_registro'].value != x['contrasena_conf'].value) {
-		    alert("Las constraseñas no coinciden");
-		    document.getElementById("contrasena2").style.backgroundColor = 'rgb(255,180,180)';
-		    //document.getElementById("contenido").innerHTML += "<label style='color:red'>Las contraseñas no coindicen</label>";
-		    return false;
-		  }
-		  else if (x['nombres_registro'].value.trim() == "" || x['nombres_registro'].value == null ||  x['nombres_registro'].value.length < 3){
-		  	alert("El nombre es demasiado corto (mínimo 3 caractéres)");
-		    document.getElementById("nombre").style.backgroundColor = 'rgb(255,180,180)';
-		    return false;
-		  }
-		  else if (x['usuario_registro'].value.trim() == "" || x['usuario_registro'].value == null ||  x['usuario_registro'].value.length < 4){
-		  	alert("El usuario es demasiado corto (mínimo 4 caractéres)");
-		    document.getElementById("username").style.backgroundColor = 'rgb(255,180,180)';
-		    return false;
-		  }
-		  else if (x['contrasena_registro'].value.trim() == "" || x['contrasena_registro'].value == null ||  x['contrasena_registro'].value.length < 4){
-		  	alert("La contraseña es demasiado corta (mínimo 4 caractéres)");
-		    document.getElementById("contrasena").style.backgroundColor = 'rgb(255,180,180)';
-		    return false;
-		  }
-		  else{
-		  	return true;
-		  }
-		}
+
 	  	function color(element){
 	  		element.style.backgroundColor = "";
 	  	}
@@ -95,7 +70,7 @@ if(isset($_SESSION['login_user_sys'])){
 		<div style="height: 64px"></div>
 		<h1>Registro</h1>
 		<div class="contenido" id="contenido" style="text-align: center; margin:auto;">
-				<form name="registerForm" method="post" onsubmit="return validateForm()">
+				<form name="registerForm" method="post" onsubmit="return validateRegisterForm()">
 					<table class="formulario">
 					<tr><td>Nombres: </td><td><input type="text" name="nombres_registro" class="form-control" placeholder="Nombres*" required maxlength="20" id="nombre" onclick="color(this)"></td><td></td></tr>
 					<tr><td>Apellidos: </td><td><input type="text" name="apellidos_registro" class="form-control" placeholder="Apellidos" maxlength="45"></td></tr>
@@ -111,16 +86,8 @@ if(isset($_SESSION['login_user_sys'])){
 
 
 <?php
-	//Proceso de conexion con la base de datos----------------------------------------
-	$conexion = mysqli_connect("localhost", "root", "", "geckodatabase");
-
-	if (mysqli_connect_errno()){
-	    echo "No se pudo conectar : " . mysqli_connect_error();
-	    exit;
-	}
-	//--------------------------------------------------------------------------------
-
-
+	include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
+	include("config/conexion.php");//Contiene de conexion a la base de datos
 	//Registro------------------------------------------------------------------------
 	if (isset($_POST['nombres_registro']) && isset($_POST['submit'])){
 		$nombre = $_POST['nombres_registro'];
@@ -136,8 +103,9 @@ if(isset($_SESSION['login_user_sys'])){
 		$fila=mysqli_fetch_array($resultado);
 
 		if (is_numeric($telefono)){
+
 			if (!$fila){
-				$insertar = "INSERT INTO usuarios VALUES (NULL,'$usuario','$contrasena', '2' ,'$telefono','$correo', '$apellidos', '$nombre')";
+				$insertar = "INSERT INTO usuarios VALUES (NULL,'$usuario','$contrasena', '2' ,'$telefono','$correo', '$apellidos', '$nombre','',0)";
 				$resultado= mysqli_query($conexion,$insertar) ;
 				if (!$resultado)
 					echo '<label styl>Error al registrar usuario</label>';

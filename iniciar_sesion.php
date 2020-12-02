@@ -47,5 +47,8 @@ if(isset($_SESSION['login_user_sys'])){
 					<p class="text-white">¿No tienes cuenta? <a style="color: #B1D22B;" href="registrar_usuario.php">¡Regístrate!</a><br><a href="#" style="color: #C7D787;">Olvidé mi contraseña</a><br><br></p>
 				</form>
 		</div>
+	<!-- ------------------------------------ Footer ------------------------------------ -->
+	<?php include 'footer.html';?>
+	<!-- -------------------------------------------------------------------------------- -->
 </body>
 </html>
