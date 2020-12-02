@@ -1,0 +1,44 @@
+@font-face {
+	font-family: 'Sofiapro';
+	src: local('Sofiapro'), url('Fonts/Sofiapro/sofiapro-light1-webfont.woff') format('woff'),
+							url('Fonts/Sofiapro/sofiapro-light.otf') format('truetype');}
+
+*{
+	font-family: 'Sofiapro';}
+
+body{
+	background-color: rgb(27,27,27);
+	background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url('../Images/creativekidswallpaper.jpg');
+}
+¿
+li{
+	list-style: none;
+}
+h1{
+	text-align: center;
+	padding: 10px;
+	background-color: rgb(177,210,43);
+}
+
+button{
+	font-size: 0.5vw;
+
+}
+
+a:hover{
+	text-decoration: none;
+	color: red;
+}
+
+/* --------------------------- SERVICIOS -> PERSONALIZA --------------------------- */
+.categories {
+	/* background-color: orange; */
+}
+
+.customize {
+	/* background-color: red; */
+	padding-top: 5px;
+	padding-bottom: 0.05rem;
+	color: #FFFFFF;	
+	width: 70%;
+}

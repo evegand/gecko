@@ -175,3 +175,7 @@ a:hover{
 #categories {
 }
 
+.boxes {
+	align-self: center;
+	width: 70%;
+}

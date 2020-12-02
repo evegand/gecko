@@ -375,3 +375,19 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+/* Usuarios de cada cliente */
+SELECT usuarios.id_usuario, clientes.nombre, clientes.apellido, usuarios.correo 
+FROM clientes JOIN usuarios ON clientes.id_cliente = usuarios.id_cliente;
+
+/* Métodos de pago de cada cliente */
+SELECT clientes.id_cliente, clientes.nombre, clientes.apellido, metodospago.numero_tarjeta, metodospago.fecha_vencimiento
+FROM clientes JOIN metodospago ON clientes.id_cliente = metodospago.id_cliente;
+
+SELECT clientes.id_cliente, clientes.nombre, clientes.apellido, metodospago.numero_tarjeta, metodospago.fecha_vencimiento
+FROM clientes AS c JOIN metodospago AS mp ON clientes.id_cliente = metodospago.id_cliente;
+
+
+/* Direcciones de los clientes */
+
