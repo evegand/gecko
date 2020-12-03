@@ -12,7 +12,7 @@
 	include("config/conexion.php");//Contiene de conexion a la base de datos
 
 	$consulta= "SELECT * FROM productos WHERE id_producto = ".$product_id.";"; 
-	$resultado= mysqli_query($conexion,$consulta) ;
+	$resultado= mysqli_query($conexion,$consulta);
 
 	while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
 		$id = $fila['id_producto'];
@@ -21,6 +21,21 @@
 		$precio = $fila['precio'];
 		$imagen = $fila['imagen'];
 	}
+
+	$consulta = "SELECT p.id_producto, p.nombre_producto, e.existencia
+				FROM productos AS p INNER JOIN existencias AS e ON p.id_producto = e.id_producto
+				WHERE p.id_producto = ".$id.";";
+	$resultado= mysqli_query($conexion, $consulta);
+
+	while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
+		$existencias = $fila['existencia'];
+		//echo $fila['id_producto'];
+		//echo $fila['nombre_producto'];
+		//echo $fila['existencia'];
+	}
+	//echo $existencias;
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -37,6 +52,7 @@
 	<link href="CSS/productos.css" rel="stylesheet">                            <!--Estilos productos---->
 	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
+	<script type="text/javascript" src="JS/carrito.js"></script>
 
 </head>
 <body>
@@ -59,7 +75,7 @@
 					echo "</div>";
 				*/
 				?>
-			<center>
+			
 			<?php				
 				$prodJSON = json_encode(array('id' => $product_id,'nombre' => $nombre_producto,'precio' => $precio,'imagen' => $imagen . ".jpg", 'cantidad' => 1));
 		   		echo "<div class='producto pb-3'>
@@ -72,7 +88,8 @@
 						</p>
 					  </div>";
 				echo "<p style='color: white;'><b style='color: #C4FF33;'>Descripción:</b><br>".$descripcion."<br><br>";
-				echo "<b style='color: #C4FF33;'>Precio:</b> $".$precio.".00</p>";
+				echo "<b style='color: #C4FF33;'>Precio:</b> $".$precio.".00<br>";
+				echo "<b style='color: #C4FF33;'>Inventario:</b> Tenemos ".$existencias." en existencia.</p>";
 				if($origen != '/GitGecko/productos-tazas.php'){
 					echo "<b style='color: #C4FF33;'>Talla</b></label>
 							<select name='' id=''>
@@ -81,15 +98,13 @@
 								<option value='Grande'>Grande</option>
 							</select><br><br>";
 				}
+
 			?>
 			<button class="btn btn-sm" onclick="agregarProducto(<?php $prodJSON; ?>);" style="background-color: #C4FF33;">Agregar al carrito</button>
-			</center>
+			
 			<a href="<?php echo $origen; ?>" class="btn btn-dark" style=" width: 92%;">Regresar</a>
 			</center>
 		</div>
 
-
-
-<script type="text/javascript" src="JS/carrito.js"></script>
 </body>
 </html>
