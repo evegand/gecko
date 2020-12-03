@@ -38,9 +38,9 @@
                     onclick="validarmenu(this, this.id, 'dropdownProducts')"> Productos
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownProducts">
-                    <a class="dropdown-item" href="playeras.php">Playeras</a>
-                    <a class="dropdown-item" href="tazas.php">Tazas</a>
-                    <a class="dropdown-item" href="sudaderas.php">Sudaderas</a>
+                    <a class="dropdown-item" href="productos-playeras.php">Playeras</a>
+                    <a class="dropdown-item" href="productos-tazas.php">Tazas</a>
+                    <a class="dropdown-item" href="productos-sudaderas.php">Sudaderas</a>
                     <a class="dropdown-item" href="productos.php">Más productos...</a>
                 </div>
             </li>

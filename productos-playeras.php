@@ -45,6 +45,7 @@ if(!isset($_SESSION))
 						<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['imagen'] . ".jpg'>
 						<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
 						<label class='productPrice'>$" . $fila['precio'] . ".00</label></div>
+						
 					  </div>";
 					  
 					  //echo json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['id_producto'] . "jpg"));

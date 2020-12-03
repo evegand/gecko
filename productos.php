@@ -41,7 +41,7 @@ if(!isset($_SESSION))
 							<img src="Images/Productos/cajaplayeras.jpg" width="100%">
 							<h5 class="card-title">Playeras</h5>
 							<p class="card-text">Consulta las playeras con los diseños que ya tenemos en inventario, ¡Seguro encuentras algo perfecto para ti!</p>
-							<a href="playeras.php" class="btn btn-dark">Revisar catálogo</a>
+							<a href="productos-playeras.php" class="btn btn-dark">Revisar catálogo</a>
 						</div>
 					</div>
 				</div>
@@ -51,7 +51,7 @@ if(!isset($_SESSION))
 							<img src="Images/Productos/cajatazas.jpg" width="100%">
 							<h5 class="card-title">Tazas</h5>
 							<p class="card-text">Consulta las tazas con los diseños que ya tenemos en inventario, ¡Es el regalo perfecto para dar en estas fiestas!.</p>
-							<a href="tazas.php" class="btn btn-dark">Revisar catálogo</a>
+							<a href="productos-tazas.php" class="btn btn-dark">Revisar catálogo</a>
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@ if(!isset($_SESSION))
 							<img src="Images/Productos/cajasudaderas.jpg" width="100%">
 							<h5 class="card-title">Abrigos y sudaderas</h5>
 							<p class="card-text">Consulta las sudaderas que tenemos para ti, con los diseños más creativos. ¿A quien no le gusta una sudadera con estilo?</p>
-							<a href="sudaderas.php" class="btn btn-dark">Revisar catálogo</a>
+							<a href="productos-sudaderas.php" class="btn btn-dark">Revisar catálogo</a>
 						</div>
 					</div>
 				</div>
