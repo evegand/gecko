@@ -34,8 +34,6 @@
 		//echo $fila['existencia'];
 	}
 	//echo $existencias;
-
-
 ?>
 
 <!DOCTYPE HTML>
@@ -98,8 +96,8 @@
 								<option value='Grande'>Grande</option>
 							</select><br><br>";
 				}
-
 			?>
+			
 			<button class="btn btn-sm" onclick="agregarProducto(<?php $prodJSON; ?>);" style="background-color: #C4FF33;">Agregar al carrito</button>
 			
 			<a href="<?php echo $origen; ?>" class="btn btn-dark" style=" width: 92%;">Regresar</a>
