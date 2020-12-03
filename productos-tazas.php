@@ -42,7 +42,7 @@ $origen = $_SERVER['PHP_SELF'];
 
 			while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
 				$prodJSON = json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['imagen'] . ".jpg", 'cantidad' => 1));
-		   		echo "<div class='producto'>
+		   		echo "<div class='producto pb-3'>
 						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a><br></p>
 						<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['imagen'] . ".jpg'>
 						<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
