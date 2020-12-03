@@ -34,9 +34,6 @@ if(isset($_SESSION['login_user_sys'])){
 	<!--Script de validación de formulario-->
 	<script type="text/javascript">
 
-	  	function color(element){
-	  		element.style.backgroundColor = "";
-	  	}
 	  	function setValues(nombre,apellido,correo,telefono,usuario,contrasena,contrasena2){
 	  		document.getElementsByName("nombres_registro")[0].value = nombre;
 	  		document.getElementsByName("apellidos_registro")[0].value = apellido;
@@ -46,20 +43,6 @@ if(isset($_SESSION['login_user_sys'])){
 	  		document.getElementsByName("contrasena_registro")[0].value = contrasena;
 	  		document.getElementsByName("contrasena_conf")[0].value = contrasena2;
 	  	}
-	  	function showPass() {
-		  var x = document.getElementById("contrasena");
-		  var y = document.getElementById("contrasena2");
-		  if (x.type === "password") {
-		    x.type = "text";
-		  } else {
-		    x.type = "password";
-		  }
-		  if (y.type === "password") {
-		    y.type = "text";
-		  } else {
-		    y.type = "password";
-		  }
-		}
 	</script>
 
 	<!------------------------------------- Barra de navegación ------------------------------------------------------>

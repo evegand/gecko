@@ -25,3 +25,40 @@ function validateRegisterForm() {
   	return true;
   }
 }
+
+function confirmDelete(){
+  return confirm("¿Deseas eliminar este registro? \n No podrás revertir esta acción");
+}
+
+function confirmModifyUser(){
+  if (confirm("¡Deseas guardar los cambios?")){
+    var x = document.forms['modifyForm'];
+    if(x['new_contrasena'].value != x['new_contrasena2'].value){
+      document.getElementsByName('new_contrasena2')[0].style.background = 'rgb(255,180,180)';
+      alert("Las contraseñas no coinciden");
+    }
+    else
+      return true;
+  }
+  return false;
+
+}
+
+function color(element){
+  element.style.backgroundColor = "";
+}
+
+function showPass() {
+  var x = document.getElementById("contrasena");
+  var y = document.getElementById("contrasena2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
+  }
+}

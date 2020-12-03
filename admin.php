@@ -8,10 +8,7 @@ if(!isset($_SESSION))
 //Estos bloques de código definen el header después de ejecutarse, por eso se colocan al principio-----------
 
 //-----------Si no es admin redirige a la página principal-------
-if(!isset($_SESSION['rol']))
-	header("location:index.php");
-
-if($_SESSION['rol'] != 1)
+if(!isset($_SESSION['rol']) || $_SESSION['rol'] != 1)
 	header("location:index.php");
 
 //-----------Modifica usuario y recarga la página----------------
@@ -27,17 +24,17 @@ if (isset($_POST['modificado'])){
   $consulta_modificar = "UPDATE usuarios SET nombre='" .$new_nombres. "', apellido='" .$new_apellidos. "', telefono='" .$new_telefono. "', correo='" .$new_correo. "', id_rol='" . $new_rol. "' WHERE username='" . $user_modify . "'";
   $result_modificar = mysqli_query($conexion,$consulta_modificar);
   if (!$result_modificar)
-    echo 'Error';
+    echo 'Error: no se pudo modificar el usuario';
   else
     header("location:admin.php");  
 }
-//-------------Elimina usuario y recarga la página---------------
+//------------Elimina usuario y recarga la página----------------
 if (isset($_POST['id_user_delete'])){
    $id_user_delete = $_POST['id_user_delete'];  
    $consulta_eliminar = "DELETE from usuarios WHERE id_usuario=" .$id_user_delete;
    $result_eliminar = mysqli_query($conexion,$consulta_eliminar);
    if(!$result_eliminar)
-      echo 'Error';
+      echo 'Error: no se pudo eliminar el usuario' . mysqli_error($conexion);
    else
       header("location:admin.php");}
 
@@ -47,18 +44,28 @@ if (isset($_POST['productoModificado'])){
   $new_nombreP = $_POST['new_nombreP'];
   $new_descripcion = $_POST['new_descripcion'];
   $new_precio = $_POST['new_precio'];
+  $new_cat = $_POST['new_catP'];
   $imagen = $_FILES['fileToUpload']['tmp_name'];
   //unlink("Images/Productos/" . $prod_modify . ".jpg");
   move_uploaded_file($imagen, "Images/Productos/" . $prod_modify . ".jpg");
 
-  $consulta_modificar = "UPDATE productos SET nombre_producto='" .$new_nombreP. "', descripcion='" .$new_descripcion. "', precio='" .$new_precio. "' WHERE id_producto='" . $prod_modify . "'";
+  $consulta_modificar = "UPDATE productos SET nombre_producto='" .$new_nombreP. "', descripcion='" .$new_descripcion. "', precio='" .$new_precio. "', id_categoriaf = '$new_cat' WHERE id_producto='" . $prod_modify . "'";
   $result_modificar = mysqli_query($conexion,$consulta_modificar);
   if (!$result_modificar)
-    echo 'Error';
+    echo 'Error: no se pudo modificar el producto';
   else
     header("location:admin.php");  
 }
 
+//------------Elimina producto y recarga la página----------------
+if (isset($_POST['id_product_delete'])){
+   $id_product_delete = $_POST['id_product_delete'];  
+   $consulta_eliminar = "DELETE from productos WHERE id_producto=" .$id_product_delete;
+   $result_eliminar = mysqli_query($conexion,$consulta_eliminar);
+   if(!$result_eliminar)
+      echo 'Error: no se pudo eliminar el producto' . mysqli_error($conexion);
+   else
+      header("location:admin.php");}
 
 //-----------Agrega producto y recarga la página---------------
 if (isset($_POST['productoAgregado'])){
@@ -66,20 +73,21 @@ if (isset($_POST['productoAgregado'])){
   $new_nombreP = $_POST['new_nombreP'];
   $new_descripcion = $_POST['new_descripcion'];
   $new_precio = $_POST['new_precio'];
+  $new_cat = $_POST['new_catP'];
   $imagen = $_FILES['fileToUpload']['tmp_name'];
 
 
-  $consulta_agregar = "INSERT INTO productos (id_producto, nombre_producto, descripcion, precio, imagen, id_dptof, id_categoriaf, id_existencia) VALUES (null,'" .$new_nombreP. "','" .$new_descripcion. "','" .$new_precio. "','" . null . "','1', '1','1')";
+  $consulta_agregar = "INSERT INTO productos (id_producto, nombre_producto, descripcion, precio, imagen, id_dptof, id_categoriaf) VALUES (null,'" .$new_nombreP. "','" .$new_descripcion. "','" .$new_precio. "','" . null . "','1', '$new_cat')";
   $result_agregar = mysqli_query($conexion,$consulta_agregar);
   $idAgregado = mysqli_insert_id($conexion);
   move_uploaded_file($imagen, "Images/Productos/" . $idAgregado . ".jpg");
   $consulta_imagen = "UPDATE productos SET imagen='" . $idAgregado . "' WHERE id_producto = '" . $idAgregado ."'";
   $result_imagen = mysqli_query($conexion,$consulta_imagen);
   if (!$result_imagen)
-    echo 'Error';
+    echo 'Error: no se encontró la imagen';
 
   if (!$result_agregar)
-    echo 'Error';
+    echo 'Error: no se pudo agregar el producto';
   else
     header("location:admin.php");  
 }
@@ -93,19 +101,18 @@ if (isset($_POST['productoAgregado'])){
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
 	<title>Ideas Gecko</title>
     
-    <!-- CSS (estilos) -->
+    <!-----------------CSS (estilos)----------------------------->
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="CSS/geckonavbar_style.css" rel="stylesheet">
-    <link href="CSS/estilos.css" rel="stylesheet">
+    <!--<link href="CSS/estilos.css" rel="stylesheet">-->    <!--Estilos footer-->
     <link href="CSS/productos.css" rel="stylesheet">
     <link href="CSS/dropdowns.css" rel="stylesheet">
     <link href="CSS/admin.css" rel="stylesheet">
     <link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet">
+    <!----------------Javascript (scripts)----------------------->
    	<script type="text/javascript" src="JS/nav.js"></script>
    	<script type="text/javascript" src="JS/micuenta.js"></script>
-    
-    <!-- Javascript (funciones) -->
-    <link href="">
+   	<script type="text/javascript" src="JS/forms.js"></script>
 </head>
 <body>
 	<!------------------------------------- Barra de navegación ------------------------------------------------------>
@@ -116,6 +123,7 @@ if (isset($_POST['productoAgregado'])){
 	<div style="height: 64px"></div>
 	<h1>Administrar sitio</h1>
 	<div style="text-align: center;color: white;width: 80vw;margin:auto;"><br><br><br><br>
+
 		<?php
 			$username = $_SESSION['login_user_sys'];
 			$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";
@@ -137,15 +145,40 @@ if (isset($_POST['productoAgregado'])){
 			            <th></th>
 			            </tr>";
 
-				$consulta= "SELECT * FROM usuarios"; 
+				$consulta= "SELECT * FROM usuarios LIMIT 20 OFFSET 1"; 
 				$result= mysqli_query($conexion,$consulta); 
 			  	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td><form method='post' action=''><button onclick='dropMenu(`adminUsuarios`)' class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button>";
+			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td><form method='post' style='float:left;'><button onclick='dropMenu(`adminUsuarios`)' class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button></form>";
 			      	if($row['id_rol'] != 1)
-			      		echo " <button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] . "'>Eliminar</button></form></td></tr>";
+			      		echo " <form method='post' style='display:flex;' onsubmit='return confirmDelete()'><button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] . "'>Eliminar</button>";
+			      	echo '</form></td></tr>';
 			      }
 			  	echo "</table></div><br>";
 			}
+
+			//-------------Modificar usuario----------------------------
+			$id_user_modify = null;
+		  	if (isset($_POST['id_user_modify'])){
+			    $id_user_modify = $_POST['id_user_modify'];
+			    $consulta= "SELECT * FROM usuarios WHERE id_usuario=" . $id_user_modify . ""; 
+			    $result= mysqli_query($conexion,$consulta); 
+			    if ($result){
+				    $fila = mysqli_fetch_array($result);
+				    echo "<div id='metodosP' class='dropMenu'>
+				    	  <h4 align='center'>Modificar datos de usuario " . $fila['username'] . "</h4>
+				          <table class='tabla_admin'><form method='post' action=''>
+					          <tr><td>ID de usuario</td><td>" . $fila['id_usuario'] . "</td></tr>
+					          <tr><td>Nombres</td><td><input type='text' name='new_nombres' value='" . $fila['nombre'] . "'></td></tr>
+					          <tr><td>Apellidos</td><td><input type='text' name='new_apellidos' value='" . $fila['apellido'] . "'></td></tr>
+					          <tr><td>Teléfono</td><td><input type='text' name='new_telefono' value='" . $fila['telefono'] . "'></td></tr>
+					          <tr><td>Correo electrónico</td><td><input type='text' name='new_correo' value='" . $fila['correo'] . "'></td></tr>
+					          <tr><td>Rol</td><td><input type='number' min='0' max='2' name='new_rol' value='" . $fila['id_rol'] . "'></td></tr>
+					          <tr><td>Contraseña</td><td><input type='password' name='new_contrasena' value='" . $fila['password'] . "'></td></tr>
+					          <tr><td>    </td><td><button class='btn btn-success' type='submit' name= 'modificado' value='". $fila['username'] ."'>Enviar</button></form></td></tr>
+				          </table></div><br>"  ;
+				}
+			}
+
 			//-------------Administrar productos-------------------------
 			if ($rol == 1){
 				echo "<button class='btn btn-dark' onclick='dropMenu(`adminProd`)'>Administrar productos</button><br>
@@ -191,9 +224,8 @@ if (isset($_POST['productoAgregado'])){
 									<td>" . $fila['nombre_producto'] . "</td>
 									<td>" . $fila['descripcion'] . "</td>
 									<td>$" . $fila['precio'] . "</td>
-									<td><form method='post' action=''>
-										<button onclick='dropMenu(`adminProd`)' class='btn btn-secondary' type='submit' name= 'id_prod_modify' value='". $fila['id_producto'] ."'>Modificar</button> 
-										<button class='btn btn-danger' type='submit' name= 'id_prod_delete' value='". $fila['id_producto'] . "'>Eliminar</button></form>
+									<td><form method='post' style='float:left'><button onclick='dropMenu(`adminProd`)' class='btn btn-secondary' type='submit' name= 'id_prod_modify' value='". $fila['id_producto'] ."'>Modificar</button></form> 
+										<form method='post' style='display:flex;' onsubmit='return confirmDelete()'><button class='btn btn-danger' type='submit' name= 'id_product_delete' value='". $fila['id_producto'] . "'>Eliminar</button></form>
 									</td>
 								</tr>
 							</table>";
@@ -201,112 +233,65 @@ if (isset($_POST['productoAgregado'])){
 					else
 						echo "<table class='tabla_admin' width='80vw'><tr style='color:lightcoral'><td>No se encontró el producto.</td></tr></table>";
 				}
-				echo '</div>';
-			}
-
-			//-------------Modificar usuario----------------------------
-			$id_user_modify = null;
-		  	if (isset($_POST['id_user_modify'])){
-			    $id_user_modify = $_POST['id_user_modify'];
-			    $consulta= "SELECT * FROM usuarios WHERE id_usuario=" . $id_user_modify . ""; 
-			    $result= mysqli_query($conexion,$consulta); 
-			    if ($result){
-				    $fila = mysqli_fetch_array($result);
-				    echo "<br><h4 align='center'>Modificar datos de usuario " . $fila['username'] . "</h4>
-				    	<div id='metodosP' class='dropMenu'>
-				          <table class='tabla_admin'><form method='post' action=''>
-				          <tr><td>ID de usuario</td><td>" . $fila['id_usuario'] . "</td></tr>
-				          <tr><td>Nombres</td><td><input type='text' name='new_nombres' value='" . $fila['nombre'] . "'></td></tr>
-				          <tr><td>Apellidos</td><td><input type='text' name='new_apellidos' value='" . $fila['apellido'] . "'></td></tr>
-				          <tr><td>Teléfono</td><td><input type='text' name='new_telefono' value='" . $fila['telefono'] . "'></td></tr>
-				          <tr><td>Correo electrónico</td><td><input type='text' name='new_correo' value='" . $fila['correo'] . "'></td></tr>
-				          <tr><td>Rol</td><td><input type='number' min='0' max='2' name='new_rol' value='" . $fila['id_rol'] . "'></td></tr>
-				          <tr><td>Contraseña</td><td><input type='password' name='new_contrasena' value='" . $fila['password'] . "'></td></tr>
-				          <tr><td>    </td><td><button class='btn btn-success' type='submit' name= 'modificado' value='". $fila['username'] ."'>Enviar</button></form></td></tr>
-				          </table></div>"  ;
-				}
+				echo '</div><br>';
 			}
 
 			//-----------Agregar producto---------------------------------
 			$id_new_prod = null;
 			if (isset($_POST['id_new_prod'])){
+				$consultaCats = "SELECT * FROM categorias";
+				$resultCats= mysqli_query($conexion,$consultaCats);
 				$id_new_prod = $_POST['id_new_prod'];
-				echo "<br><h4 align='center'>Agregar nuevo producto</h4>
-				    	<div id='AddProd' class='dropMenu'>
+				echo "<div id='AddProd' class='dropMenu'>
+				    	  <h4 align='center'>Agregar nuevo producto</h4>
 				          <table class='tabla_admin'><form method='post' enctype='multipart/form-data' action=''>				          	 
 					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='' placeholder='Nombre del producto'></td></tr>
 					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion' placeholder='Max. 200 caracteres'></textarea>    </td></tr>
 					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='' placeholder='Pesos $'>         </td></tr>
-					          <tr><td>Imagen     </td><td><input type='file' name='fileToUpload' id='fileToUpload' accept='image/x-png,image/gif,image/jpeg'> </td></tr>
+					          <tr><td>Categoría  </td> <td><select name='new_catP' placeholder='Seleccionar'>";
+													            while($fila_cats = mysqli_fetch_array($resultCats))
+													            	echo "<option value='". $fila_cats['id_categoria'] ."'>" . $fila_cats['nombre_categoria'] ."</option>";	
+				echo	     "							   </select></td></tr>
+							  <tr><td>Imagen     </td><td><input type='file' name='fileToUpload' id='fileToUpload' accept='image/x-png,image/gif,image/jpeg'> </td></tr>
 					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name='productoAgregado'>Enviar</button></form></td></tr>
-				          </table></div>";
+				          </table></div><br>";
 			}
-
 
 			//-------------Modificar producto----------------------------
 			$id_prod_modify = null;
 			if (isset($_POST['id_prod_modify'])){
+				$consultaCats = "SELECT * FROM categorias";
+				$resultCats= mysqli_query($conexion,$consultaCats);
 				$id_prod_modify = $_POST['id_prod_modify'];
 			    $consulta= "SELECT * FROM productos WHERE id_producto=" . $id_prod_modify . ""; 
 			    $result= mysqli_query($conexion,$consulta); 
 			    $fila = mysqli_fetch_array($result);
 			    if ($fila){
-			    	echo "<br><h4 align='center'>Modificar producto: " . $fila['nombre_producto'] . "</h4>
-				    	<div id='modProd' class='dropMenu'>
+			    	echo "<div id='modProd' class='dropMenu'>
+				    	  <h4 align='center'>Modificar producto: " . $fila['nombre_producto'] . "</h4>
 				          <table class='tabla_admin'><form method='post'  enctype='multipart/form-data' action=''>
 				          	  <tr><td>ID Producto</td> <td>" . $fila['id_producto'] . "</td></tr>
 					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='" . $fila['nombre_producto'] . "'></td></tr>
 					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion'>" . $fila['descripcion'] ."</textarea>    </td></tr>
 					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='" . $fila['precio'] . "'>         </td></tr>
-					          <tr><td>Imagen     </td><td><input name='fileToUpload' type=file accept='image/x-png,image/gif,image/jpeg'> &nbsp <img src='Images/Productos/". $fila['imagen'].".jpg' class='imagenForm' style='width:6vw;' ></td></tr>
+					          <tr><td>Categoría  </td> <td><select name='new_catP' placeholder='Seleccionar'>";
+													            while($fila_cats = mysqli_fetch_array($resultCats))
+													            	echo "<option value='". $fila_cats['id_categoria'] ."'>" . $fila_cats['nombre_categoria'] ."</option>";	
+				echo	     "							   </select></td></tr>
+					          <tr><td>Imagen     </td><td><input name='fileToUpload' type=file accept='image/x-png,image/gif,image/jpeg'> &nbsp <img src='Images/Productos/". $fila['imagen'].".jpg' class='imagenForm' style='width:6vw'; ></td></tr>
 					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name= 'productoModificado' value='". $fila['id_producto'] ."'>Enviar</button></form></td></tr>
-				          </table></div>";
+				          </table></div><br>";
 
 			    }
 			    else
 			    	echo '<script>dropMenu(`adminProd`)</script>';
 			}
 		?>
+
+
 	</div>
 	<!-- -------------------------- Footer -------------------------- -->
-	<footer id="footer" class="footer-distributed">
-		<!------------- Columna 1 (izquierdo) ------------->
-		<div class="footer-left">
-			<p class="footer-links">
-				<a href="#">Inicio</a>
-				<a href="#">Nosotros</a>
-				<a href="#">Contáctanos</a>
-			</p>
-
-			<p class="footer-company-name">© 2020 Ideas Gecko — Guadalajara, Jalisco.</p>
-		</div>
-		<!------------- Columna 2 (centro) ------------->
-		<div class="footer-center">
-			<div>
-				  <p>Jardines de las Clavelinas No. 1298<br>
-					Colonia Jardines del Vergel.<span>Guadalajara, Jalisco. México.</span></p>
-			</div><br>
-			<div>
-				<p>Escribenos a: <span>(+52) 33 1527 1078</span></p>
-			</div>
-			<div>
-				<p>Personaliza: <a href="mailto:ideasgecko@gmail.com">ideasgecko@gmail.com</a></p><br>
-				<p>Servicios Fotográficos: <a href="mailto:vaneandrade@gmail.com">vaneandrade@gmail.com</a></p>
-			</div>
-		</div>
-		<!------------- Columna 3 (derecha) ------------->
-		<div class="footer-right">
-			<p class="footer-company-about">
-				<span><b>Ideas Gecko</b></span>
-				Somos una empresa que se dedica a entregar productos personalizados. Desde tazas, termos, playeras, suéteres y mucho más. Nos encargamos de llevar a la vida tu visión.</p>
-			<div class="footer-icons">
-				<a href="#"><i class="icon-facebook"></i></a>
-				<a href="#"><i class="icon-instagram"></i></a>
-				<a href="https://api.whatsapp.com/send?phone=523315271078"><i class="icon-whatsapp"></i></a>
-				<a href="mailto:ideasgecko@gmail.com"><i class="icon-gmail"></i></a>
-			</div>
-		</div>
-	</footer>
+	<?php include('footer.html')?>
 </body>
 </html>
 
