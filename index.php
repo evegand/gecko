@@ -33,11 +33,11 @@ if(!isset($_SESSION))
 					<h1>Personaliza tu mundo</h1>
 					<p>Personaliza tazas, playeras, y mucho más. ¿Tienes tu propio diseño, o necesitas uno?<br>¡Nosotros te ayudamos!<br>
 					</p><br>
-					<a href="#" class="banner_btn">¡Empieza a comprar!</a>
+					<a href="empieza-a-comprar.php" class="banner_btn">¡Empieza a comprar!</a>
 				</div>
 			</div>
 		</section>
-		<!-- -------------------------- TBA -------------------------- -->
+		<!-- -------------------------- secciones -------------------------- -->
 		<section id="nosotros">
 			<div class="productscontainer">
 				
@@ -116,7 +116,7 @@ if(!isset($_SESSION))
 					</div><!-- /.row -->
 
 				</div>
-				<a href="#" type="button" class="containerbtn">¡Realiza tu pedido!</a>
+				<a href="servicios-personaliza.php" type="button" class="containerbtn">¡Realiza tu pedido!</a>
 			</div>
 		</section>
 	</content>

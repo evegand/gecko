@@ -68,7 +68,7 @@ if (isset($_POST['modificado'])){
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
 		<h1>Mi cuenta</h1>
-		<div style="text-align: center;color: white;width: 80vw;margin:auto;">
+		<div style="text-align: center;color: white;width: 80vw;margin:auto; padding-bottom: 100px;">
 			<?php				
 				$username = $_SESSION['login_user_sys'];
 				$consulta= "SELECT * FROM usuarios WHERE username='" . $username . "'";

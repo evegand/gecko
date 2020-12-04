@@ -36,7 +36,7 @@ if(isset($_SESSION['login_user_sys'])){
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
 		<h1>Iniciar Sesión</h1>
-		<div class="contenido" style="text-align: center; margin:auto;">
+		<div class="contenido" style="text-align: center; margin:auto; padding-bottom: 120px;">
 				<form method="POST" action="#">
 					<table class="formulario">
 					<tr><td>Usuario: </td><td><input type="" name="usuario" class="form-control" placeholder="Usuario" required="" autofocus=""></td></tr>

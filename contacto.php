@@ -40,21 +40,24 @@
     <h2 class="text-white mb-3 mt-5">Envíanos un correo</h2>
       <form action="envia.php" method="post"> 
         <div class="form-group">
-          <label class="text-white" for="correo">Correo electrónico</label>
+          <label class="text-white" for="correo">Correo electrónico<a style="color: red;"> *</a></label>
           <input type="email" class="form-control" name="email" placeholder="correo@ejemplo.com" required>
         </div>
         <div class="form-group">
-          <label class="text-white" for="nombre">Nombre Completo</label>
+          <label class="text-white" for="nombre">Nombre Completo<a style="color: red;"> *</a></label>
           <input type="text" class="form-control" name="nombre" placeholder="Nombre completo" required>
         </div>
         <div class="form-group">
-          <label class="textarea text-white" for="mensaje">Mensaje</label>
-          <textarea type="textarea" rows="3" class="form-control" name="consulta" placeholder="Mensaje" required></textarea>
+          <label class="textarea text-white" for="mensaje">Mensaje<a style="color: red;"> *</a></label>
+          <textarea type="textarea" rows="3" class="form-control" name="consulta" placeholder="Mensaje" required></textarea><br>
+          <p style="color: white;"> <small><a style="color: red;">*</a> (campos obligatorios)</small></p>
         </div>
         <input type="submit" value="Enviar mensaje" class="btn-form btn mb-5" style="background-color: #C4FF33">
       </form>
     </div>
-
+  <!-- ------------------------------------ Footer ------------------------------------ -->
+  <?php include 'footer.html';?>
+  <!-- -------------------------------------------------------------------------------- -->
 </body>
 
 </html>
