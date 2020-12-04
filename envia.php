@@ -10,12 +10,15 @@
     $remitente = $_POST['email'];
     $destinatario = 'mail@dominio.com'; // en esta línea va el mail del destinatario.
     $asunto = 'Consulta'; // acá se puede modificar el asunto del mail
+
+    echo "<b>Remitente</b>: ".$remitente;
+    echo "<b>Destinatario</b>: ".$destinatario;
+    echo "<b>Mensaje</b>: ".$asunto;
+
     if (!$_POST){
         echo '<script>
                  alert("¡Su mensaje no ha sido enviado!");
              </script>';
-?>
-<?php
     } else {
         $cuerpo = "Nombre y apellido: " . $_POST["nombre"] . "\r\n"; 
         $cuerpo .= "Email: " . $_POST["email"] . "\r\n";
@@ -34,6 +37,7 @@
 
         echo '<script>
                  alert("¡Su mensaje se ha enviado con éxito!");
+                 location.href="contacto.php";
              </script>';
     }
 ?>

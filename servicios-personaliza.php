@@ -79,7 +79,7 @@ if(!isset($_SESSION))
 						<label for="exampleFormControlFile1">Selecciona tu diseño</label>
 							<input type="file" class="form-control-file" id="exampleFormControlFile1">
 					</div>
-					<input type="submit" value="Enviar" class="btn-form btn btn-success mb-5">
+					<input type="submit" value="Enviar" class="btn-form btn mb-5" style="background-color: #C4FF33">
 				</form>
 
 			</div>
