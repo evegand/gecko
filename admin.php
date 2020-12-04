@@ -202,7 +202,7 @@ if (isset($_POST['stockModificado0']) || isset($_POST['stockModificado1']) || is
 					          <tr><td>Apellidos</td><td><input type='text' name='new_apellidos' value='" . $fila['apellido'] . "'></td></tr>
 					          <tr><td>Teléfono</td><td><input type='text' name='new_telefono' value='" . $fila['telefono'] . "'></td></tr>
 					          <tr><td>Correo electrónico</td><td><input type='text' name='new_correo' value='" . $fila['correo'] . "'></td></tr>
-					          <tr><td>Rol</td><td><input type='number' min='0' max='2' name='new_rol' value='" . $fila['id_rol'] . "'></td></tr>
+					          <tr><td>Rol</td><td><input type='number' min='0' max='2' step='1' name='new_rol' value='" . $fila['id_rol'] . "'></td></tr>
 					          <tr><td>Contraseña</td><td><input type='password' name='new_contrasena' value='" . $fila['password'] . "'></td></tr>
 					          <tr><td>    </td><td><button class='btn btn-success' type='submit' name= 'modificado' value='". $fila['username'] ."'>Enviar</button></form></td></tr>
 				          </table></div><br>"  ;
@@ -278,19 +278,20 @@ if (isset($_POST['stockModificado0']) || isset($_POST['stockModificado1']) || is
 				$id_new_prod = $_POST['id_new_prod'];
 				echo "<div id='AddProd' class='dropMenu'>
 				    	  <h4 align='center'>Agregar nuevo producto</h4>
-				          <table class='tabla_admin'><form method='post' enctype='multipart/form-data' action=''>				          	 
+				    	  <form method='post' enctype='multipart/form-data'>	
+				          <table class='tabla_admin'>			          	 
 					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='' placeholder='Nombre del producto' required></td></tr>
 					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion' placeholder='Max. 200 caracteres' required></textarea>    </td></tr>
-					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='' placeholder='Pesos $' required>         </td></tr>
+					          <tr><td>Precio     </td> <td><input type='number' min='0' step='1' name='new_precio'      value='' placeholder='Pesos $' required>         </td></tr>
 					          <tr><td>Categoría  </td> <td><select name='new_catP' placeholder='Seleccionar' onchange='dynamicStockForm(this)' required>
 					          									<option value='' selected disabled hidden>Seleccionar</option>";
 													            while($fila_cats = mysqli_fetch_array($resultCats))
 													            	echo "<option value='". $fila_cats['id_categoria'] ."'>" . $fila_cats['nombre_categoria'] ."</option>";	
 				echo	     "							   </select></td></tr>
-							  <tr><td>Stock      </td><td id='selectStock'><input type='number' name='new_stock' style='width:8.6rem;text-align:center;' value='0'> Unidades</td></tr>
+							  <tr><td>Stock      </td><td id='selectStock'><input type='number' min='0' step='1' name='new_stock' style='width:8.6rem;text-align:center;'> Unidades</td></tr>
 							  <tr><td>Imagen     </td><td><input type='file' name='fileToUpload' id='fileToUpload' accept='image/x-png,image/gif,image/jpeg'> </td></tr>
-					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name='productoAgregado'>Enviar</button></form></td></tr>
-				          </table></div><br>";
+					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name='productoAgregado'>Enviar</button></td></tr>
+				          </table></form></div><br>";
 			}
 
 			//-------------Modificar producto----------------------------
@@ -336,7 +337,7 @@ if (isset($_POST['stockModificado0']) || isset($_POST['stockModificado1']) || is
 						  				<td>".$fila['detalle']."</td> 
 						  				<td>
 						  					<form method='post' onsubmit='return confirmModify()'>
-						  						<input type='number' name='new_stock".$aux."' style='width:7rem;text-align:center;' value='".$fila['existencia']."'>
+						  						<input type='number' min='0' step='1' name='new_stock".$aux."' style='width:7rem;text-align:center;' value='".$fila['existencia']."'>
 						  						<button class='btn btn-secondary' type='submit' name='stockModificado".$aux."' value='". $fila['id_existencia'] ."'>Actualizar</button>
 						  					</form>
 						  				</td>

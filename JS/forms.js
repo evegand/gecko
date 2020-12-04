@@ -71,9 +71,9 @@ function dynamicStockForm(select){
   categoria = select.value;
   padre = document.getElementById('selectStock');
   if (categoria==1 || categoria==3){
-    padre.innerHTML = `<input type='number' name='new_stock' style='width:8.6rem;text-align:center;' value=''> Unidades Talla Chica<br>
-                       <input type='number' name='new_stockM' style='width:8.6rem;text-align:center;' value=''> Unidades Talla Mediana<br>
-                       <input type='number' name='new_stockG' style='width:8.6rem;text-align:center;' value=''> Unidades Talla Grande`;
+    padre.innerHTML = `<input type='number' name='new_stock' style='width:8.6rem;text-align:center;' > Unidades Talla Chica<br>
+                       <input type='number' name='new_stockM' style='width:8.6rem;text-align:center;' > Unidades Talla Mediana<br>
+                       <input type='number' name='new_stockG' style='width:8.6rem;text-align:center;' > Unidades Talla Grande`;
 
   } 
   else
