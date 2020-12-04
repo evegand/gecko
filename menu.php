@@ -56,7 +56,7 @@
                   onclick="validarmenu(this,this.id, 'dropdownServices')"> Servicios
               </a>
               <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
-                  <a class="dropdown-item" href="#">Personalización</a>
+                  <a class="dropdown-item" href="servicios-personaliza.php">Personalización</a>
                   <a class="dropdown-item" href="#">Paquetes fotográficos</a>
                   <a class="dropdown-item" href="#">Eventos</a>
                   <a class="dropdown-item" href="#servicios">Más...</a>

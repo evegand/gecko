@@ -46,18 +46,15 @@ if(!isset($_SESSION))
 					</div>
 					<div class="form-group">
 						<label for="producto-seleccionado">Selecciona un producto</label>
-						<select name="productos" id="producto-seleccionado" class="form-control">
-							<option value="0"></option>
+						<select name="productos" id="producto-seleccionado" class="form-control" required>
 							<!-- Selecciona el producto-->
 							<?php
-								$link = mysqli_connect("localhost", "root", "", "geckodatabase");
+								include("config/db.php");
+								//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
+								include("config/conexion.php");//Contiene de conexion a la base de datos
 
-								if (mysqli_connect_errno()){
-								    echo "No se pudo conectar : " . mysqli_connect_error();
-								    exit;
-								}
 								$consulta= "SELECT * FROM categorias"; 
-								$resultado= mysqli_query($link,$consulta) ;
+								$resultado= mysqli_query($link, $consulta) ;
 
 								while($fila = mysqli_fetch_assoc($resultado)) {
 									echo "<option value='".$fila['nombre_categoria']."'>".$fila['nombre_categoria']."</option>";
@@ -67,24 +64,23 @@ if(!isset($_SESSION))
 					</div>
 					<div class="form-group">
 						<label for="color-seleccionado">Selecciona un color</label>
-						<select name="colores" id="color-seleccionado" class="form-control">
-							<option value="0"></option>
+						<select name="colores" id="color-seleccionado" class="form-control" required>
 							<option value="blanco">Blanco</option>
 							<option value="rojo">Rojo</option>
 							<option value="azul">Azul</option>
 							<option value="negro">Negro</option>
 						</select>
 					</div>
+					<div class="form-group">
+						<label class="textarea text-white" for="mensaje">Mensaje</label>
+						<textarea type="textarea" rows="3" class="form-control" name="consulta" placeholder="Mensaje" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Selecciona tu diseño</label>
+							<input type="file" class="form-control-file" id="exampleFormControlFile1">
+					</div>
+					<input type="submit" value="Enviar" class="btn-form btn btn-success mb-5">
 				</form>
-				<div class="form-group">
-					<label class="textarea text-white" for="mensaje">Mensaje</label>
-					<textarea type="textarea" rows="3" class="form-control" name="consulta" placeholder="Mensaje" required></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlFile1">Selecciona tu diseño</label>
-						<input type="file" class="form-control-file" id="exampleFormControlFile1">
-				</div>
-				<input type="submit" value="Enviar" class="btn-form btn btn-success mb-5">
 
 			</div>
 			</center>
