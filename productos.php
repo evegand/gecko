@@ -35,7 +35,7 @@ if(!isset($_SESSION))
 
 		<center>
 				<!-- ------------------ Sección 1 ----------------- -->
-				<div class="row" style="width: 70%">
+				<div class="row" style="width: 80%">
 					<div class="col-sm-4 pb-3" style="width: 100%;">
 						<div class="card">
 							<div class="card-body">
