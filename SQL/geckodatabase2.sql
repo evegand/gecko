@@ -157,7 +157,10 @@ INSERT INTO `direcciones` (`id_direccion`, `estado`, `ciudad`, `colonia`, `calle
 (NULL, 'Jalisco', 'Guadalajara', 'El Mirador', 'Alameda Cuesta', '408', '45196', 7),
 (NULL, 'Jalisco', 'Guadalajara', 'Chapalita', 'Calle Cañada Travesía', '505', '45152', 8),
 (NULL, 'Jalisco', 'Guadalajara', 'Ciudad Universitaria', 'Avenida Lorem ipsum', '151', '45233', 9),
-(NULL, 'Jalisco', 'Guadalajara', 'Fidel Velázquez', 'Rambla Lorem', '331', '45118', 10);
+(NULL, 'Jalisco', 'Guadalajara', 'Fidel Velázquez', 'Rambla Lorem', '331', '45118', 10),
+(NULL, 'Jalisco', 'Guadalajara', 'Seattle', 'Santa Esther', '196', '45138', 1),
+(NULL, 'Jalisco', 'Guadalajara', 'LA cima', 'Calle1', '196', '45125', 2),
+(NULL, 'Jalisco', 'Guadalajara', 'San isidro', 'El mirador', '196', '45140', 2);
 
 
 
@@ -232,6 +235,7 @@ CREATE TABLE IF NOT EXISTS `detalle` (
  `cantidad` tinyint(4) NOT NULL,
  `id_pedido` int(11) NOT NULL,
  `id_producto` int(11) NOT NULL,
+ `det` varchar(12) NOT NULL,
  `subtotal` float DEFAULT NULL,
  PRIMARY KEY (`id_detalle`),
  KEY `id_pedido` (`id_pedido`),
@@ -243,16 +247,16 @@ CREATE TABLE IF NOT EXISTS `detalle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table `detalle` 
-INSERT INTO `detalle` (`id_detalle`, `cantidad`, `id_pedido`, `id_producto`,
+INSERT INTO `detalle` (`id_detalle`, `cantidad`, `id_pedido`, `id_producto`, `det`,
 `subtotal`) VALUES
-(NULL, '1', '1', '2', NULL),
-(NULL, '1', '2', '4', NULL),
-(NULL, '1', '3', '6', NULL),
-(NULL, '2', '4', '8', NULL),
-(NULL, '1', '5', '10', NULL),
-(NULL, '1', '6', '11', NULL),
-(NULL, '1', '7', '12', NULL),
-(NULL, '1', '8', '16', NULL);
+(NULL, '1', '1', '2','M', NULL),
+(NULL, '1', '2', '4','M', NULL),
+(NULL, '1', '3', '6','M', NULL),
+(NULL, '2', '4', '8','G', NULL),
+(NULL, '1', '5', '10','CH', NULL),
+(NULL, '1', '6', '11','', NULL),
+(NULL, '1', '7', '12','', NULL),
+(NULL, '1', '8', '16','', NULL);
 
 
 

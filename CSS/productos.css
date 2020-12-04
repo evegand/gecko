@@ -78,10 +78,17 @@ a:hover{
 
 }
 
+
 .producto:hover{
 	transition-duration: 0.3s;
 	transform: scale(1.03);
 }
+
+.producto page:hover{
+	transition-duration: 0.3s;
+	transform: scale(1.2);
+}
+
 .producto:hover .add-cart{
 	opacity: 0.9;
     text-decoration:none;

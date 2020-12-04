@@ -14,6 +14,7 @@ if(!isset($_SESSION))
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">              <!--Bootstrap------------>
     <link href="CSS/estilos.css" rel="stylesheet">                              <!--Cuerpo index/footer-->
 	<!--<link href="CSS/footer.css" rel="stylesheet">-->
+	<link href="CSS/productos.css" rel="stylesheet">    
 	<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
 	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
@@ -25,9 +26,9 @@ if(!isset($_SESSION))
 	<!---------------------------------------------------------------------------------------------------------------->
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
-		<div class="text-center " style="padding: 90px 30px 10px 30px;">
-		<h1 class="pb-3">Selecciona la mejor opción para ti</h1>
-
+		<div style="height: 64px"></div>
+		<h1>Selecciona la mejor opción para ti</h1>
+	<div class="contenido">
 			<!-- -------------------------- Secciones -------------------------- -->
 			<div class="card-group">
 				<div class="card">
@@ -57,8 +58,6 @@ if(!isset($_SESSION))
 					<a href="fotografia.php" class="btn btn-dark">Consulta más información</a>
 				</div>
 			</div>
-			<!-- ----------------------------------------------------------------- -->
-
 		</div>
 	<!-- ------------------------------------ Footer ------------------------------------ -->
 	<?php include 'footer.html';?>

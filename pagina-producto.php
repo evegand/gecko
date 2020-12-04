@@ -5,8 +5,6 @@
 	$product_id = $_GET['prod_id'];
 	if (isset($_GET['origen'])) $origen = $_GET['origen'];
 
-	// echo $product_id;
-	// echo $origen;
 
 	include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
 	include("config/conexion.php");//Contiene de conexion a la base de datos
@@ -15,7 +13,7 @@
 	$resultado= mysqli_query($conexion,$consulta);
 
 	/* Obtener datos del producto */
-	while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
+	while($fila = mysqli_fetch_assoc($resultado)){   
 		$id = $fila['id_producto'];
 		$nombre_producto =  $fila['nombre_producto'];
 		$descripcion = $fila['descripcion'];
@@ -30,11 +28,8 @@
 				WHERE p.id_categoriaf = ".$id_categoria.";";
 	$resultado= mysqli_query($conexion, $consulta);
 
-	while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
+	while($fila = mysqli_fetch_assoc($resultado)){ 
 		$categoria = $fila['nombre_categoria'];
-		//echo $fila['id_producto'];
-		//echo $fila['nombre_producto'];
-		//echo $fila['existencia'];
 	}
 
 	/* Obtener datos de existencias */
@@ -43,11 +38,8 @@
 				WHERE p.id_producto = ".$id.";";
 	$resultado= mysqli_query($conexion, $consulta);
 
-	while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
+	while($fila = mysqli_fetch_assoc($resultado)){   
 		$existencias = $fila['existencia'];
-		//echo $fila['id_producto'];
-		//echo $fila['nombre_producto'];
-		//echo $fila['existencia'];
 	}
 	//echo $existencias;
 ?>
@@ -78,7 +70,6 @@
 		<div style="height: 64px"></div>
 		<center><h1 style="font-size: 25px;"><?php echo $nombre_producto; ?><br><i style="font-size: 16px;"><?php echo " (Producto #".$id.") "; ?></i></h1></center>
 		<div class="contenido">
-			<center>
 				<?php 
 				/*
 					echo "<div style='color: white;'>";
@@ -91,12 +82,8 @@
 				?>
 			
 			<?php
-																				/*'size' => $size,*/
-				$prodJSON = json_encode(array('id' => $product_id,'nombre' => $nombre_producto, 'precio' => $precio,'imagen' => $imagen . ".jpg", 'cantidad' => 1));
+				/*'size' => $size,*/
 		   		echo "<div class='producto pb-3'>
-						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'>
-						".$nombre_producto."
-						</p>
 							<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $imagen . ".jpg'>
 					  </div>";
 				echo "<p style='color: white;'><a style='color: #B0B0B0;'>Categoría: ".$categoria."</a><br>";
@@ -104,15 +91,22 @@
 				echo "<b style='color: #C4FF33;'>Precio:</b> $".$precio.".00<br>";
 				echo "<b style='color: #C4FF33;'>Inventario:</b> Tenemos ".$existencias." en existencia.</p>";
 				if($id_categoria != 2){
+					$det = 'CH';
+					if(isset($_POST['size']))
+						$det = $_POST['size'];
 					echo "<form action='#' method='POST'>";
 					echo "<b style='color: #C4FF33;'>Talla</b></label>
-							<select name='size' id='size'>
-								<option value='Chico'>Chico</option>
-								<option value='Mediano'>Mediano</option>
-								<option value='Grande'>Grande</option>
+							<select name='size' id='size' onchange='this.form.submit();'>
+								<option value='CH'"; if ($det=='CH')echo "selected"; ;echo ">Chico</option>
+								<option value='M' "; if ($det=='M')echo "selected"; ;echo">Mediano</option>
+								<option value='G' "; if ($det=='G')echo "selected"; ;echo">Grande</option>
 							</select><br><br>";
 					echo "</form>";
+	
+					$prodJSON = json_encode(array('id' => $product_id,'nombre' => $nombre_producto. " (".$det.")", 'precio' => $precio, 'detalle' => $det , 'imagen' => $imagen . ".jpg", 'cantidad' => 1));
 				}
+				else
+					$prodJSON = json_encode(array('id' => $product_id,'nombre' => $nombre_producto, 'precio' => $precio, 'detalle' => '' , 'imagen' => $imagen . ".jpg", 'cantidad' => 1));
 			?>
 			<div class="botonproducto">
 				<input type="submit" class="btn btn-sm" value="Añadir al Carrito" href='#' onclick='agregarProducto(<?php echo $prodJSON; ?>)' style="background-color: #C4FF33"></input>
@@ -120,7 +114,6 @@
 			</div>
 
 			<a href="<?php echo $origen; ?>" class="btn btn-dark" style=" width: 92%;">Regresar</a>
-			</center>
 		</div>
 
 </body>

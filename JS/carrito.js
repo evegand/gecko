@@ -1,21 +1,25 @@
 function mostrarCarrito(){
+	//Obtiene el carrito guardado en el almacenamiento local y le da el formato JSON
 	let productosEnCarrito = localStorage.getItem('productsInCart');
     productosEnCarrito = JSON.parse(productosEnCarrito);
-    let carrito = document.querySelector(".carrito-cuerpo");
-    let subtotalCarrito = localStorage.getItem('totalCost');
+
+    let contenedor_carrito = document.querySelector(".carrito-cuerpo"); //contenedor donde se mostrará el carrito 
+    let subtotalCarrito = localStorage.getItem('totalCost'); //subtotal del pedido almacenado en el almacenamiento local
     console.log(productosEnCarrito);
-    if(productosEnCarrito && carrito && !(Object.keys(productosEnCarrito).length === 0)){
-        carrito.innerHTML = '';
+
+    //Si las variables anteriores se asignaron correctamente y el carrito contiene productos...
+    if(productosEnCarrito && contenedor_carrito && !(Object.keys(productosEnCarrito).length === 0)){
+        contenedor_carrito.innerHTML = ''; //Se vacía el contenedor padre temporalmente para actualizar el carrito.
+
+        //Se inserta al contenedor padre un div por cada producto que muestra el producto en el carrito junto con algunas opciones.
         Object.values(productosEnCarrito).map(item => {
-        let nombre = item.nombre;
-        console.log(nombre);
-        carrito.innerHTML +=`<div class="producto">
-					            <div class="imgProducto">
+        contenedor_carrito.innerHTML +=`<div class="producto">
+					            <div class="imgProducto" >
 					                <ion-icon name="close-circle" id="${item.nombre}" onclick="removerProducto(this)"></ion-icon>
 					                <img alt="Imagen del producto" src="Images/Productos/${item.imagen}">				                
 					            </div>
 					            <div class="nombreProducto">
-					            	<span>${item.nombre}</span>
+					            	<span><a style='color:rgb(177,210,43);' href='pagina-producto.php?prod_id=${item.id}'>${item.nombre}</a></span>
 					            </div>
 					            <div class="precio">$${item.precio}.00</div>
 					            <div class="cantidad">
@@ -37,8 +41,10 @@ function mostrarCarrito(){
 					                $100.00
 					            </div>
 			      			</div>`;
+			//Se llama a la función que calcula el subtotal del producto.
 			subtotalProducto(document.getElementById(item.nombre+"1"),item.precio,item.nombre);
         })
+
 
         /*carrito.innerHTML += `
         <div class="basketTotalContainer">
@@ -49,21 +55,26 @@ function mostrarCarrito(){
 }}
 
 
-function agregarProducto(producto){
+function agregarProducto(producto){ //La función recibe como parámetro un objeto JSON que contiene las especificaciones del producto y la cantidad deseada
+	//Obtiene el carrito guardado en el almacenamiento local y le da el formato JSON
 	let productosEnCarrito = localStorage.getItem('productsInCart');
 	productosEnCarrito = JSON.parse(productosEnCarrito);
-
+	//Si el carrito no está vacío...
 	if (productosEnCarrito){
+		//Si aún no hay en el carrito un producto con el mismo nombre que el que se desea agregar, se agrega el producto.
 		if (productosEnCarrito[producto.nombre] == undefined){
             productosEnCarrito = {...productosEnCarrito,
 					             [producto.nombre]:producto}
+		//En el caso de que ya exista un producto con el mismo nombre en el carrito, solo se aumenta la cantidad en 1.
         }else {productosEnCarrito[producto.nombre].cantidad =  parseInt(productosEnCarrito[producto.nombre].cantidad) + 1;}
     }
+    //En el caso de que el carrito estuviera vacío, se crea el arreglo del carrito y se le agrega el producto.
     else{
         productosEnCarrito = {
         [producto.nombre]: producto}
     }
     console.log(productosEnCarrito);
+    //Finalmente, se actualiza el almacenamiento local con los cambios realizados.
 	localStorage.setItem('productsInCart', JSON.stringify(productosEnCarrito));
 	alert("¡Tu producto se añadió al carrito!");
 

@@ -41,17 +41,31 @@ $origen = $_SERVER['PHP_SELF'];
 			$resultado= mysqli_query($conexion,$consulta) ;
 
 			while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
-				$prodJSON = json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['imagen'] . ".jpg", 'cantidad' => 1));
+				$nombre_producto =  $fila['nombre_producto'];
+				$prodJSON = array('id' => $fila['id_producto'],'nombre' => $nombre_producto .' (M)', 'precio' => $fila['precio'], 'detalle' => 'M' , 'imagen' => $fila['imagen'] . ".jpg", 'cantidad' => 1);
 		   		echo "<div class='producto pb-3'>
-						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a><br><button class='btn btn-secondary btn-sm'>CH</button> <button class='btn btn-secondary btn-sm'>M</button> <button class='btn btn-secondary btn-sm'>G</button></p>
+						<p class='add-cart cart' >
+							<a onclick='agregarProducto(" . json_encode($prodJSON) . ")'>Añadir al Carrito</a><br>";
+							$prodJSON['detalle'] = 'CH';
+							$prodJSON['nombre'] = $nombre_producto .' (CH)';
+				echo		"<button class='btn btn-secondary btn-sm' onclick='agregarProducto(" . json_encode($prodJSON) . ")'>CH</button>";
+							$prodJSON['detalle'] = 'M';
+							$prodJSON['nombre'] = $nombre_producto .' (M)';
+				echo		"<button class='btn btn-secondary btn-sm' onclick='agregarProducto(" . json_encode($prodJSON) . ")'>M</button>";
+							$prodJSON['detalle'] = 'G';
+							$prodJSON['nombre'] = $nombre_producto .' (G)';
+				echo		"<button class='btn btn-secondary btn-sm' onclick='agregarProducto(" . json_encode($prodJSON) . ")'>G</button>";
+				echo	"</p>
 						<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['imagen'] . ".jpg'>
-						<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
-						<label class='productPrice'>$" . $fila['precio'] . ".00</label></div>
-						<form action='pagina-producto.php' method='GET'>
-							<input type='text' name='prod_id' hidden='true' value='".$fila['id_producto']."'>
-							<input type='text' name='origen'  hidden='true' value='".$origen."'>
-							<center><input type='submit' name='submit' value='Ver producto' style='background-color: #C4FF33' class='btn btn-sm'></center>
-						</form>
+						<div class='pie-producto'>
+							<h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
+							<label class='productPrice'>$" . $fila['precio'] . ".00</label>
+							<form action='pagina-producto.php' method='GET'>
+								<input type='text' name='prod_id' hidden='true' value='".$fila['id_producto']."'>
+								<input type='text' name='origen'  hidden='true' value='".$origen."'>
+								<input type='submit' name='submit' value='Ver producto' style='background-color: #C4FF33' class='btn btn-sm'>
+							</form>
+						</div>
 					  </div>";
 					  
 					  //echo json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['id_producto'] . "jpg"));
