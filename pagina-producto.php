@@ -103,7 +103,7 @@
 				echo "<b style='color: #C4FF33;'>Descripción:</b><br>".$descripcion."<br><br>";
 				echo "<b style='color: #C4FF33;'>Precio:</b> $".$precio.".00<br>";
 				echo "<b style='color: #C4FF33;'>Inventario:</b> Tenemos ".$existencias." en existencia.</p>";
-				if($categoria != 2){
+				if($id_categoria != 2){
 					echo "<form action='#' method='POST'>";
 					echo "<b style='color: #C4FF33;'>Talla</b></label>
 							<select name='size' id='size'>
@@ -115,7 +115,7 @@
 				}
 			?>
 			<div class="botonproducto">
-				<input class="btn btn-sm" value="Añadir al Carrito" href='#' onclick='agregarProducto(<?php echo $prodJSON; ?>)' style="background-color: #C4FF33"></input>
+				<input type="submit" class="btn btn-sm" value="Añadir al Carrito" href='#' onclick='agregarProducto(<?php echo $prodJSON; ?>)' style="background-color: #C4FF33"></input>
 				<br>
 			</div>
 
