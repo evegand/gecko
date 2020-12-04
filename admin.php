@@ -46,6 +46,7 @@ if (isset($_POST['productoModificado'])){
   $new_precio = $_POST['new_precio'];
   $new_cat = $_POST['new_catP'];
   $imagen = $_FILES['fileToUpload']['tmp_name'];
+
   //unlink("Images/Productos/" . $prod_modify . ".jpg");
   move_uploaded_file($imagen, "Images/Productos/" . $prod_modify . ".jpg");
 
@@ -75,14 +76,29 @@ if (isset($_POST['productoAgregado'])){
   $new_precio = $_POST['new_precio'];
   $new_cat = $_POST['new_catP'];
   $imagen = $_FILES['fileToUpload']['tmp_name'];
-
+  $new_stock = $_POST['new_stock'];
 
   $consulta_agregar = "INSERT INTO productos (id_producto, nombre_producto, descripcion, precio, imagen, id_dptof, id_categoriaf) VALUES (null,'" .$new_nombreP. "','" .$new_descripcion. "','" .$new_precio. "','" . null . "','1', '$new_cat')";
   $result_agregar = mysqli_query($conexion,$consulta_agregar);
   $idAgregado = mysqli_insert_id($conexion);
   move_uploaded_file($imagen, "Images/Productos/" . $idAgregado . ".jpg");
-  $consulta_imagen = "UPDATE productos SET imagen='" . $idAgregado . "' WHERE id_producto = '" . $idAgregado ."'";
+  $consulta_imagen = "UPDATE productos SET imagen='$idAgregado' WHERE id_producto = '$idAgregado'";
   $result_imagen = mysqli_query($conexion,$consulta_imagen);
+
+  if ($new_cat == 1 || $new_cat == 3){
+  	$result_stock1 = mysqli_query($conexion,"INSERT INTO existencias VALUES (null,'$idAgregado','$new_stock','CH')");
+  	$new_stock = $_POST['new_stockM'];
+  	$result_stock2 = mysqli_query($conexion,"INSERT INTO existencias VALUES (null,'$idAgregado','$new_stock','M')");
+  	$new_stock = $_POST['new_stockG'];
+  	$result_stock3 = mysqli_query($conexion,"INSERT INTO existencias VALUES (null,'$idAgregado','$new_stock','G')");
+  }
+  else{
+  	$result_stock1 = mysqli_query($conexion,"INSERT INTO existencias VALUES (null,'$idAgregado','$new_stock','')");
+  }
+
+  if(!$result_stock1)
+  	echo 'Error: no se pudo crear el stock';
+
   if (!$result_imagen)
     echo 'Error: no se encontró la imagen';
 
@@ -90,6 +106,21 @@ if (isset($_POST['productoAgregado'])){
     echo 'Error: no se pudo agregar el producto';
   else
     header("location:admin.php");  
+}
+
+//---------------------Actualiza stock------------------------
+if (isset($_POST['stockModificado0']) || isset($_POST['stockModificado1']) || isset($_POST['stockModificado2'])){
+	for ($i = 0; $i < 3; $i++) {
+		if (isset($_POST['stockModificado'.$i])){
+			$id_stock_mod=$_POST['stockModificado'.$i];
+			break;
+		}
+	}
+	$consulta_act_stock = "UPDATE existencias set existencia='".$_POST['new_stock'.$i]."' WHERE id_existencia = '$id_stock_mod'";
+	$result_mod_stock = mysqli_query($conexion,$consulta_act_stock);
+	if (!$result_mod_stock)
+		echo 'Error: no se pudo actualizar el stock';
+
 }
 //-------------------------------------------------------------------------------------------------------------
 ?>
@@ -157,7 +188,6 @@ if (isset($_POST['productoAgregado'])){
 			}
 
 			//-------------Modificar usuario----------------------------
-			$id_user_modify = null;
 		  	if (isset($_POST['id_user_modify'])){
 			    $id_user_modify = $_POST['id_user_modify'];
 			    $consulta= "SELECT * FROM usuarios WHERE id_usuario=" . $id_user_modify . ""; 
@@ -243,27 +273,27 @@ if (isset($_POST['productoAgregado'])){
 			}
 
 			//-----------Agregar producto---------------------------------
-			$id_new_prod = null;
 			if (isset($_POST['id_new_prod'])){
 				$resultCats= mysqli_query($conexion,"SELECT * FROM categorias");
 				$id_new_prod = $_POST['id_new_prod'];
 				echo "<div id='AddProd' class='dropMenu'>
 				    	  <h4 align='center'>Agregar nuevo producto</h4>
 				          <table class='tabla_admin'><form method='post' enctype='multipart/form-data' action=''>				          	 
-					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='' placeholder='Nombre del producto'></td></tr>
-					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion' placeholder='Max. 200 caracteres'></textarea>    </td></tr>
-					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='' placeholder='Pesos $'>         </td></tr>
-					          <tr><td>Categoría  </td> <td><select name='new_catP' placeholder='Seleccionar'>";
+					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='' placeholder='Nombre del producto' required></td></tr>
+					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion' placeholder='Max. 200 caracteres' required></textarea>    </td></tr>
+					          <tr><td>Precio     </td> <td><input type='number' min='0' name='new_precio'      value='' placeholder='Pesos $' required>         </td></tr>
+					          <tr><td>Categoría  </td> <td><select name='new_catP' placeholder='Seleccionar' onchange='dynamicStockForm(this)' required>
+					          									<option value='' selected disabled hidden>Seleccionar</option>";
 													            while($fila_cats = mysqli_fetch_array($resultCats))
 													            	echo "<option value='". $fila_cats['id_categoria'] ."'>" . $fila_cats['nombre_categoria'] ."</option>";	
 				echo	     "							   </select></td></tr>
+							  <tr><td>Stock      </td><td id='selectStock'><input type='number' name='new_stock' style='width:8.6rem;text-align:center;' value='0'> Unidades</td></tr>
 							  <tr><td>Imagen     </td><td><input type='file' name='fileToUpload' id='fileToUpload' accept='image/x-png,image/gif,image/jpeg'> </td></tr>
 					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name='productoAgregado'>Enviar</button></form></td></tr>
 				          </table></div><br>";
 			}
 
 			//-------------Modificar producto----------------------------
-			$id_prod_modify = null;
 			if (isset($_POST['id_prod_modify'])){
 				$id_prod_modify = $_POST['id_prod_modify'];
 				$resultCats= mysqli_query($conexion,"SELECT * FROM categorias");				
@@ -297,10 +327,22 @@ if (isset($_POST['productoAgregado'])){
 				if (mysqli_num_rows($resultStock) != 0){
 					echo "<div id='modStock' class='dropMenu'>
 						  <h4 align='center'>Stock producto ID: " . $id_prod_stock . "</h4>
-						  <table class='tabla_admin'><form method='post'>
-						  	<tr> <td>ID stock</td> <td>Detalle</td> <td>Cantidad en stock</td> </tr>";
-						  	while ($fila = mysqli_fetch_array($resultStock))
-						  		echo "<tr> </tr>";
+						  <table class='tabla_admin'>
+						  	<tr> <td>ID stock</td> <td>Detalle</td> <td>Unidades</td> <td></td></tr>";
+						  	$aux = 0;
+						  	while ($fila = mysqli_fetch_array($resultStock)){
+						  		echo "<tr>
+						  				<td>".$fila['id_existencia']."</td> 
+						  				<td>".$fila['detalle']."</td> 
+						  				<td>
+						  					<form method='post' onsubmit='return confirmModify()'>
+						  						<input type='number' name='new_stock".$aux."' style='width:7rem;text-align:center;' value='".$fila['existencia']."'>
+						  						<button class='btn btn-secondary' type='submit' name='stockModificado".$aux."' value='". $fila['id_existencia'] ."'>Actualizar</button>
+						  					</form>
+						  				</td>
+						  			</tr>";
+						  			$aux++;
+						  	}
 					echo "</table></div>";
 				}
 			}

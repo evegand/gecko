@@ -30,6 +30,10 @@ function confirmDelete(){
   return confirm("¿Deseas eliminar este registro? \n No podrás revertir esta acción");
 }
 
+function confirmModify(){
+  return confirm("¿Deseas guardar los cambios?");
+}
+
 function confirmModifyUser(){
   if (confirm("¿Deseas guardar los cambios?")){
     var x = document.forms['modifyForm'];
@@ -61,4 +65,17 @@ function showPass() {
   } else {
     y.type = "password";
   }
+}
+
+function dynamicStockForm(select){
+  categoria = select.value;
+  padre = document.getElementById('selectStock');
+  if (categoria==1 || categoria==3){
+    padre.innerHTML = `<input type='number' name='new_stock' style='width:8.6rem;text-align:center;' value=''> Unidades Talla Chica<br>
+                       <input type='number' name='new_stockM' style='width:8.6rem;text-align:center;' value=''> Unidades Talla Mediana<br>
+                       <input type='number' name='new_stockG' style='width:8.6rem;text-align:center;' value=''> Unidades Talla Grande`;
+
+  } 
+  else
+    padre.innerHTML = `<input type='number' name='new_stock' style='width:8.6rem;text-align:center;' value=''> Unidades`;
 }
