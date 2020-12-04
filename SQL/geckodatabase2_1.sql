@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2020 at 08:44 PM
+-- Generation Time: Dec 04, 2020 at 08:58 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -149,7 +149,17 @@ INSERT INTO `direcciones` (`id_direccion`, `estado`, `ciudad`, `colonia`, `calle
 (7, 'Jalisco', 'Guadalajara', 'El Mirador', 'Alameda Cuesta', 408, 32767, 7),
 (8, 'Jalisco', 'Guadalajara', 'Chapalita', 'Calle Cañada Travesía', 505, 32767, 8),
 (9, 'Jalisco', 'Guadalajara', 'Ciudad Universitaria', 'Avenida Lorem ipsum', 151, 32767, 9),
-(10, 'Jalisco', 'Guadalajara', 'Fidel Velázquez', 'Rambla Lorem', 331, 32767, 10);
+(10, 'Jalisco', 'Guadalajara', 'Fidel Velázquez', 'Rambla Lorem', 331, 32767, 10),
+(11, 'Jalisco', 'Guadalajara', 'Lomas de Zapopan', 'Santa Margarita', 196, 32767, 2),
+(12, 'Jalisco', 'Guadalajara', 'Tesistán', 'Glorieta Lorem ipsum', 321, 32767, 2),
+(13, 'Jalisco', 'Guadalajara', 'Javier Mina', 'Calle Bernier', 451, 32767, 2),
+(14, 'Jalisco', 'Guadalajara', 'Ladrón de Guevara', 'Viejo Camino a Tesistán', 689, 32767, 3),
+(15, 'Jalisco', 'Guadalajara', 'Lagos de Oriente', 'Avenida de la Sienna', 685, 32767, 3),
+(16, 'Jalisco', 'Guadalajara', 'Miravalle', 'Jardines de Kuphal', 238, 32767, 3),
+(17, 'Jalisco', 'Guadalajara', 'El Mirador', 'Alameda Cuesta', 408, 32767, 6),
+(18, 'Jalisco', 'Guadalajara', 'Chapalita', 'Calle Cañada Travesía', 505, 32767, 9),
+(19, 'Jalisco', 'Guadalajara', 'Ciudad Universitaria', 'Avenida Lorem ipsum', 151, 32767, 9),
+(20, 'Jalisco', 'Guadalajara', 'Fidel Velázquez', 'Rambla Lorem', 331, 32767, 10);
 
 --
 -- Triggers `direcciones`
@@ -450,7 +460,7 @@ ALTER TABLE `detalle`
 -- AUTO_INCREMENT for table `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `existencias`
