@@ -30,7 +30,7 @@ $origen = $_SERVER['PHP_SELF'];
 		<div style="height: 64px"></div>
 		<h1>Sudaderas</h1>
 		<div class="contenido">
-			<a href="productos.php" class="btn btn-dark" style="width: 92%;">Ver más productos</a>
+			<a href="productos.php" class="btn btn-dark" style="width: 92%;">Ver otro tipo de productos</a>
 		<br>
 
 			<?php

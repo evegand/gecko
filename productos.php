@@ -26,16 +26,17 @@ if(!isset($_SESSION))
 	<!---------------------------------------------------------------------------------------------------------------->
 
 	<!-- ------------------------------------------ Contenido -------------------------------------------------------->
-	<content id="categories">
+	<content id="categorias">
 		<!-- -------------------------- Banner -------------------------- -->
 		<section>
 		<div style="height: 84px"></div>
 		<h1 class="pb-3">Productos</h1>
-		<div class="contenido">
 
+		<div class="pb-5">
+		<center>
 			<!-- ------------------ Sección 1 ----------------- -->
-			<div class="row pt-3">
-				<div class="col-sm-4">
+			<div class="row" style="width: 80%">
+				<div class="col-sm-4 pb-3">
 					<div class="card">
 						<div class="card-body">
 							<img src="Images/Productos/cajaplayeras.jpg" width="100%">
@@ -45,7 +46,7 @@ if(!isset($_SESSION))
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-4 pb-3">
 					<div class="card">
 						<div class="card-body">
 							<img src="Images/Productos/cajatazas.jpg" width="100%">
@@ -55,7 +56,7 @@ if(!isset($_SESSION))
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-4 pb-3">
 					<div class="card">
 						<div class="card-body">
 							<img src="Images/Productos/cajasudaderas.jpg" width="100%">
@@ -66,9 +67,8 @@ if(!isset($_SESSION))
 					</div>
 				</div>
 			</div>
-			<!-- ------------------ Sección 2 ----------------- -->
-			<div class="row pt-3">
-			</div>
+		</center>
+		</div>
 
 		</section>
 	</content>

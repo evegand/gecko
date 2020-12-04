@@ -3,7 +3,7 @@
 	    session_start();
 
 	$product_id = $_GET['prod_id'];
-	if (isset($_POST['origen'])) $origen = $_POST['origen'];
+	if (isset($_GET['origen'])) $origen = $_GET['origen'];
 
 	// echo $product_id;
 	// echo $origen;
@@ -61,7 +61,7 @@
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div style="height: 64px"></div>
-		<center><h1 style="font-size: 25px;"><?php echo $nombre_producto; ?></h1></center>
+		<center><h1 style="font-size: 25px;"><?php echo $nombre_producto; ?><br><i style="font-size: 16px;"><?php echo " (Producto #".$id.") "; ?></i></h1></center>
 		<div class="contenido">
 			<center>
 				<?php 

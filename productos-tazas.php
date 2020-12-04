@@ -30,7 +30,7 @@ $origen = $_SERVER['PHP_SELF'];
 		<div style="height: 64px"></div>
 		<h1>Tazas</h1>
 		<div class="contenido">
-			<a href="productos.php" class="btn btn-dark" style="width: 92%;">Ver más productos</a>
+			<a href="productos.php" class="btn btn-dark" style="width: 92%;">Ver otro tipo de productos</a>
 		<br>
 
 			<?php
@@ -42,7 +42,7 @@ $origen = $_SERVER['PHP_SELF'];
 
 			while($fila = mysqli_fetch_assoc($resultado)){   //Creates a loop to loop through results
 				$prodJSON = json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['imagen'] . ".jpg", 'cantidad' => 1));
-		   		echo "<div class='producto pb-3'>
+		   		echo "<div class='producto pb-5'>
 						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'><a href='#'>Añadir al Carrito</a><br></p>
 						<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['imagen'] . ".jpg'>
 						<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
@@ -50,8 +50,9 @@ $origen = $_SERVER['PHP_SELF'];
 						<form action='pagina-producto.php' method='GET'>
 							<input type='text' name='prod_id' hidden='true' value='".$fila['id_producto']."'>
 							<input type='text' name='origen'  hidden='true' value='".$origen."'>
-							<center><input type='submit' name='submit' value='Ver producto' style='background-color: #C4FF33' class='btn btn-sm'></center>
+							<center><input type='submit' name='submit' value='Ver producto' style='background-color: #C4FF33' class='btn btn-sm'></center><br><br><br><br>
 						</form>
+						<br>
 					  </div>";
 					  
 					  //echo json_encode(array('id' => $fila['id_producto'],'nombre' => $fila['nombre_producto'],'precio' => $fila['precio'],'imagen' => $fila['id_producto'] . "jpg"));

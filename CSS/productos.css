@@ -176,6 +176,8 @@ a:hover{
 }
 
 .boxes {
-	align-self: center;
+	align-content: center;
 	width: 70%;
+	/* padding-left: 250px; */
+	
 }
