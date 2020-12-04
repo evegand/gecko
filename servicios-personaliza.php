@@ -36,8 +36,7 @@ if(!isset($_SESSION))
 				<p style="color: #CBD895;">Selecciona tu pedido, y si tienes un diseño ya realizado, puedes enviarlo por este medio. <br>Nos pondremos en contacto contigo para continuar con el proceso a la brevedad posible.<br>
 				<font color="white"> <small><a style="color: red;">*</a> (campos obligatorios)</small></font><br><br>
 
-
-				<form>
+				<form action="cotizacion.php" method="POST">
 					<div class="form-group">
 						<label for="nombre">Ingresa tu nombre<a style="color: red;"> *</a></label>
 						<input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
@@ -47,16 +46,16 @@ if(!isset($_SESSION))
 						<input type="email" class="form-control" id="correo" placeholder="Correo eletrcónico" rquired>
 					</div>
 					<div class="form-group">
-						<label for="producto-seleccionado">Selecciona un producto<a style="color: red;"> *</a></label>
-						<select name="productos" id="producto-seleccionado" class="form-control" required>
+						<label for="producto">Selecciona un producto<a style="color: red;"> *</a></label>
+						<select name="producto" id="producto" class="form-control" required>
 							<!-- Selecciona el producto-->
 							<?php
 								include("config/db.php");
 								//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
 								include("config/conexion.php"); // Contiene de conexion a la base de datos
 
-								$consulta= "SELECT * FROM categorias;"; 
-								$resultado= mysqli_query($link, $consulta) ;
+								$consulta= "SELECT * FROM categorias;";
+								$resultado= mysqli_query($conexion, $consulta) ;
 
 								while($fila = mysqli_fetch_assoc($resultado)) {
 									echo "<option value='".$fila['nombre_categoria']."'>".$fila['nombre_categoria']."</option>";
@@ -66,8 +65,8 @@ if(!isset($_SESSION))
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="color-seleccionado">Selecciona un color<a style="color: red;"> *</a></label>
-						<select name="colores" id="color-seleccionado" class="form-control" required>
+						<label for="color">Selecciona un color<a style="color: red;"> *</a></label>
+						<select name="color" id="color" class="form-control" required>
 							<option value="blanco">Blanco</option>
 							<option value="rojo">Rojo</option>
 							<option value="azul">Azul</option>
@@ -78,8 +77,8 @@ if(!isset($_SESSION))
 						<label class="textarea text-white" for="mensaje">Mensaje<a style="color: red;"> *</a></label>
 						<textarea type="textarea" rows="3" class="form-control" name="consulta" placeholder="Especifica como quieres tu diseño, o si hay detalles importantes que quieres mencionar." required></textarea>					</div>
 					<div class="form-group">
-						<label for="exampleFormControlFile1">Selecciona tu diseño</label>
-							<input type="file" class="form-control-file" id="exampleFormControlFile1">
+						<label for="archivo">Selecciona tu diseño</label>
+							<input type="file" class="form-control-file" id="archivo">
 					</div>
 					<input type="submit" value="Realizar cotización" class="btn-form btn mb-5" style="background-color: #C4FF33">
 				</form>

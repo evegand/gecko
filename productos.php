@@ -29,49 +29,53 @@ if(!isset($_SESSION))
 	<content id="categorias">
 		<!-- -------------------------- Banner -------------------------- -->
 		<section>
-		<div style="height: 84px"></div>
+		<div style="height: 64px"></div>
 		<h1 class="pb-3">Productos</h1>
+		
 
-		<div class="">
 		<center>
-			<!-- ------------------ Sección 1 ----------------- -->
-			<div class="row" style="width: 80%">
-				<div class="col-sm-4 pb-3">
-					<div class="card">
-						<div class="card-body">
-							<img src="Images/Productos/cajaplayeras.jpg" width="100%">
-							<h5 class="card-title">Playeras</h5>
-							<p class="card-text">Consulta las playeras con los diseños que ya tenemos en inventario, ¡Seguro encuentras algo perfecto para ti!</p>
-							<a href="productos-playeras.php" class="btn btn-dark">Revisar catálogo</a>
+				<!-- ------------------ Sección 1 ----------------- -->
+				<div class="row" style="width: 70%">
+					<div class="col-sm-4 pb-3" style="width: 100%;">
+						<div class="card">
+							<div class="card-body">
+								<img src="Images/Productos/cajaplayeras.jpg" width="100%">
+								<h5 class="card-title">Playeras</h5>
+								<p class="card-text">Consulta las playeras con los diseños que ya tenemos en inventario, ¡Seguro encuentras algo perfecto para ti!</p>
+								<a href="productos-playeras.php" class="btn btn-dark">Revisar catálogo</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 pb-3">
+						<div class="card">
+							<div class="card-body">
+								<img src="Images/Productos/cajatazas.jpg" width="100%">
+								<h5 class="card-title">Tazas</h5>
+								<p class="card-text">Consulta las tazas con los diseños que ya tenemos en inventario, ¡Es el regalo perfecto para dar en estas fiestas!.</p>
+								<a href="productos-tazas.php" class="btn btn-dark">Revisar catálogo</a>
+							</div>
+						</div>
+					</div><br>
+					<div class="col-sm-4 pb-3">
+						<div class="card">
+							<div class="card-body">
+								<img src="Images/Productos/cajasudaderas.jpg" width="100%">
+								<h5 class="card-title">Abrigos y sudaderas</h5>
+								<p class="card-text">Consulta las sudaderas que tenemos para ti, con los diseños más creativos. ¿A quien no le gusta una sudadera con estilo?</p>
+								<a href="productos-sudaderas.php" class="btn btn-dark">Revisar catálogo</a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4 pb-3">
-					<div class="card">
-						<div class="card-body">
-							<img src="Images/Productos/cajatazas.jpg" width="100%">
-							<h5 class="card-title">Tazas</h5>
-							<p class="card-text">Consulta las tazas con los diseños que ya tenemos en inventario, ¡Es el regalo perfecto para dar en estas fiestas!.</p>
-							<a href="productos-tazas.php" class="btn btn-dark">Revisar catálogo</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4 pb-3">
-					<div class="card">
-						<div class="card-body">
-							<img src="Images/Productos/cajasudaderas.jpg" width="100%">
-							<h5 class="card-title">Abrigos y sudaderas</h5>
-							<p class="card-text">Consulta las sudaderas que tenemos para ti, con los diseños más creativos. ¿A quien no le gusta una sudadera con estilo?</p>
-							<a href="productos-sudaderas.php" class="btn btn-dark">Revisar catálogo</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</center>
-		</div>
+
 
 		</section>
 	</content>
+	<!-- ------------------------------------ Footer ------------------------------------ -->
+	<?php include 'footer.html';?>
+	<!-- -------------------------------------------------------------------------------- -->
 
 </body>
 </html>

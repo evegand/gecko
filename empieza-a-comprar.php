@@ -25,13 +25,40 @@ if(!isset($_SESSION))
 	<!---------------------------------------------------------------------------------------------------------------->
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
-		<!-- -------------------------- Banner -------------------------- -->
-		<div class="text-center " style="padding: 90px 0px 10px 30px; background-color: orange;">
-			<p>Selecciona la mejor opción para ti</p>
-			
-		</div>
-		<div class="text-center " style="padding: 10px 0px 10px 30px; background-color: blue;">
-			<p>Selecciona la mejor opción para ti</p>
+		<div class="text-center " style="padding: 90px 30px 10px 30px;">
+		<h1 class="pb-3">Selecciona la mejor opción para ti</h1>
+
+			<!-- -------------------------- Secciones -------------------------- -->
+			<div class="card-group">
+				<div class="card">
+					<img class="card-img-top" src="Images/productos.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Compra productos</h5>
+						<p class="card-text">Visita nuestra página de categorías y revisa los productos que tenemos para ti.</p>
+					</div>
+					<a href="productos.php" class="btn btn-dark">Revisar catálogo</a>
+				</div>
+
+				<div class="card">
+					<img class="card-img-top" src="Images/personaliza.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Personaliza un producto</h5>
+						<p class="card-text">¿Quieres algo diferente? Contáctanos con tu diseño para ponernos en contacto.</p>
+					</div>
+					<a href="servicios-personaliza.php" class="btn btn-dark">Realiza tus pedidos</a>
+				</div>
+
+				<div class="card">
+					<img class="card-img-top" src="Images/estudio.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Paquetes fotográficos</h5>
+						<p class="card-text">Estamos asociados con Estudio Vane Andrade, encuentra toda la información necesaria.</p>
+					</div>
+					<a href="fotografia.php" class="btn btn-dark">Consulta más información</a>
+				</div>
+			</div>
+			<!-- ----------------------------------------------------------------- -->
+
 		</div>
 	<!-- ------------------------------------ Footer ------------------------------------ -->
 	<?php include 'footer.html';?>

@@ -47,7 +47,7 @@
             <!---(Opción) Servicios-----------------------------> 	           
            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle collapsed pl-3 pr-3" 
-                  href="#" 
+                  href="#servicios" 
                   id="titleServices" 
                   role="button" 
                   data-toggle="dropdown" 
@@ -58,7 +58,7 @@
               <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
                   <a class="dropdown-item" href="servicios-personaliza.php">Personalización</a>
                   <a class="dropdown-item" href="#vaneandrade.php">Servicios fotográficos</a>
-                  <a class="dropdown-item" href="#servicios">Más...</a>
+                  <a class="dropdown-item" href="empieza-a-comprar.php">Más...</a>
               </div>
           </li>
             <!---(Opción) Contacto------------------------------>

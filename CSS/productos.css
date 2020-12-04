@@ -197,8 +197,10 @@ a:hover{
 }
 
 .boxes {
+	/*
 	align-content: center;
 	width: 70%;
-	/* padding-left: 250px; */
+	padding-left: 250px;
+	*/
 	
 }
