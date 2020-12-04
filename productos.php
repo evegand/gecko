@@ -32,7 +32,7 @@ if(!isset($_SESSION))
 		<div style="height: 84px"></div>
 		<h1 class="pb-3">Productos</h1>
 
-		<div class="pb-5">
+		<div class="">
 		<center>
 			<!-- ------------------ Sección 1 ----------------- -->
 			<div class="row" style="width: 80%">
