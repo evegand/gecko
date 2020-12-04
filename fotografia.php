@@ -26,8 +26,9 @@ if(!isset($_SESSION))
 
 	<!-- --------------------------Contenido----------------------------------------------------------------------------------------------------------------------------------------->
 		<div class="text-center " style="padding: 90px 30px 10px 30px;">
-		<h1 class="pb-3">equisde</h1>
-
+			<h1 class="pb-3">Servicios Fotográficos</h1>
+			<p>Somos socios con el estudio fotográfico Vane Andrade, visita su sitio web para ponerte en contacto <br>y ver los paquetes que ofrecen. (Da clic en la imagen para ir a su sitio web)</p>
+			<a href="https://www.estudiovaneandrade.com"><img src="Images/vaneandrade.jpg" width="50%"></a>
 			<!-- -------------------------- Secciones -------------------------- -->
 
 			<!-- ----------------------------------------------------------------- -->
