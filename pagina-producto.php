@@ -90,34 +90,35 @@
 				*/
 				?>
 			
-			<?php				
-				$prodJSON = json_encode(array('id' => $product_id,'nombre' => $nombre_producto,'precio' => $precio,'imagen' => $imagen . ".jpg", 'cantidad' => 1));
+			<?php
+																				/*'size' => $size,*/
+				$prodJSON = json_encode(array('id' => $product_id,'nombre' => $nombre_producto, 'precio' => $precio,'imagen' => $imagen . ".jpg", 'cantidad' => 1));
 		   		echo "<div class='producto pb-3'>
 						<p class='add-cart cart' onclick='agregarProducto(" . $prodJSON . ")'>
-							<a href='#'>Añadir al Carrito</a><br>
-							<button class='btn btn-secondary btn-sm'>CH</button>
-							<button class='btn btn-secondary btn-sm'>M</button>
-							<button class='btn btn-secondary btn-sm'>G</button></p>
-							<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $imagen . ".jpg'>
+						".$nombre_producto."
 						</p>
+							<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $imagen . ".jpg'>
 					  </div>";
 				echo "<p style='color: white;'><a style='color: #B0B0B0;'>Categoría: ".$categoria."</a><br>";
 				echo "<b style='color: #C4FF33;'>Descripción:</b><br>".$descripcion."<br><br>";
 				echo "<b style='color: #C4FF33;'>Precio:</b> $".$precio.".00<br>";
 				echo "<b style='color: #C4FF33;'>Inventario:</b> Tenemos ".$existencias." en existencia.</p>";
 				if($categoria != 2){
+					echo "<form action='#' method='POST'>";
 					echo "<b style='color: #C4FF33;'>Talla</b></label>
-							<select name='' id=''>
+							<select name='size' id='size'>
 								<option value='Chico'>Chico</option>
 								<option value='Mediano'>Mediano</option>
 								<option value='Grande'>Grande</option>
 							</select><br><br>";
+					echo "</form>";
 				}
 			?>
-			
-			<p class="" onclick="agregarProducto(<?php echo $prodJSON ?>);" style="background-color: #C4FF33;">Añadir al carrito</p>
-			<p class="" onclick="agregarProducto(<?php echo $prodJSON; ?>)" style="background-color: red;">hola</p>
-			
+			<div class="botonproducto">
+				<input class="btn btn-sm" value="Añadir al Carrito" href='#' onclick='agregarProducto(<?php echo $prodJSON; ?>)' style="background-color: #C4FF33"></input>
+				<br>
+			</div>
+
 			<a href="<?php echo $origen; ?>" class="btn btn-dark" style=" width: 92%;">Regresar</a>
 			</center>
 		</div>

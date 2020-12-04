@@ -169,6 +169,27 @@ a:hover{
 }
 
 
+.botonproducto{
+	display: grid;
+	width: 14vw;
+	float: left;
+	/*background-color: rgb(50,50,50);*/
+	margin: 0.5vw;
+	position: relative;
+	height: 3vw;
+}
+
+.botonproducto:hover{
+	transition-duration: 0.3s;
+	transform: scale(1.03);
+}
+.botonproducto:hover .add-cart{
+	opacity: 0.9;
+    text-decoration:none;
+   	top: 0;
+   /*top: 14vw;*/
+}
+
 
 
 /* --------------------------- PRODUCTOS -> CATEGORIAS --------------------------- */

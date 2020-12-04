@@ -65,6 +65,7 @@ function agregarProducto(producto){
     }
     console.log(productosEnCarrito);
 	localStorage.setItem('productsInCart', JSON.stringify(productosEnCarrito));
+	alert("¡Tu producto se añadió al carrito!");
 
 }
 
