@@ -57,7 +57,7 @@
               </a>
               <div class="dropdown-menu border-0" aria-labelledby="dropdownMenu" id="dropdownServices">
                   <a class="dropdown-item" href="servicios-personaliza.php">Personalización</a>
-                  <a class="dropdown-item" href="#fotografia.php">Servicios fotográficos</a>
+                  <a class="dropdown-item" href="fotografia.php">Servicios fotográficos</a>
                   <a class="dropdown-item" href="empieza-a-comprar.php">Más...</a>
               </div>
           </li>
