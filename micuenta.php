@@ -95,7 +95,7 @@ if (isset($_POST['modificado'])){
 			//--------------------------------------------Datos de la cuenta------------------------------------------------
 				echo "<button class='btn btn-dark' onclick='dropMenu(`datosCuenta`)'>Modificar datos de la cuenta</button>
 						<div id='datosCuenta' class='dropMenu' style='display:none;'>
-						  <table class='tabla_drop'>
+						  <table class='tabla_admin'>
 						  	<form name='modifyForm' method='post' onsubmit='return confirmModifyUser()'>
 					          <tr><td>Nombres           </td> <td><input type='text' name='new_nombres'   value='" . $fila_user['nombre']   . "' required minlength='4'></td></tr>
 					          <tr><td>Apellidos         </td> <td><input type='text' name='new_apellidos' value='" . $fila_user['apellido'] . "' ></td></tr>
@@ -191,7 +191,7 @@ if (isset($_POST['modificado'])){
 			}	   
 			//--------------------------------------------Cerrar sesión------------------------------------------------	
 				echo ' <form action="" method="POST">
-					<input style="width: 70%" type="submit" value="Cerrar sesión" name="logout" class="btn btn-danger">
+					<input style="width: 70%;font-size:1rem" type="submit" value="Cerrar sesión" name="logout" class="btn btn-danger">
 				</form>	' ;
 
 			?>

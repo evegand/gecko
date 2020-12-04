@@ -2,8 +2,8 @@
 	if(!isset($_SESSION))
 	    session_start();
 
-	$product_id = $_POST['prod_id'];
-	$origen = $_POST['origen'];
+	$product_id = $_GET['prod_id'];
+	if (isset($_POST['origen'])) $origen = $_POST['origen'];
 
 	// echo $product_id;
 	// echo $origen;
@@ -20,9 +20,10 @@
 		$descripcion = $fila['descripcion'];
 		$precio = $fila['precio'];
 		$imagen = $fila['imagen'];
+		$categoria = $fila['id_categoriaf'];
 	}
 
-	$consulta = "SELECT p.id_producto, p.nombre_producto, e.existencia
+	$consulta = "SELECT p.id_producto, p.nombre_producto, p.id_categoriaf , e.existencia
 				FROM productos AS p INNER JOIN existencias AS e ON p.id_producto = e.id_producto
 				WHERE p.id_producto = ".$id.";";
 	$resultado= mysqli_query($conexion, $consulta);
@@ -90,7 +91,7 @@
 				echo "<p style='color: white;'><b style='color: #C4FF33;'>Descripción:</b><br>".$descripcion."<br><br>";
 				echo "<b style='color: #C4FF33;'>Precio:</b> $".$precio.".00<br>";
 				echo "<b style='color: #C4FF33;'>Inventario:</b> Tenemos ".$existencias." en existencia.</p>";
-				if($origen != '/GitGecko/productos-tazas.php'){
+				if($categoria != 2){
 					echo "<b style='color: #C4FF33;'>Talla</b></label>
 							<select name='' id=''>
 								<option value='Chico'>Chico</option>

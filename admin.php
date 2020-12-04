@@ -148,7 +148,7 @@ if (isset($_POST['productoAgregado'])){
 				$consulta= "SELECT * FROM usuarios LIMIT 20 OFFSET 1"; 
 				$result= mysqli_query($conexion,$consulta); 
 			  	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td><form method='post' style='float:left;'><button onclick='dropMenu(`adminUsuarios`)' class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button></form>";
+			      	echo "<tr><td>" . $row['id_usuario'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['apellido'] . "</td><td>" . $row['telefono'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['username'] . "</td><td>" . $row['id_rol'] . "</td><td><form method='post' class='modBtn'><button onclick='dropMenu(`adminUsuarios`)' class='btn btn-secondary' type='submit' name= 'id_user_modify' value='". $row['id_usuario'] ."'>Modificar</button></form>";
 			      	if($row['id_rol'] != 1)
 			      		echo " <form method='post' style='display:flex;' onsubmit='return confirmDelete()'><button class='btn btn-danger' type='submit' name= 'id_user_delete' value='". $row['id_usuario'] . "'>Eliminar</button>";
 			      	echo '</form></td></tr>';
@@ -224,8 +224,14 @@ if (isset($_POST['productoAgregado'])){
 									<td>" . $fila['nombre_producto'] . "</td>
 									<td>" . $fila['descripcion'] . "</td>
 									<td>$" . $fila['precio'] . "</td>
-									<td><form method='post' style='float:left'><button onclick='dropMenu(`adminProd`)' class='btn btn-secondary' type='submit' name= 'id_prod_modify' value='". $fila['id_producto'] ."'>Modificar</button></form> 
-										<form method='post' style='display:flex;' onsubmit='return confirmDelete()'><button class='btn btn-danger' type='submit' name= 'id_product_delete' value='". $fila['id_producto'] . "'>Eliminar</button></form>
+									<td>
+										<form method='post' class='modBtn'>
+											<button onclick='dropMenu(`adminProd`)' class='btn btn-secondary' type='submit' name= 'id_prod_modify' value='". $fila['id_producto'] ."'>Modificar</button>
+											<button onclick='dropMenu(`adminProd`)' class='btn btn-info'      type='submit' name='id_prod_stock'   value='". $fila['id_producto'] ."'>Stock</button>
+										</form> 
+										<form method='post' style='display:flex;' onsubmit='return confirmDelete()'>
+											<button class='btn btn-danger' type='submit' name= 'id_product_delete' value='". $fila['id_producto'] . "'>Eliminar</button>
+										</form>
 									</td>
 								</tr>
 							</table>";
@@ -239,8 +245,7 @@ if (isset($_POST['productoAgregado'])){
 			//-----------Agregar producto---------------------------------
 			$id_new_prod = null;
 			if (isset($_POST['id_new_prod'])){
-				$consultaCats = "SELECT * FROM categorias";
-				$resultCats= mysqli_query($conexion,$consultaCats);
+				$resultCats= mysqli_query($conexion,"SELECT * FROM categorias");
 				$id_new_prod = $_POST['id_new_prod'];
 				echo "<div id='AddProd' class='dropMenu'>
 				    	  <h4 align='center'>Agregar nuevo producto</h4>
@@ -260,16 +265,15 @@ if (isset($_POST['productoAgregado'])){
 			//-------------Modificar producto----------------------------
 			$id_prod_modify = null;
 			if (isset($_POST['id_prod_modify'])){
-				$consultaCats = "SELECT * FROM categorias";
-				$resultCats= mysqli_query($conexion,$consultaCats);
 				$id_prod_modify = $_POST['id_prod_modify'];
-			    $consulta= "SELECT * FROM productos WHERE id_producto=" . $id_prod_modify . ""; 
+				$resultCats= mysqli_query($conexion,"SELECT * FROM categorias");				
+			    $consulta= "SELECT * FROM productos WHERE id_producto='$id_prod_modify'"; 
 			    $result= mysqli_query($conexion,$consulta); 
 			    $fila = mysqli_fetch_array($result);
 			    if ($fila){
 			    	echo "<div id='modProd' class='dropMenu'>
 				    	  <h4 align='center'>Modificar producto: " . $fila['nombre_producto'] . "</h4>
-				          <table class='tabla_admin'><form method='post'  enctype='multipart/form-data' action=''>
+				          <table class='tabla_admin'><form method='post'  enctype='multipart/form-data'>
 				          	  <tr><td>ID Producto</td> <td>" . $fila['id_producto'] . "</td></tr>
 					          <tr><td>Nombre     </td> <td><input type='text' name='new_nombreP'     value='" . $fila['nombre_producto'] . "'></td></tr>
 					          <tr><td>Descripción</td> <td><textarea style='resize: none;' rows='3' maxlength='200' name='new_descripcion'>" . $fila['descripcion'] ."</textarea>    </td></tr>
@@ -281,10 +285,24 @@ if (isset($_POST['productoAgregado'])){
 					          <tr><td>Imagen     </td><td><input name='fileToUpload' type=file accept='image/x-png,image/gif,image/jpeg'> &nbsp <img src='Images/Productos/". $fila['imagen'].".jpg' class='imagenForm' style='width:6vw'; ></td></tr>
 					          <tr><td>           </td> <td><button class='btn btn-success' type='submit' name= 'productoModificado' value='". $fila['id_producto'] ."'>Enviar</button></form></td></tr>
 				          </table></div><br>";
-
 			    }
 			    else
 			    	echo '<script>dropMenu(`adminProd`)</script>';
+			}
+
+			//-------------Modificar stock----------------------------
+			if(isset($_POST['id_prod_stock'])){
+				$id_prod_stock = $_POST['id_prod_stock'];
+				$resultStock = mysqli_query($conexion,"SELECT * FROM existencias WHERE id_producto='$id_prod_stock'");
+				if (mysqli_num_rows($resultStock) != 0){
+					echo "<div id='modStock' class='dropMenu'>
+						  <h4 align='center'>Stock producto ID: " . $id_prod_stock . "</h4>
+						  <table class='tabla_admin'><form method='post'>
+						  	<tr> <td>ID stock</td> <td>Detalle</td> <td>Cantidad en stock</td> </tr>";
+						  	while ($fila = mysqli_fetch_array($resultStock))
+						  		echo "<tr> </tr>";
+					echo "</table></div>";
+				}
 			}
 		?>
 

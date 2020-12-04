@@ -47,7 +47,7 @@ $origen = $_SERVER['PHP_SELF'];
 						<img class='imgPr' alt='Imagen del producto' src='Images/Productos/" . $fila['imagen'] . ".jpg'>
 						<div class='pie-producto'><h2 class='productName'>" . $fila['nombre_producto'] . "</h2>
 						<label class='productPrice'>$" . $fila['precio'] . ".00</label></div>
-						<form action='pagina-producto.php' method='POST'>
+						<form action='pagina-producto.php' method='GET'>
 							<input type='text' name='prod_id' hidden='true' value='".$fila['id_producto']."'>
 							<input type='text' name='origen'  hidden='true' value='".$origen."'>
 							<center><input type='submit' name='submit' value='Ver producto' style='background-color: #C4FF33' class='btn btn-sm'></center>

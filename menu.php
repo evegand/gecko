@@ -63,7 +63,7 @@
               </div>
           </li>
             <!---(Opción) Contacto------------------------------>
-            <li class="nav-item"><a class="nav-link pl-4 pr-4" href="contacto.php">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link pl-3 pr-3" href="contacto.php">Contacto</a></li>
 
             <!---(Opción) Iniciar sesión------------------------>
             <li class="nav-item"><a class="nav-link pl-3 pr-3" href="micuenta.php" id="sesion">Iniciar sesión</a></li>

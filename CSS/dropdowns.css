@@ -27,6 +27,11 @@
 	margin-right: 6px;
 }
 
+.modBtn{
+	float: left;
+	margin-right: 2px;
+}
+
 tr, h4{
 	border-bottom: 1px solid rgb(80,80,80);
 	color: black;
@@ -50,8 +55,8 @@ input[type=number]{
 }
 
 
-@media (max-width: 890px){
-	.tabla_admin, .btn-secondary, .btn-danger, .btn-success, .btn-primary{
+@media (max-width: 990px){
+	.tabla_admin, .btn-secondary, .btn-danger, .btn-success, .btn-primary, .btn-info{
 		font-size: 1.5vw;
 		padding: 1px;
 	}

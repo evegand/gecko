@@ -31,7 +31,7 @@ function confirmDelete(){
 }
 
 function confirmModifyUser(){
-  if (confirm("¡Deseas guardar los cambios?")){
+  if (confirm("¿Deseas guardar los cambios?")){
     var x = document.forms['modifyForm'];
     if(x['new_contrasena'].value != x['new_contrasena2'].value){
       document.getElementsByName('new_contrasena2')[0].style.background = 'rgb(255,180,180)';
