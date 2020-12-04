@@ -272,15 +272,20 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 INSERT INTO `existencias` (`id_existencia`, `id_producto`, `existencia`,`detalle`) VALUES
 (NULL, 1, 7, 'M'),
 (NULL, 2, 3, 'M'),
-(NULL, 3, 5, 'M'),
+(NULL, 3, 53, 'M'),
 (NULL, 4, 2, 'M'),
 (NULL, 5, 1, 'M'),
-(NULL, 6, 1, 'M'),
+(NULL, 6, 16, 'M'),
 (NULL, 7, 0, 'M'),
 (NULL, 8, 0, 'M'),
-(NULL, 9, 1, 'M'),
-(NULL, 10, 0, 'M');
-
+(NULL, 9, 17, 'M'),
+(NULL, 10, 7, 'M'),
+(NULL, 11, 3, 'M'),
+(NULL, 12, 5, 'M'),
+(NULL, 13, 2, 'M'),
+(NULL, 14, 1, 'M'),
+(NULL, 15, 13, 'M'),
+(NULL, 16, 10, 'M');
 
 -- COMMIT;   ??
 

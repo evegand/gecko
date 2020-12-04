@@ -4,7 +4,7 @@
 ini_set("SMTP","gmail.com");
 
 // Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
-ini_set("smtp_port","8889");
+ini_set("smtp_port","587");
 
 // Please specify the return address to use
 ini_set('sendmail_from', 'evegand.97@gmail.com');
