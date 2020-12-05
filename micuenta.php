@@ -172,7 +172,6 @@ if (isset($_POST['modificado'])){
 				      <div id='domicilios' class='dropMenu' style='display:none;'>
 				      	<table class='tabla_admin'>
 				      		<tr> <th>ID</th> <th>Ciudad</th> <th>Colonia</th> <th>Calle</th> <th>Número</th> <th>CP</th> <th></th> </tr>";
-				      		$result = mysqli_query($conexion,"SELECT * FROM direcciones WHERE id_usuario = '$id_usuario'");
 				      		while($row = mysqli_fetch_array($result)){
 			      			echo "<tr>
 		      					<td>".$row['id_direccion']."</td> 

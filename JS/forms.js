@@ -34,6 +34,7 @@ function confirmModify(){
   return confirm("¿Deseas guardar los cambios?");
 }
 
+
 function confirmModifyUser(){
   if (confirm("¿Deseas guardar los cambios?")){
     var x = document.forms['modifyForm'];
@@ -79,3 +80,5 @@ function dynamicStockForm(select){
   else
     padre.innerHTML = `<input type='number' name='new_stock' style='width:8.6rem;text-align:center;' value=''> Unidades`;
 }
+
+

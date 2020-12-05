@@ -47,7 +47,6 @@ if (isset($_POST['productoModificado'])){
   $new_cat = $_POST['new_catP'];
   $imagen = $_FILES['fileToUpload']['tmp_name'];
 
-  //unlink("Images/Productos/" . $prod_modify . ".jpg");
   move_uploaded_file($imagen, "Images/Productos/" . $prod_modify . ".jpg");
 
   $consulta_modificar = "UPDATE productos SET nombre_producto='" .$new_nombreP. "', descripcion='" .$new_descripcion. "', precio='" .$new_precio. "', id_categoriaf = '$new_cat' WHERE id_producto='" . $prod_modify . "'";

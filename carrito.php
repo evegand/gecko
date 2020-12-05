@@ -43,7 +43,7 @@ if(!isset($_SESSION))
 
 		        </div>
 			</div>
-			<div style="text-align: right;"><br><button class="btn btn-primary">Proceder al Pago</button></div>
+			<div style="text-align: right;"><br><button class="btn btn-primary" onclick="window.location.href = 'pago.php';">Proceder al Pago</button></div>
 		</div>
 		<script src="JS/carrito.js"></script>
 		<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
