@@ -41,15 +41,15 @@ if(!isset($_SESSION))
 				<form action="cotizacion.php" method="POST">
 					<div class="form-group">
 						<label for="nombre">Ingresa tu nombre<a style="color: red;"> *</a></label>
-						<input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
+						<input type="text" class="form-control" name="nombre" placeholder="Nombre completo" required>
 					</div>
 					<div class="form-group">
 						<label for="formGroupExampleInput2">Ingresa tu correo electrónico<a style="color: red;"> *</a></label>
-						<input type="email" class="form-control" id="correo" placeholder="Correo eletrcónico" rquired>
+						<input type="email" class="form-control" name="correo" placeholder="Correo eletrcónico" rquired>
 					</div>
 					<div class="form-group">
 						<label for="producto">Selecciona un producto<a style="color: red;"> *</a></label>
-						<select name="producto" id="producto" class="form-control" required>
+						<select name="producto" name="producto" class="form-control" required>
 							<!-- Selecciona el producto-->
 							<?php
 								include("config/db.php");
@@ -68,7 +68,7 @@ if(!isset($_SESSION))
 					</div>
 					<div class="form-group">
 						<label for="color">Selecciona un color<a style="color: red;"> *</a></label>
-						<select name="color" id="color" class="form-control" required>
+						<select name="color" name="color" class="form-control" required>
 							<option value="blanco">Blanco</option>
 							<option value="rojo">Rojo</option>
 							<option value="azul">Azul</option>
@@ -77,7 +77,7 @@ if(!isset($_SESSION))
 					</div>
 					<div class="form-group">
 						<label class="textarea text-white" for="mensaje">Mensaje<a style="color: red;"> *</a></label>
-						<textarea type="textarea" rows="3" class="form-control" name="consulta" placeholder="Especifica como quieres tu diseño, o si hay detalles importantes que quieres mencionar." required></textarea>					</div>
+						<textarea type="textarea" rows="3" class="form-control" name="mensaje" placeholder="Especifica como quieres tu diseño, o si hay detalles importantes que quieres mencionar." required></textarea>					</div>
 					<div class="form-group">
 						<label for="archivo">Selecciona tu diseño</label>
 							<input type="file" class="form-control-file" id="archivo">

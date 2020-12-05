@@ -1,19 +1,12 @@
 ﻿<?php
     //Proceso de conexion con la base de datos
-    $link = mysqli_connect("localhost", "root", "", "sesiones");
-
-    if (mysqli_connect_errno()){
-        echo "No se pudo conectar : " . mysqli_connect_error();
-        exit;
-    }
+    include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
+    include("config/conexion.php");//Contiene de conexion a la base de datos
 
     $remitente = $_POST['email'];
     $destinatario = 'mail@dominio.com'; // en esta línea va el mail del destinatario.
-    $asunto = 'Consulta'; // acá se puede modificar el asunto del mail
+    $asunto = $_POST['consulta']; // acá se puede modificar el asunto del mail
 
-    echo "<b>Remitente</b>: ".$remitente;
-    echo "<b>Destinatario</b>: ".$destinatario;
-    echo "<b>Mensaje</b>: ".$asunto;
 
     if (!$_POST){
         echo '<script>
@@ -31,7 +24,7 @@
         $headers .= "X-Priority: 3\n";
         $headers .= "X-MSMail-Priority: Normal\n";
         $headers .= "X-Mailer: php\n";
-        $headers .= "From: \"".$_POST['nombre']." ".$_POST['apellido']."\" <".$remitente.">\n";
+        $headers .= "From: \"" .$_POST['nombre']. "\"" .$remitente. "\n";
 
         mail($destinatario, $asunto, $cuerpo, $headers);
 

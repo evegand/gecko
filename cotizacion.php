@@ -1,56 +1,42 @@
 <?php
     //Proceso de conexion con la base de datos
-    $link = mysqli_connect("localhost", "root", "", "sesiones");
+    include("config/db.php");//Contienen las variables, el servidor, usuario, contraseña y nombre  de la base de datos
+    include("config/conexion.php");//Contiene de conexion a la base de datos
 
-    if (mysqli_connect_errno()){
-        echo "No se pudo conectar : " . mysqli_connect_error();
-        exit;
-    }
-
-
+    $remitente = $_POST['correo'];
     $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
     $producto = $_POST['producto'];
     $color = $_POST['color'];
     $mensaje = $_POST['mensaje'];
-    $file = $_POST['archivo'];
+    //$file = $_POST['archivo'];
 
-    echo "<b>Remitente</b>: ".$remitente;
-    echo "<b>Destinatario</b>: ".$destinatario;
-    echo "<b>Mensaje</b>: ".$asunto;
+    $destinatario = 'jair.marquez.rubio@gmail.com'; // en esta línea va el mail del destinatario.
 
-    // Please specify your Mail Server - Example: mail.yourdomain.com.
-    ini_set("SMTP","gmail.com");
-
-    // Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
-    ini_set("smtp_port","587");
-
-    // Please specify the return address to use
-    ini_set('sendmail_from', 'evegand.97@gmail.com');
-
-    //echo phpinfo();
-
-    $to_email = "evegand.97@gmail.com";
-    $subject = "Simple Email Test via PHP";
-    $body = "Hi,nn This is test email send by PHP Script";
-    $headers = "From: sender\'s email";
-
-    if (mail($to_email, $subject, $body)) {
-        echo "Email successfully sent to $to_email...";
-    } else {
-        echo "Email sending failed...";
-    }
-
-    /*
-    $to = "destinatario@email.com";
-    $subject = "Asunto del email";
-    $message = "Este es mi primer envío de email con PHP";
-     
-    mail($to, $subject, $message);
-    */
+    if (!$_POST){
         echo '<script>
-                 alert("¡Su mensaje se ha enviado con éxito!");
-                 location.href="contacto.php";
+                 alert("¡Su mensaje no ha sido enviado!");
              </script>';
-    }
+    } else {
+        $cuerpo = "Nombre y apellido: " . $_POST["nombre"] . "\r\n"; 
+        $cuerpo .= "Email: " . $_POST["correo"] . "\r\n";
+        $cuerpo .= "Producto: " . $_POST["producto"] . "\r\n";
+        $cuerpo .= "Color: " . $_POST["color"] . "\r\n";
+        $cuerpo .= "Mensaje: " . $_POST["mensaje"] . "\r\n";
+        //las líneas de arriba definen el contenido del mail. Las palabras que están dentro de $_POST[""] deben coincidir con el "name" de cada campo. 
+        // Si se agrega un campo al formulario, hay que agregarlo acá.
+
+        $headers  = "MIME-Version: 1.0\n";
+        $headers .= "Content-type: text/plain; charset=utf-8\n";
+        $headers .= "X-Priority: 3\n";
+        $headers .= "X-MSMail-Priority: Normal\n";
+        $headers .= "X-Mailer: php\n";
+        $headers .= "From: \"" .$_POST['nombre']. "\"" .$remitente. "\n";
+
+        mail($destinatario, "Personalizacion", $cuerpo, $headers);
+
+    echo '<script>
+             alert("¡Su mensaje se ha enviado con éxito!");
+             location.href="servicios-personaliza.php";
+         </script>';
+     }
 ?>
