@@ -259,7 +259,7 @@ if (isset($_POST['stockModificado0']) || isset($_POST['stockModificado1']) || is
 											<button onclick='dropMenu(`adminProd`)' class='btn btn-info'      type='submit' name='id_prod_stock'   value='". $fila['id_producto'] ."'>Stock</button>
 										</form> 
 										<form method='post' style='display:flex;' onsubmit='return confirmDelete()'>
-											<button class='btn btn-danger' type='submit' name= 'id_product_delete' value='". $fila['id_producto'] . "'>Eliminar</button>
+											<button class='btn btn-danger' type='submit' name= 'id_product_delete' value='". $fila['id_producto'] . "' disabled>Eliminar</button>
 										</form>
 									</td>
 								</tr>

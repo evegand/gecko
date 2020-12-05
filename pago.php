@@ -32,7 +32,7 @@ if (isset($_POST['hacerPedido'])){
 	if (!$resultado_pedido)
 		echo "Error al crear el producto";
 	else{
-		//echo "<script>localStorage.removeItem('productsInCart')</script>";
+		echo "<script>localStorage.removeItem('productsInCart')</script>";
 	}
 	$idAgregado = mysqli_insert_id($conexion); //Obtiene el id del pedido recién creado para asignarlo a los registros de detalle
 	$JSONpedido = json_decode($_POST['JSONpedido'],true);

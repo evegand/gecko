@@ -112,7 +112,7 @@
 				<input type="submit" class="btn btn-sm" value="Añadir al Carrito" href='#' onclick='agregarProducto(<?php echo $prodJSON; ?>)' style="background-color: #C4FF33"></input>
 				<br>
 			</div>
-
+			<br><br><br>
 			<a href="<?php echo $origen; ?>" class="btn btn-dark" style=" width: 92%;">Regresar</a>
 		</div>
 
