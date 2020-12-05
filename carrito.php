@@ -19,6 +19,8 @@ if(!isset($_SESSION))
 	<link href="CSS/carrito.css" rel="stylesheet">                              <!--Carrito de compras--->
 	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
+	<!--Icon-->
+   	<link rel="icon" href="Images/BlackGecko.png">
 
 </head>
 <body>

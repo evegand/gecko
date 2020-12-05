@@ -27,6 +27,8 @@ if(isset($_SESSION['login_user_sys'])){
     <link href="CSS/formularios.css" rel="stylesheet">                          <!--Estilos formularios-->  
 	<!---------------Javascript (scripts)------------------------>
 	<script type="text/javascript" src="JS/nav.js"></script>
+	<!--Icon-->
+	<link rel="icon" href="Images/BlackGecko.png">
 </head>
 <body>
 	<!-------------------------------- Barra de navegación ---------------------------------------------------------------------->

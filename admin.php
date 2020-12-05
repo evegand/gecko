@@ -143,6 +143,8 @@ if (isset($_POST['stockModificado0']) || isset($_POST['stockModificado1']) || is
    	<script type="text/javascript" src="JS/nav.js"></script>
    	<script type="text/javascript" src="JS/micuenta.js"></script>
    	<script type="text/javascript" src="JS/forms.js"></script>
+   	<!--Icon-->
+   	<link rel="icon" href="Images/BlackGecko.png">
 </head>
 <body>
 	<!------------------------------------- Barra de navegación ------------------------------------------------------>

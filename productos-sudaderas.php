@@ -19,6 +19,8 @@ $origen = $_SERVER['PHP_SELF'];
 	<link href="CSS/productos.css" rel="stylesheet">                            <!--Estilos productos---->
 	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
+	<!--Icon-->
+	<link rel="icon" href="Images/BlackGecko.png">
 
 </head>
 <body>

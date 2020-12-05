@@ -76,6 +76,8 @@ if (isset($_POST['id_domicilio_deleted'])){
    	<script type="text/javascript" src="JS/nav.js"></script>
    	<script type="text/javascript" src="JS/micuenta.js"></script>
    	<script type="text/javascript" src="JS/forms.js"></script>
+   	<!--Icon-->
+	<link rel="icon" href="Images/BlackGecko.png">
 </head>
 <body>
 	<!------------------------------------- Barra de navegación ----------------------------------------------------------------->

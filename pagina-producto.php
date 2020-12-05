@@ -59,6 +59,8 @@
 	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
 	<script type="text/javascript" src="JS/carrito.js"></script>
+	<!--Icon-->
+	<link rel="icon" href="Images/BlackGecko.png">
 
 </head>
 <body>

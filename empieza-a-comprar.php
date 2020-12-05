@@ -18,6 +18,8 @@ if(!isset($_SESSION))
 	<link href="CSS/Icons/fontello-e1be2622/css/fontello.css" rel="stylesheet"> <!--Íconos del footer---->
 	<!--------------Javascript (scripts)------------------------->
 	<script type="text/javascript" src="JS/nav.js"></script>
+	<!--Icon-->
+	<link rel="icon" href="Images/BlackGecko.png">
 
 </head>
 <body>
